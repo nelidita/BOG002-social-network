@@ -13,7 +13,7 @@ const btnIniciarSesion = document.getElementById('btnIniciarSesion');
 const mostrarLogin = () => {
   const appPantallaLogin = rootHtml.appendChild(inicioSesion());
   appenPantallaInicio.style.display = 'none';
-  appPantallaLogin.style.display = 'flex';
+  appPantallaLogin.style.display = 'block';
   const formularioInicioSesion = document.getElementById('formularioInicioSesion');
   formularioInicioSesion.addEventListener('submit', (event) => {
     const emailLogin = document.getElementById('emailLogin').value;

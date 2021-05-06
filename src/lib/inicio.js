@@ -3,7 +3,7 @@ export const pantallaInicio = () => {
   inicio.className = 'contenedorInicio';
   const contenidoinicio = `
     <div class = "textoInicioGrande">
-    <p class="textoCervecero1"> Para los verdaderos amantes de la cerveza... </p>
+      <p class="textoCervecero1"> Para los verdaderos amantes de la cerveza... </p>
     </div>
     <div class = "logoBotones">
       <img alt="logoInicio" class="logoPantallainicio" id="logoInicio" src = "Imagenes/LogoBeer.png"/>

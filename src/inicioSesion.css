@@ -1,171 +1,163 @@
 /* Estilos incio de sesion   */
 @media (max-width:500px){
-body{
-background-image: url("Imagenes/fondoblur.jpg");
-}
-.contenedorIniciosesion{
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-margin-top: 20px;
-flex-direction: row;
-align-content: center;
-}
-.contenedorIniciosesion h3{
-font-family: inherit;
-font-size: 20px;
-color: #f7cb2d;
-text-align: right;
-text-shadow: 0.1em 0.1em 3px #000;
-font-weight: bold;
-margin-top: 20px;
-margin-right: 15px;
-margin-left: 100px;
-}
-.contenidoInputs{
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-margin-top: 30px;
-flex-direction: row;
-align-content: center; 
-}
-#logoIniciosesion{
-width: 286px;
-height: 150px;   
-}
-#formularioInicioSesion input{
-width: 275px;
-height: 41px;
-border-radius: 5px;
-background: #F1e5B9;
-border: 0.2px solid #000000;
-margin: 12px;
-margin-left: 35px;
-font-family: inherit;
-font-size: 18px;
-font-weight: bold;
-text-align: center;
-}
-.textoCervecero1 {
-display: none;
-}
-#formularioInicioSesion #emailLogin{
-margin-top: 55px;
-}
-#formularioInicioSesion button{
-margin-top: 40px;
-width: 160px;
-height: 52px;
-border-radius: 79px;
-background:#523412;
-border: 0.2px solid #000000;
-margin: 12px;
-margin-left: 95px;
-font-family: inherit;
-font-size: 18px;
-font-weight: bold;
-color: #EDD376;
-}
-.contenedorIniciosesion p{
-font-size: 18px;
-font-family: inherit;
-color: black;
-font-weight:bold;
-margin-top: 50px;
-}
-.contenedorIniciosesion a{
-font-size: 18px;
-font-family: inherit;
-color:#143df3e7;
-font-weight:bolder;
-}
-footer img {
-width: 15px;
-height: 15px;
-}  
+
+ .contenedorIniciosesion{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: row;
+  align-content: center;
+ }
+ .mensajeCervecero2{
+  font-family: inherit;
+  font-size: 20px;
+  color: #f7cb2d;
+  text-align: right;
+  text-shadow: 0.1em 0.1em 3px #000;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-right: 15px;
+  margin-left: 100px;
+ }
+ .contenidoInputs{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+  flex-direction: row;
+  align-content: center; 
+ }
+ #logoIniciosesion{
+  width: 270px;  
+ }
+ .inputSesion{
+  width: 275px;
+  height: 41px;
+  border-radius: 5px;
+  background: #F1e5B9;
+  border: 0.2px solid #000000;
+  margin: 12px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+ }
+ .mensajeCervecero1 {
+  display: none;
+ }
+  #emailLogin{
+  margin-top: 35px;
+  }
+ #formularioInicioSesion{
+  text-align: -webkit-center;
+ }
+ #formularioInicioSesion button{
+  margin-top: 40px;
+  width: 160px;
+  height: 52px;
+  border-radius: 79px;
+  background:#523412;
+  border: 0.2px solid #000000;
+  margin: 12px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: #EDD376;
+ }
+ .mensajeCuentainicio{
+   font-size: 14px;
+   font-family: inherit;
+   color: #F1e5B9;
+   font-weight: bold;
+   margin-top: 5px;
+   text-shadow: 0.1em 0.1em 2px #000000;
+ }
+ .contenedorIniciosesion a{
+   font-size: 14px;
+   color: #edd376;
+   font-weight: bolder;
+   text-shadow: 0.1em 0.1em 2px #000000;
+   font-family: sans-serif;
+ }
 }
 
-@media only screen and (max-width: 1440px) and (min-width: 501px){
-.contenedorIniciosesion {
-position: relative;
-margin: 20px;
-width: 1440PX;
-height: 1024px;
-cursor: pointer;  
-}
-.contenidoInputs{
-width: 337px;
-height: 522px;
-background: rgba(237, 211, 118, 0.47);
-border-radius: 50px;
-margin-top: 15px;
-margin-left: 120px;   
-}
-.textoCervecero1 {
-width: 380px;
-color: #f7cb2d;
-font-size: 35px;
-text-align: right;
-text-shadow: 0.1em 0.1em 3px #000;
-margin-top: 15px;
-margin-right: 55px;
-margin-left: 450px;
-}
-.textoCervecero2 {
-display: none;
-}
-.logoIniciosesion {
-width: 300px;
-height: 154px;
-margin-left: 20px;
-margin-top: 18px;
-}
-#formularioInicioSesion input {
-width: 275px;
-height: 41px;
-border-radius: 5px;
-background: #F1e5B9;
-border: 0.2px solid #000000;
-margin: 12px;
-margin-left: 35px;
-font-family: inherit;
-font-size: 18px;
-font-weight: bold;
-text-align: center;
-cursor: pointer;
-}   
-#formularioInicioSesion #emailLogin{
-margin-top: 45px;
-}
-#formularioInicioSesion button {
-margin-top: 40px;
-width: 160px;
-height: 52px;
-border-radius: 79px;
-background:#523412;
-border: 0.2px solid #000000;
-margin: 12px;
-margin-left: 95px;
-font-family: inherit;
-font-size: 18px;
-font-weight: bold;
-color: #EDD376;
-cursor: pointer;
-}
-.contenedorIniciosesion p{
-font-size: 18px;
-font-family: inherit;
-color: black;
-font-weight:bold;
-margin-top: 50px;
-text-align: center;
-}
-.contenedorIniciosesion a{
-font-size: 18px;
-font-family: inherit;
-color:#143df3e7;
-font-weight:bolder;
-}
+ @media (min-width: 501px){
+ .contenedorIniciosesion {
+   text-align: center;
+   margin: 40px;
+   display: block;
+ }
+ .contenidoInputs{
+   width: 337px;
+   height: 522px;
+   background: rgba(237, 211, 118, 0.47);
+   border-radius: 50px;
+   margin: 40px;
+   margin-left: 150px;   
+ }
+ .logoIniciosesion {
+    width: 270px;
+    margin-top: 30px;
+   }
+ .mensajeCervecero1 {
+    font-size: 50px;
+    color: #F7CB2D;
+    text-align: right;
+    text-shadow: 0.1em 0.1em 3px #000;
+    font-weight: bold;
+ }
+ .mensajeCervecero2 {
+  display: none;
+ }
+ 
+ .inputSesion {
+  width: 275px;
+  height: 41px;
+  border-radius: 5px;
+  background: #F1e5B9;
+  border: 0.2px solid #000000;
+  margin: 12px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+ }   
+  #emailLogin{
+  margin-top: 45px;
+ }
+ #formularioInicioSesion button {
+  width: 160px;
+  height: 52px;
+  border-radius: 79px;
+  background:#523412;
+  border: 0.2px solid #000000;
+  margin: 15px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: #EDD376;
+  cursor: pointer;
+ }
+ .mensajeCuentainicio {
+  font-size: 18px;
+  font-family: inherit;
+  color: #F1e5B9;
+  font-weight:bold;
+  margin-top: 10px;
+  text-align: center;
+ }
 
+ .textoSesionGrande {
+    float: right;
+    max-width: 340px;
+    margin-right: 40px;
+ }
+ .contenedorIniciosesion a{
+    font-size: 19px;
+    font-family: inherit;
+    color: #3f1e01;
+    font-weight: bolder;
+    text-shadow: 0.1em 0.1em 3px #f1e5b9;
+ }
 }

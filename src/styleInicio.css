@@ -1,151 +1,152 @@
 * {
-    margin: 0%;
-    padding: 0%;
-    text-decoration: none;
-    font-family: 'Ubuntu', sans-serif;
-  
-   }
-   body {
-    background-repeat: no-repeat;
-    background: url("Imagenes/img2blur.jpg") no-repeat center center fixed;
-    background-size: 100% 100%;
-   }
-   footer{   
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    bottom: 0; /* esta llevando el footer al final pero debemos revisar si asignandole un tamaño a body estaria sobrando */
+  margin: 0%;
+  padding: 0%;
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+body {
+  background-repeat: no-repeat;
+  background: url("Imagenes/img2blur.jpg") no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+footer{   
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 0; /* esta llevando el footer al final pero debemos revisar si asignandole un tamaño a body estaria sobrando */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #523412;
+  align-items: center;
+}
+footer a{
+  color: white;
+  font-size: 12px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+footer img {
+  width: 20px;
+  height: 20px;
+  margin-left: 30px;
+}
+.botonesInicio:hover,
+.botonesInicio:focus {
+  box-shadow: 0 0.9em 0.9em -0.7em #221910;
+  -webkit-transform: translateY(-0.25em);
+  transform: translateY(-0.25em);
+}
+.botonesInicio {
+  --hover: #8A5C28;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+.botonesInicio:hover, button:focus {
+  border-color: var(--hover);
+  color: #fff;
+  background-color: #F7CB2D;
+}
+
+  /* Pantalla de Inicio de Desktop*/
+@media (min-width: 501px){
+  .contenedorInicio{
+   margin: 40px;
+   text-align: center;
+  }
+  .logoBotones{
+    background: rgba(237, 211, 118, 0.47);
+    border-radius: 50px;
+    width: 337px;
+    height: 522px;
+    margin: 40px; 
+    margin-left: 150px;
+  }
+  .textoInicioGrande{
+    float: right;
+    max-width: 340px;
+    margin-right: 40px;
+  }
+  .textoCervecero2{
+    display: none;
+  }
+  .textoCervecero1{
+    font-family: inherit;
+    font-size: 50px;
+    color: #F7CB2D;
+    text-align: right;
+    text-shadow: 0.1em 0.1em 3px #000;
+    font-weight: bold;
+  } 
+  #logoInicio{
+    width: 270px;
+    margin-top: 70px;
+  }
+  .botonesInicio{
+    width: 270px;
+    height: 70px;
+    color: #332E28;
+    border-radius: 79px;
+    background: #F1E5B9;
+    border: 2px solid #443F2D;
+    margin: 10px;
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+   #btnIniciarSesion{
+    margin-top: 50px;
+  }
+}
+     
+/*Pantalla de Inicio de Android*/
+@media (max-width:500px){
+  body{
+   background-image: url("Imagenes/fondoblur.jpg");
+  }
+  .logoBotones{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background: #523412;
-    align-items: center;
-   }
-    footer a{
-      color: white;
-      font-size: 12px;
-      margin-left: 8px;
-      cursor: pointer;
-     }
-     footer img {
-      width: 20px;
-      height: 20px;
-      margin-left: 30px;
-     }
-     /* Pantalla de Inicio de Desktop*/
-     @media only screen and (max-width: 1440px) and (min-width: 501px){
-       .contenedorInicio{
-        margin: 40px;
-        text-align: center;
-       }
-       .logoBotones{
-         background: rgba(237, 211, 118, 0.47);
-         border-radius: 79px;
-         width: 337px;
-         height: 522px;
-         margin: 40px;
-         margin-left: 150px;
-       }
-       .textoInicioGrande{
-         float: right;
-         max-width: 340px;
-         margin-right: 40px;
-       }
-       .textoCervecero2{
-         display: none;
-       }
-       .textoCervecero1{
-         font-family: inherit;
-         font-size: 50px;
-         color: #F7CB2D;
-         text-align: right;
-         text-shadow: 0.1em 0.1em 3px #000;
-         font-weight: bold;
-       } 
-       #logoInicio{
-         width: 270px;
-         margin-top: 70px;
-       }
-       .botonesInicio{
-         width: 270px;
-         height: 70px;
-         color: #332E28;
-         border-radius: 79px;
-         background: #F1E5B9;
-         border: 2px solid #443F2D;
-         margin: 10px;
-         font-family: inherit;
-         font-size: 26px;
-         font-weight: bold;
-         cursor: pointer;
-       }
-       #btnIniciarSesion{
-         margin-top: 50px;
-       }
-       .botonesInicio:hover,
-       .botonesInicio:focus {
-       box-shadow: 0 0.9em 0.9em -0.7em #221910;
-       -webkit-transform: translateY(-0.25em);
-       transform: translateY(-0.25em);
-      }
-      .botonesInicio {
-      --hover: #8A5C28;
-      -webkit-transition: 0.25s;
-      transition: 0.25s;
-      }
-     .botonesInicio:hover, button:focus {
-      border-color: var(--hover);
-      color: #fff;
-      background-color: #F7CB2D;
-      }
-     }
-     /*Pantalla de Inicio de Android*/
-     @media (max-width:500px){
-       body{
-        background-image: url("Imagenes/fondoblur.jpg");
-       }
-       .logoBotones{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 40px;
-        flex-direction: row;
-        align-content: center;
-       }
-       #logoInicio{
-        width: 286px;
-        height: 150px;
-       }
-       .textoCervecero1{
-        display: none;
-       }
-       .textoCervecero2{
-        font-family: inherit;
-        font-size: 20px;
-        color: #F7CB2D;
-        text-align: right;
-        text-shadow: 0.1em 0.1em 3px #000;
-        font-weight: bold;
-        margin-top: 30px;
-        margin-right: 10px;
-        margin-left: 100px;
-       } 
-       .botonesInicio{
-        width: 260px;
-        height: 60px;
-        border-radius: 79px;
-        background: #F1E5B9;
-        border: 0.2px solid #000000;
-        margin: 12px;
-        font-family: inherit;
-        font-size: 25px;
-        font-weight: bold;
-       }
-       #btnIniciarSesion{
-        margin-top: 60px;
-       }
-       footer img {
-        width: 12px;
-        height: 12px;
-       }  
-   }
+    margin-top: 40px;
+    flex-direction: row;
+    align-content: center;
+  }
+  #logoInicio{
+    width: 286px;
+    height: 150px;
+  }
+  .textoCervecero1{
+    display: none;
+  }
+  .textoCervecero2{
+    font-family: inherit;
+    font-size: 20px;
+    color: #F7CB2D;
+    text-align: right;
+    text-shadow: 0.1em 0.1em 3px #000;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-left: 100px;
+  } 
+  .botonesInicio{
+    width: 260px;
+    height: 60px;
+    border-radius: 79px;
+    background: #F1E5B9;
+    border: 0.2px solid #000000;
+    margin: 12px;
+    font-family: inherit;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  #btnIniciarSesion{
+    margin-top: 60px;
+  }
+  footer img {
+    width: 12px;
+    height: 12px;
+  }  
+}
