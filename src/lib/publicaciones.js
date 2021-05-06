@@ -5,7 +5,7 @@ export const publicaciones = () => {
   const contenidoEncabezadopublicaciones = `
   <img alt="logoPublicaciones" class="logoPublicar" id="logoPublicaciones"src = "Imagenes/LogoBeer.png"/>
   
-  <div class = "iconosEnlaces>
+  <div class = "iconosEnlaces">
   <img alt="perfil" class="iconoPerfil" id="perfilUsuario"src = "Imagenes/hombre.png"/>
   <img alt="busqueda" class="iconoBuscar" id="buscar"src = "Imagenes/lupa.png"/>
   <img alt="home" class="iconoHome" id="home"src = "Imagenes/casa.png"/>
@@ -13,15 +13,14 @@ export const publicaciones = () => {
   <img alt="salida" class="iconoSalir" id="salir"src = "Imagenes/salida.png"/>
   </div>
   <div id="listadoPublicaciones">
+  <img alt="brindis" class="iconoLikes" id="likes"src = "Imagenes/salud.png"/>
   </div>
 
+
   <footer class="footerPublicaciones">
-  <img alt="brindis" class="iconoLikes" id="likes"src = "Imagenes/salud.png"/>
+  
   <img alt="newPost" class="iconoPublicar" id="publicar"src = "Imagenes/mas.png"/>
   </footer>
-  </div>
-  
-      
       `;
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
 

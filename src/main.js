@@ -1,7 +1,7 @@
 import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
-/* import { publicaciones } from './lib/publicaciones.js'; */
+import { publicaciones } from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail } from './lib/firebaseAuth.js';
 
 const rootHtml = document.getElementById('root');
@@ -12,6 +12,7 @@ const btnIniciarSesion = document.getElementById('btnIniciarSesion');
 
 const mostrarLogin = () => {
   const appPantallaLogin = rootHtml.appendChild(inicioSesion());
+  const botonLogin = document.getElementById('botonLogin');
   appenPantallaInicio.style.display = 'none';
   appPantallaLogin.style.display = 'block';
   const formularioInicioSesion = document.getElementById('formularioInicioSesion');
@@ -22,6 +23,17 @@ const mostrarLogin = () => {
 
     loginUSer(emailLogin, passwordLogin);
   });
+
+  const mostrarMuro = () => {
+    console.log('funciona');
+    const appenMuro = rootHtml.appendChild(publicaciones());
+    /*  rootHtml.innerHTML = ''; */
+    appenPantallaInicio.style.display = 'none';
+    appPantallaLogin.style.display = 'none';
+    /* appePantallaRegistro.style.display = 'none';  */
+    appenMuro.style.display = 'flex';
+  };
+  botonLogin.addEventListener('click', mostrarMuro);
 };
 
 const mostrarRegistro = () => {

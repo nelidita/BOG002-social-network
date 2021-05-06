@@ -9,7 +9,7 @@ text-align: center;
 #contenedorclickGmail p{
     font-size: 18px;
     color: #F7CB2D;
-    text-shadow: 0.2em 0.2em 1px #000;
+    text-shadow: 0.1em 0.1em 1px #000;
     font-weight: bold;
 }
 #contenedorclickGmail {
@@ -24,10 +24,10 @@ text-align: center;
 }
 .logoRegistro{
 width: 180px;
-margin-top: 3px;
+margin-top: 8px;
 }
 .gmail {
-    width: 50px;
+    width: 25px;
     margin-left: 10px;
 }
 .contenedorFraseInvitacionder{
@@ -36,7 +36,7 @@ margin-top: 3px;
 .contenedorFraseInvitacionder p{
     font-size: 20px;
     color: #F7CB2D;
-    text-shadow: 0.2em 0.2em 1px #000;
+    text-shadow: 0.1em 0.1em 1px #000;
     font-weight: bold;
 }
 .inputForm {
@@ -58,13 +58,13 @@ text-align: center;
     color: #F1e5B9;
     font-weight: bold;
     margin-top: 5px;
-    text-shadow:  0.2em 0.2em 2px #000;
+    text-shadow:  0.1em 0.1em 1px #000;
 }
 #formularioRegistroUsuario a{
     font-size: 16px;
     color: #edd376;
     font-weight: bolder;
-    text-shadow: 0.2em 0.2em 2px #000;
+    text-shadow: 0.1em 0.1em 1px #000;
     font-family: sans-serif;
 
 }
@@ -75,7 +75,7 @@ text-align: center;
     color: #F1e5B9;
     font-weight: bold;
     margin-top: 5px;
-    text-shadow:  0.2em 0.2em 2px #000;
+    text-shadow:  0.1em 0.1em 1px #000;
 }
 .registrarme{
     width: 220px;
@@ -91,29 +91,33 @@ text-align: center;
 
 } 
 }
+
 /* Estilos Desktop */
 @media (min-width: 501px)  {
-.contenedorRegistro{
+
+.classContenedorRegistro{
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px;
+}
+.contenedorRegistro {
     margin: 40px;
     text-align: center;
-   }
+}
 .ladoIzquierdo{
     text-align: center;
     border-radius: 50px;
     width: 337px;
     height: 522px;
     margin: 40px;
-    margin-left: 190px;
 }
 .logoRegistroizq {
-    width: 270px;
-    margin-top: 70px;
-   }
+    width: 350px;
+}
 .logoRegistro {
     display: none;
 }
-
-.textoCervecero1regizq{ 
+.textoCervecero1regizq { 
     font-size: 35px;
     color: #F7CB2D;
     text-align: left;
@@ -121,8 +125,7 @@ text-align: center;
     font-weight: bold;
     margin-top: 40px;
 }
-
-.ladoDerecho{
+.ladoDerecho {
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
@@ -130,31 +133,33 @@ text-align: center;
     border-radius: 50px;
     width: 337px;
     height: 522px;
-    margin-left: 150px;
-    margin-top: 110px;
+    margin-left: 170px;
+    margin-top: 40px;
 }
-.contenedorFraseInvitacionder{
-    margin: 20px;
+.contenedorFraseInvitacionder {
+    margin: 10px;
+    margin-top: 25px;
 }
 .contenedorFraseInvitacionder p{
-    font-size: 33px;
+    font-size: 24px;
     color: #F7CB2D;
     text-shadow: 0.1em 0.1em 3px #000;
     font-weight: bold;
-
 }
-.gmail{
-    width: 50px;
+.gmail {
+    width: 25px;
     margin-left: 10px;
 }
-
-
 .contenedorGmail{
     display: inline-flex;
-width: 275px;
-flex-wrap: wrap;
-justify-content: center;
-
+    width: 275px;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+}
+/*Efecto hoover al contenedor Gmail*/
+.contenedorGmail:hover {
+    transform: scale(1.10); 
 }
 
 .contenedorGmail p {
@@ -163,56 +168,72 @@ justify-content: center;
     text-shadow: 0.1em 0.1em 3px #000;
     font-weight: bold;
 }
-
-.inputForm{
+.inputForm {
     width: 275px;
-height: 41px;
-border-radius: 5px;
-background: #F1e5B9;
-border: 0.2px solid #000000;
-margin: 3px;
-font-family: inherit;
-font-size: 18px;
-font-weight: bold;
-text-align: center;
+    height: 41px;
+    border-radius: 5px;
+    background: #F1e5B9;
+    border: 0.2px solid #000000;
+    margin: 3px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+#formularioRegistroUsuario{
+    margin-top: 5px;
 }
 #formularioRegistroUsuario p{
-    font-size: 14px;
+    font-size: 17px;
     font-family: inherit;
     color: #F1e5B9;
     font-weight: bold;
-    margin-top: 5px;
-    text-shadow:  0.2em 0.2em 2px #000;
+    margin: 7px;
+    text-shadow: 0.1em 0.1em 1px #000;
 }
 #formularioRegistroUsuario a{
     font-size: 16px;
-    color: #edd376;
+    color: #3c382a;
     font-weight: bolder;
-    text-shadow: 0.2em 0.2em 2px #000;
+    text-shadow: 0.1em 0.1em 2px #edd376;
     font-family: sans-serif;
 }
 #formularioRegistroUsuario label {
-    
     font-size: 14px;
     font-family: inherit;
     color: #F1e5B9;
     font-weight: bold;
     margin-top: 5px;
-    text-shadow:  0.2em 0.2em 2px #000;
+    text-shadow: 0.1em 0.1em 2px #000;
+    margin-left: 4px;
 }
 .registrarme{
-    width: 220px;
-    height: 40px;
+    width: 210px;
+    height: 43px;
     border-radius: 79px;
     background: #523412;
     border: 0.2px solid #000000;
-    margin-top: 8px;
+    margin-top: 10px;
     font-family: inherit;
     font-size: 18px;
     font-weight: bold;
     color: #EDD376;
-
+    cursor: pointer;
 } 
+.registrarme:hover,
+.registrarme:focus {
+  box-shadow: 0 0.9em 0.9em -0.7em #221910;
+  -webkit-transform: translateY(-0.25em);
+  transform: translateY(-0.25em);
 }
-
-
+.registrarme {
+  --hover: #8A5C28;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+.registrarme:hover, button:focus {
+  border-color: var(--hover);
+  color: #fff;
+  background-color: #F7CB2D;
+}
+}

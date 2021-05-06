@@ -98,7 +98,7 @@
  }
  .logoIniciosesion {
     width: 270px;
-    margin-top: 30px;
+    margin-top: 40px;
    }
  .mensajeCervecero1 {
     font-size: 50px;
@@ -139,14 +139,31 @@
   color: #EDD376;
   cursor: pointer;
  }
- .mensajeCuentainicio {
-  font-size: 18px;
-  font-family: inherit;
-  color: #F1e5B9;
-  font-weight:bold;
-  margin-top: 10px;
-  text-align: center;
- }
+ #formularioInicioSesion button:hover,
+#formularioInicioSesion button:focus {
+  box-shadow: 0 0.9em 0.9em -0.7em #221910;
+  -webkit-transform: translateY(-0.25em);
+  transform: translateY(-0.25em);
+}
+#formularioInicioSesion button {
+  --hover: #8A5C28;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+#formularioInicioSesion button:hover, #formularioInicioSesion button:focus {
+  border-color: var(--hover);
+  color: #fff;
+  background-color: #F7CB2D;
+}
+
+.mensajeCuentainicio {
+  font-size: 17px;
+    font-family: inherit;
+    color: #F1e5B9;
+    font-weight: bold;
+    margin: 7px;
+    text-shadow: 0.1em 0.1em 1px #000;
+}
 
  .textoSesionGrande {
     float: right;
@@ -154,10 +171,11 @@
     margin-right: 40px;
  }
  .contenedorIniciosesion a{
-    font-size: 19px;
-    font-family: inherit;
-    color: #3f1e01;
-    font-weight: bolder;
-    text-shadow: 0.1em 0.1em 3px #f1e5b9;
+  font-size: 16px;
+  color: #3c382a;
+  font-weight: bolder;
+  text-shadow: 0.1em 0.1em 2px #edd376;
+  font-family: sans-serif;
+  margin-left: 5px;
  }
 }

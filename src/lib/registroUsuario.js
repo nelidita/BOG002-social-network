@@ -18,15 +18,14 @@ export const registroUsuario = () => {
     <img alt="logoRegistro" class="logoRegistro" src = "Imagenes/LogoBeer.png"/>
     <div class= "contenedorFraseInvitacionder"><p> Conviértete en un Beer Lover's </p></div>
     <div class= "contenedorGmail" id="contenedorclickGmail">
-      <p> Regístrate con Gmail</p>
-      <img alt="gmail" class="gmail" src="Imagenes/Gmail-Logo.png"/>
-      <p> ---------- o ---------- </p>
+      <p> Regístrate con Google</p>
+      <img alt="gmail" class="gmail" src="Imagenes/google.png"/>
     </div>
     <form id = "formularioRegistroUsuario">
-      <input class = "inputForm" id = "emailRegistro" type ="email" placeholder = "Correo Eletrónico">
-      <input class = "inputForm" id = "nombreYApellido" type="name" placeholder="Nombre y Apellido">
-      <input class = "inputForm" id = "nombreDeUsuario" type ="nickname" placeholder = "Nombre de Usuario">
-      <input class = "inputForm" id = "passwordRegistro" type ="password" placeholder ="Contraseña">
+      <input class = "inputForm" id = "emailRegistro" type ="email" placeholder = "Correo Eletrónico" required>
+      <input class = "inputForm" id = "nombreYApellido" type="name" placeholder="Nombre y Apellido" required>
+      <input class = "inputForm" id = "nombreDeUsuario" type ="nickname" placeholder = "Nombre de Usuario" required>
+      <input class = "inputForm" id = "passwordRegistro" type ="password" placeholder ="Contraseña" required>
       <p class="registro">¿Ya tienes cuenta?<a href = " "> Iniciar sesión</a></p>
       <p>Para formar parte de la comunidad Beer Lovers debes aceptar que  eres mayor de edad.</p>
       <input class = "checkbox" type ="checkbox"><label for="">Soy mayor de edad</label>

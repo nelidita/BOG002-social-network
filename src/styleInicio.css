@@ -48,7 +48,7 @@ footer img {
   background-color: #F7CB2D;
 }
 
-  /* Pantalla de Inicio de Desktop*/
+/* Pantalla de Inicio de Desktop*/
 @media (min-width: 501px){
   .contenedorInicio{
    margin: 40px;
