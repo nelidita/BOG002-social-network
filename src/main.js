@@ -25,12 +25,9 @@ const mostrarLogin = () => {
   });
 
   const mostrarMuro = () => {
-    console.log('funciona');
     const appenMuro = rootHtml.appendChild(publicaciones());
-    /*  rootHtml.innerHTML = ''; */
     appenPantallaInicio.style.display = 'none';
     appPantallaLogin.style.display = 'none';
-    /* appePantallaRegistro.style.display = 'none';  */
     appenMuro.style.display = 'flex';
   };
   botonLogin.addEventListener('click', mostrarMuro);
