@@ -1,6 +1,7 @@
 import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
+/* import { publicaciones } from './lib/publicaciones.js'; */
 import { registerUSer, loginUSer, registroGmail } from './lib/firebaseAuth.js';
 
 const rootHtml = document.getElementById('root');
