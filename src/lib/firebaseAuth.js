@@ -4,11 +4,11 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
     .createUserWithEmailAndPassword(emailRegistro, passwordRegistro)
     .then((userCredential) => {
     // Signed in
-      console.log(userCredential.user);
+      alert(userCredential.user);
       // var user = userCredential.user;
     })
     .catch((error) => {
-      console.log('error', error.message);
+      alert('error', error.message);
       // var errorCode = error.code;
       // var errorMessage = error.message;
     });
@@ -20,11 +20,11 @@ export const loginUSer = (emailLogin, passwordLogin) => {
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
       // Signed in
-      console.log(userCredential.user);
+      alert(userCredential.user);
       // var user = userCredential.user;
     })
     .catch((error) => {
-      console.log('error', error.message);
+      alert('error', error.message);
       // var errorCode = error.code;
       // var errorMessage = error.message;
     });
@@ -37,7 +37,7 @@ export const registroGmail = () => {
     .then((result) => {
     // /** @type {firebase.auth.OAuthCredential} */
     // var credential = result.credential;
-      console.log(result);
+      alert(result);
 
       // This gives you a Google Access Token. You can use it to access the Google API.
       // var token = credential.accessToken;
@@ -53,6 +53,6 @@ export const registroGmail = () => {
     // // The firebase.auth.AuthCredential type that was used.
     // var credential = error.credential;
     // ...
-      console.log(error);
+      alert(error);
     });
 };
