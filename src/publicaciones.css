@@ -1,0 +1,59 @@
+@media (max-width:500px){
+    .contenedorPublicaciones{
+        flex-wrap: wrap;
+        background: beige;
+        justify-content: center;
+    }
+    .contenedorLogoPublicaciones{
+        width: 100%;
+        text-align-last: center;
+    }
+    .logoPublicar{
+        width: 100px;
+    }
+    .iconosEnlaces{
+        width: 80%;
+        text-align-last: justify;
+    }
+    .iconosNavegacion{
+        width: 20px;
+    }
+    .iconoPublicar{
+        width: 20px;
+    }
+    .footerPublicaciones{
+        width: 100%;
+        text-align-last: center;
+        bottom: 0;
+        position: absolute;
+        background: beige;
+        margin-bottom: 10px;
+    }
+}
+@media (min-width: 501px){
+    .contenedorPublicaciones{
+        flex-wrap: wrap;
+        background: beige;
+    }
+    .contenedorLogoPublicaciones{
+        width: 100%;
+        text-align-last: center;
+    }
+    .logoPublicar{
+        width: 200px;
+    }
+    .iconosNavegacion{
+        width: 40px;
+    }
+    .iconoPublicar{
+        width: 40px;
+    }
+    .footerPublicaciones{
+        width: 100%;
+        text-align-last: center;
+        bottom: 0;
+        position: absolute;
+        background: beige;
+        margin-bottom: 10px;
+    }
+}
