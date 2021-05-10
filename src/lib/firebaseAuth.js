@@ -1,14 +1,16 @@
+/* import { mostrarMuro } from './main.js'; */
+
 export const registerUSer = (emailRegistro, passwordRegistro) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(emailRegistro, passwordRegistro)
     .then((userCredential) => {
     // Signed in
-      alert(userCredential.user);
+      alert('Bienvenido a Beer Lovers', userCredential.user);
       // var user = userCredential.user;
     })
     .catch((error) => {
-      alert('error', error.message);
+      alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
       // var errorCode = error.code;
       // var errorMessage = error.message;
     });
@@ -20,15 +22,24 @@ export const loginUSer = (emailLogin, passwordLogin) => {
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
       // Signed in
-      alert(userCredential.user);
-      // var user = userCredential.user;
+      alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
+    /*   mostrarMuro (); */
+   /*  console.log(mostrarMuro()); */
+     
+      // var user = userCredential.user;/* 
     })
     .catch((error) => {
-      alert('error', error.message);
+      alert('Contraseña no válida. Vuelve a intentarlo', error.message);
+
+ /*    const mensajeErrorLogin = document.getElementById ('errorLogin');
+    mensajeErrorLogin.innerHTML= 'Credenciales inválidas';
+     */
+    
       // var errorCode = error.code;
-      // var errorMessage = error.message;
+     /*  const errorMessage = error.message; */
     });
 };
+/* console.log(loginUSer()); */
 export const registroGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -37,7 +48,7 @@ export const registroGmail = () => {
     .then((result) => {
     // /** @type {firebase.auth.OAuthCredential} */
     // var credential = result.credential;
-      alert(result);
+      alert('Gracias por registrarte. Bienvenido a Beer Lovers', result);
 
       // This gives you a Google Access Token. You can use it to access the Google API.
       // var token = credential.accessToken;
@@ -53,6 +64,8 @@ export const registroGmail = () => {
     // // The firebase.auth.AuthCredential type that was used.
     // var credential = error.credential;
     // ...
-      alert(error);
+      alert('Por favor usa una cuenta válida', error);
     });
 };
+
+/* export const  */
