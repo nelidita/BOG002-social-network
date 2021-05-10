@@ -6,7 +6,6 @@ import { registerUSer, loginUSer, registroGmail } from './lib/firebaseAuth.js';
 
 const rootHtml = document.getElementById('root');
 const appenPantallaInicio = rootHtml.appendChild(pantallaInicio());
-
 const bntRegistro = document.getElementById('btnRegistrate');
 const btnIniciarSesion = document.getElementById('btnIniciarSesion');
 
