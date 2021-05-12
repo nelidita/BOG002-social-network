@@ -29,7 +29,7 @@ export const registroUsuario = () => {
       <p class="registro">¿Ya tienes cuenta?<a href = " "> Iniciar sesión</a></p>
       <p>Para formar parte de la comunidad Beer Lovers debes aceptar que  eres mayor de edad.</p>
       <input class = "checkbox" type ="checkbox"><label for="">Soy mayor de edad</label>
-      <button class="registrarme" type="submit"> Registrarme </button>
+      <button href="#/posts" class="registrarme" type="submit"> Registrarme </button>
     </form>
   `;
 

@@ -13,7 +13,7 @@ export const inicioSesion = () => {
         <input class = "inputSesion" id = "emailLogin" type ="email" placeholder = "Correo Eletrónico" required>
         <input class = "inputSesion" id= "passwordLogin" type ="password" placeholder ="Contraseña" required>
         <p class= "mensajeError" id = "errorLogin"></p>
-        <button class="iniciarSesion" id="botonLogin" type="submit"> Iniciar sesión </button>
+        <button href="#/posts" class="iniciarSesion" id="botonLogin" type="submit"> Iniciar sesión </button>
         </form>
         <p class = "mensajeCuentainicio">¿No tienes cuenta?<a href = " "> Regístrate</a></p>
     </div>

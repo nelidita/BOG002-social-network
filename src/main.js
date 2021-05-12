@@ -4,6 +4,10 @@ import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones } from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail } from './lib/firebaseAuth.js';
 
+window.addEventListener("hashchange", () => {
+  console.log(window.location.hash);
+});
+
 const rootHtml = document.getElementById('root');
 const appenPantallaInicio = rootHtml.appendChild(pantallaInicio());
 const bntRegistro = document.getElementById('btnRegistrate');
@@ -75,3 +79,5 @@ const mostrarRegistro = () => {
 
 bntRegistro.addEventListener('click', mostrarRegistro);
 btnIniciarSesion.addEventListener('click', mostrarLogin);
+
+

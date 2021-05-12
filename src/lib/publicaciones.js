@@ -4,7 +4,7 @@ export const publicaciones = () => {
 
   const contenidoEncabezadopublicaciones = `
   <div class="contenedorLogoPublicaciones">
-  <img alt="logoPublicaciones" class="logoPublicar" id="logoPublicaciones"src = "Imagenes/LogoBeer.png"/>
+    <img alt="logoPublicaciones" class="logoPublicar" id="logoPublicaciones"src = "Imagenes/LogoBeer.png"/>
   </div>
   <div class = "iconosEnlaces">
     <img alt="perfil" class="iconosNavegacion" id="perfilUsuario"src = "Imagenes/hombre.png"/>
@@ -13,24 +13,21 @@ export const publicaciones = () => {
     <img alt="brindis" class="iconosNavegacion" id="likes"src = "Imagenes/salud.png"/>
     <img alt="salida" class="iconosNavegacion" id="salir"src = "Imagenes/salida.png"/>
   </div>
-   
   <div class="footerPublicaciones">
-     <img alt="newPost" class="iconoPublicar" id="publicar"src = "Imagenes/mas.png"/>
-    </div>
-
+    <img alt="newPost" class="iconoPublicar" id="publicar"src = "Imagenes/mas.png"/>
+  </div>
   <section id="popUpPublicación">
-  <div class="overLay" id="overLay">
-  <div class="popUp" id="popUp">
-  <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
-  <form action>
-  <div class="inputPopup">
-  <input type="text" placeholder="¿ya tomaste cerveza hoy?">
-  </div>
-  <input type="submit" class="submitPublicar" value="Publicar">
-  </form>
-  </div>
-  </div>
-  </div>
+    <div class="overLay" id="overLay">
+      <div class="popUp" id="popUp">
+        <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
+        <form action>
+          <div class="inputPopup">
+           <input type="text" placeholder="¿ya tomaste cerveza hoy?">
+          </div>
+          <input type="submit" class="submitPublicar" value="Publicar">
+        </form>
+      </div>
+    </div>
   </section>
 
       `;
