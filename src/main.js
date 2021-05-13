@@ -75,3 +75,4 @@ const mostrarRegistro = () => {
 
 bntRegistro.addEventListener('click', mostrarRegistro);
 btnIniciarSesion.addEventListener('click', mostrarLogin);
+
