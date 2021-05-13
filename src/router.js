@@ -1,43 +1,13 @@
-import  { mostrarHome,mostrarRegistro,mostrarLogin } from './main.js';
 
+import  { mostrarHome,mostrarRegistro,mostrarLogin,mostrarMuro } from './main.js';
 
-window.addEventListener("hashchange", () => {
-    console.log(window.location.hash);
+// esto identifica cada on load si lo comentan nos toca darle recargar para que cambie la pantalla
+window.addEventListener('hashchange', () => {
+    showRoot(window.location.hash);
   });
-//   const changeTmp = (hash) => {
-//     console.log('dentro de changetnp', hash)
-//     if (hash === '#/' || hash === '' || hash === '#') {
-//       return viewTmp('#/login');
-//     } else if (hash === '#/login' || hash === '#/post' || hash === '#/create') {
-//       return viewTmp(hash);
-//     } else {
-//       return viewTmp('#/login');
-//     }
-//   }
 
-
-// console.log("Hola estoy en router")
-
-    
-//     const showRoot = (hash) => {
-//     if (hash==""){
-//     mostrarHome();
-//   }else if (hash=="#/Registro"){
-//     mostrarRegistro();
- 
-//   }
-  
-// }
-// showRoot(window.location.hash);
-
-// window.onhashchange = showRoot;
-
-
-console.log("Hola estoy en router")
-
-
-
-    const showRoot = (router) => {
+// preguntar si se puede retornar de una vez o es una buena practica el break
+   const showRoot = (router) => {
         const root = document.getElementById('root');
         root.innerHTML = '';
         switch (router){
@@ -47,20 +17,20 @@ console.log("Hola estoy en router")
             case "#/Registro" : 
                 mostrarRegistro();
                 break;
-            default:
+            case "#/posts" : 
+                mostrarMuro();
+                break;
+            // case "" : 
+            //     mostrarHome();
+            //     break;
+           default:
                 mostrarHome();
                 break;
         }
-  
+ 
     }
 
-
-
+//si no le pasamos estos parametros no nos carga la pagina incial tan pronto ejecutamos
     showRoot(window.location.hash);
 
  
-//   export const initRouter = () => {
-//     window.addEventListener('load', changeTmp(window.location.hash))
-//     if (("onhashchange" in window)) window.onhashchange = () => changeTmp(window.location.hash)
-//   }
-//   console.log(mostrarHome);
