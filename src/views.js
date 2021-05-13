@@ -7,11 +7,11 @@ import { registerUSer, loginUSer, registroGmail } from './lib/firebaseAuth.js';
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
     const appPantallaInicio = rootHtml.appendChild(pantallaInicio());
-    // const bntRegistro = document.getElementById('btnRegistrate');
-    // const btnIniciarSesion = document.getElementById('btnIniciarSesion');
-    // bntRegistro.addEventListener('click', mostrarRegistro);
-    // btnIniciarSesion.addEventListener('click', mostrarLogin);
-    console.log("pantalla inicio o home");
+  /*   const bntRegistro = document.getElementById('btnRegistrate');
+    const btnIniciarSesion = document.getElementById('btnIniciarSesion');
+    bntRegistro.addEventListener('click', mostrarRegistro);
+    btnIniciarSesion.addEventListener('click', mostrarLogin); */
+
     return appPantallaInicio;
 }
 
