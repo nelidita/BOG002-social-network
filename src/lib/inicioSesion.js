@@ -13,9 +13,9 @@ export const inicioSesion = () => {
         <input class = "inputSesion" id = "emailLogin" type ="email" placeholder = "Correo Eletrónico" required>
         <input class = "inputSesion" id= "passwordLogin" type ="password" placeholder ="Contraseña" required>
         <p class= "mensajeError" id = "errorLogin"></p>
-        <button class="iniciarSesion" id="botonLogin" type="submit"> Iniciar sesión </button>
+        <div> <a href="#/posts" class="iniciarSesion" id="botonLogin" type="submit"> Iniciar sesión </a></div>
         </form>
-        <p class = "mensajeCuentainicio">¿No tienes cuenta?<a href = " "> Regístrate</a></p>
+        <p class = "mensajeCuentainicio">¿No tienes cuenta?<a href = "#/Inicio"> Regístrate</a></p>
     </div>
     `;
   contenedorIniciosesion.innerHTML = contenidoEncabezadoinicio;

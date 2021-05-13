@@ -126,7 +126,7 @@
   #emailLogin{
   margin-top: 45px;
  }
- #formularioInicioSesion button {
+ #formularioInicioSesion .iniciarSesion {
   width: 160px;
   height: 52px;
   border-radius: 79px;
@@ -139,18 +139,18 @@
   color: #EDD376;
   cursor: pointer;
  }
- #formularioInicioSesion button:hover,
-#formularioInicioSesion button:focus {
+ #formularioInicioSesion .iniciarSesion :hover,
+#formularioInicioSesion .iniciarSesion:focus {
   box-shadow: 0 0.9em 0.9em -0.7em #221910;
   -webkit-transform: translateY(-0.25em);
   transform: translateY(-0.25em);
 }
-#formularioInicioSesion button {
+#formularioInicioSesion .iniciarSesion {
   --hover: #8A5C28;
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
-#formularioInicioSesion button:hover, #formularioInicioSesion button:focus {
+#formularioInicioSesion .iniciarSesion:hover, #formularioInicioSesion button:focus {
   border-color: var(--hover);
   color: #fff;
   background-color: #F7CB2D;
