@@ -17,10 +17,12 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
 };
 
 export const loginUSer = (emailLogin, passwordLogin) => {
+  console.log("Estoy en loginUser")
   firebase
     .auth()
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
+      console.log("then then loginUser")
       // Signed in
       alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
     /*   mostrarMuro (); */
@@ -29,7 +31,9 @@ export const loginUSer = (emailLogin, passwordLogin) => {
       // var user = userCredential.user;/* 
     })
     .catch((error) => {
+      console.log("cath loginUser")
       alert('Contraseña no válida. Vuelve a intentarlo', error.message);
+      
 
  /*    const mensajeErrorLogin = document.getElementById ('errorLogin');
     mensajeErrorLogin.innerHTML= 'Credenciales inválidas';
