@@ -2,7 +2,7 @@ import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones } from './lib/publicaciones.js';
-import { registerUSer, loginUSer, registroGmail } from './lib/firebaseAuth.js';
+import { registerUSer, loginUSer, registroGmail, getPosts } from './lib/firebaseAuth.js';
 
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
@@ -14,8 +14,6 @@ export const mostrarHome = () => {
 
     return appPantallaInicio;
 }
-
-
 
 export const mostrarLogin = () => {
 
@@ -44,9 +42,21 @@ export const mostrarLogin = () => {
 export const mostrarMuro = () => {
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
-
+   
+    const arrayPosts = getPosts();
+    console.log(arrayPosts);
+    // console.log(arrayPosts.length);
+    // for (let i=0; i<)
+    //     divPost.innerHTML = getPosts();
     appenMuro.style.display = 'flex';
+
+    //  const divPost = document.getElementById('verPostMuro');
+    // divPost.appendChild(getPosts) ;
+    // console.log(getPosts)
     /// Popup Publicarciones
+    // appenMuro.appendChild(getPosts)
+    
+
     const abrirPopup = document.getElementById('publicar');
     const overLay = document.getElementById('overLay');
     const popUp = document.getElementById('popUp');

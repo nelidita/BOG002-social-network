@@ -13,6 +13,7 @@ export const publicaciones = () => {
     <img alt="brindis" class="iconosNavegacion" id="likes"src = "Imagenes/salud.png"/>
     <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir"src = "Imagenes/salida.png"/></a>
   </div>
+  <div id = "verPostMuro"></div>
   <div class="footerPublicaciones">
     <img alt="newPost" class="iconoPublicar" id="publicar"src = "Imagenes/mas.png"/>
   </div>
