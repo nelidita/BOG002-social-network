@@ -1,15 +1,26 @@
+import {showRoot} from './router.js';
+/* showRoot ('#/posts'); */
 
+/* const cambioHash = () =>{ 
+  let hash = location.hash
+  return hash
+} */
 
 export const registerUSer = (emailRegistro, passwordRegistro) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(emailRegistro, passwordRegistro)
     .then((userCredential) => {
+     
+      
+      showRoot ('#/posts');
       // Signed in
       alert('Bienvenido a Beer Lovers', userCredential.user);
       // var user = userCredential.user;
     })
     .catch((error) => {
+    
+      showRoot ('#/Registro');
       alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
       // var errorCode = error.code;
       // var errorMessage = error.message;
@@ -17,12 +28,13 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
 };
 
 export const loginUSer = (emailLogin, passwordLogin) => {
-  console.log("Estoy en loginUser")
+  console.log("Estoy en loginUser");
   firebase
     .auth()
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
       console.log("then then loginUser")
+      showRoot ('#/posts');
       // Signed in
       alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
       /*   mostrarMuro (); */
@@ -32,7 +44,8 @@ export const loginUSer = (emailLogin, passwordLogin) => {
       console.log(user)
     })
     .catch((error) => {
-      console.log("cath loginUser")
+      showRoot ('#/Login');
+      console.log("cath loginUser");
       alert('Contraseña no válida. Vuelve a intentarlo', error.message);
 
 
@@ -65,6 +78,7 @@ export const registroGmail = () => {
   firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
+      showRoot ('#/posts');
         // /** @type {firebase.auth.OAuthCredential} */
       // var credential = result.credential;
       alert('Gracias por registrarte. Bienvenido a Beer Lovers', result);
@@ -75,6 +89,7 @@ export const registroGmail = () => {
       // var user = result.user;
       // ...
     }).catch((error) => {
+      showRoot ('#/Registro');
       // Handle Errors here.
       // var errorCode = error.code;
       // var errorMessage = error.message;

@@ -2,8 +2,8 @@ import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones } from './lib/publicaciones.js';
-import { registerUSer, loginUSer, registroGmail, getPosts } from './lib/firebaseAuth.js';
-import {showRoot} from './router.js';
+import { registerUSer, loginUSer, registroGmail, getPosts } from './firebaseAuth.js';
+/* import {showRoot} from './router.js'; */
 
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
@@ -33,7 +33,7 @@ export const mostrarLogin = () => {
         console.log("Antes de ejecutar loginUSer");
         
         loginUSer(emailLogin, passwordLogin);
-        showRoot ('#/posts');
+       /*  showRoot ('#/posts'); */
     });
 
     //  const mensajeErrorLogin = document.getElementById ('errorLogin'); 
@@ -91,8 +91,11 @@ export const mostrarRegistro = () => {
         const emailRegistro = document.getElementById('emailRegistro').value;
         const passwordRegistro = document.getElementById('passwordRegistro').value;
         event.preventDefault();
-        registerUSer(emailRegistro, passwordRegistro);
-        showRoot ('#/posts');
+       registerUSer(emailRegistro, passwordRegistro ) 
+           
+     /*    showRoot ('#/posts'); */
+       
+      
         return appePantallaRegistro;
     });
 
