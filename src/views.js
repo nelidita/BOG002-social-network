@@ -3,6 +3,7 @@ import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones } from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail, getPosts } from './lib/firebaseAuth.js';
+import {showRoot} from './router.js';
 
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
@@ -30,7 +31,9 @@ export const mostrarLogin = () => {
         const passwordLogin = document.getElementById('passwordLogin').value;
         event.preventDefault();
         console.log("Antes de ejecutar loginUSer");
+        
         loginUSer(emailLogin, passwordLogin);
+        showRoot ('#/posts');
     });
 
     //  const mensajeErrorLogin = document.getElementById ('errorLogin'); 
@@ -45,17 +48,18 @@ export const mostrarMuro = () => {
    
     const arrayPosts = getPosts();
     console.log(arrayPosts);
-    // console.log(arrayPosts.length);
-    // for (let i=0; i<)
-    //     divPost.innerHTML = getPosts();
+    console.log(arrayPosts.length);
+/*     for (let i=0; i<arrayPost.length; i++);
+    divPost.innerHTML = getPosts(); */
     appenMuro.style.display = 'flex';
 
-    //  const divPost = document.getElementById('verPostMuro');
-    // divPost.appendChild(getPosts) ;
+    //const divPost = document.getElementById('verPostMuro');
+
+     // appenMuro.appendChild(getPosts)
+    
     // console.log(getPosts)
     /// Popup Publicarciones
-    // appenMuro.appendChild(getPosts)
-    
+   
 
     const abrirPopup = document.getElementById('publicar');
     const overLay = document.getElementById('overLay');
@@ -88,10 +92,12 @@ export const mostrarRegistro = () => {
         const passwordRegistro = document.getElementById('passwordRegistro').value;
         event.preventDefault();
         registerUSer(emailRegistro, passwordRegistro);
+        showRoot ('#/posts');
         return appePantallaRegistro;
     });
 
     // registro Gmail
     const contenedorclickGmail = document.getElementById('contenedorclickGmail');
     contenedorclickGmail.addEventListener('click', registroGmail);
+   
 };

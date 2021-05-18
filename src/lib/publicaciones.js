@@ -21,11 +21,14 @@ export const publicaciones = () => {
     <div class="overLay" id="overLay">
       <div class="popUp" id="popUp">
         <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
-        <form action>
+        <form action='multipart/form-data' action = 'uploader.php' method= 'POST'>
           <div class="inputPopup">
-           <input type="text" placeholder="¿ya tomaste cerveza hoy?">
+          <input class= 'tituloPopup' type="text" placeholder="Título de tu publicación">
+           <input class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
           </div>
           <input type="submit" class="submitPublicar" value="Publicar">
+          <input name='uploadedfile' type="file" class="cargarImagen" value="Subir imagen">
+         
         </form>
       </div>
     </div>
@@ -35,9 +38,10 @@ export const publicaciones = () => {
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
   return contenedorPublicaciones;
 };
-
-/* 
-<div id="listadoPublicaciones">
+/* justo después de form va esto enctype = 'multipart/form-data' action = 'uploader.php' method= 'POST
+<input name='uploadedfile' type="file" class="cargarImagen" value="Subir imagen">
+/*  */
+{/* <div id="listadoPublicaciones">
 <img alt="brindis" class="iconoLikes" id="likes"src = "Imagenes/salud.png"/>
 <img alt="comentar" class="iconoComentarios" id="comentarios"src = "Imagenes/comentario.png"/>
-</div> */
+</div>  */}

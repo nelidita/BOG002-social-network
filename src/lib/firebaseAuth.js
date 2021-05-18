@@ -1,4 +1,5 @@
 
+
 export const registerUSer = (emailRegistro, passwordRegistro) => {
   firebase
     .auth()
@@ -45,6 +46,18 @@ export const loginUSer = (emailLogin, passwordLogin) => {
       console.log(errorMessage)
     });
 };
+/* export const verificar = () => {
+  let user = firebase.auth().currentUser;   
+  if (user) {
+  user.sendEmailVerification()
+  .then(() => {
+  // Email sent.
+  alert('se envió un correo de confirmación')
+  })
+  .catch(() =>{
+  });
+  }
+ } */
 /* console.log(loginUSer()); */
 export const registroGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -52,7 +65,7 @@ export const registroGmail = () => {
   firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
-      // /** @type {firebase.auth.OAuthCredential} */
+        // /** @type {firebase.auth.OAuthCredential} */
       // var credential = result.credential;
       alert('Gracias por registrarte. Bienvenido a Beer Lovers', result);
 

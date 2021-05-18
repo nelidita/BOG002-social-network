@@ -3,6 +3,7 @@ import { mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro } from './views
 
 // preguntar si se puede retornar de una vez o es una buena practica el break
 export const showRoot = (router) => {
+    location.hash = router;
     const root = document.getElementById('root');
     root.innerHTML = '';
     switch (router) {
