@@ -2,7 +2,8 @@ import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones } from './lib/publicaciones.js';
-import { registerUSer, loginUSer, registroGmail, getPosts } from './lib/firebaseAuth.js';
+import { registerUSer, loginUSer, registroGmail, getPosts } from './firebaseAuth.js';
+/* import {showRoot} from './router.js'; */
 
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
@@ -30,7 +31,9 @@ export const mostrarLogin = () => {
         const passwordLogin = document.getElementById('passwordLogin').value;
         event.preventDefault();
         console.log("Antes de ejecutar loginUSer");
+        
         loginUSer(emailLogin, passwordLogin);
+       /*  showRoot ('#/posts'); */
     });
 
     //  const mensajeErrorLogin = document.getElementById ('errorLogin'); 
@@ -43,6 +46,7 @@ export const mostrarMuro = () => {
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
    
+<<<<<<< HEAD
     // const arrayPosts = getPosts();
     // console.log(arrayPosts);
     // console.log(arrayPosts.length);
@@ -53,9 +57,22 @@ export const mostrarMuro = () => {
 
     //  const divPost = document.getElementById('verPostMuro');
     // divPost.appendChild(arrayPosts) ;
-    /// Popup Publicarciones
-    // appenMuro.appendChild(getPosts)
+=======
+    const arrayPosts = getPosts();
+    console.log(arrayPosts);
+    console.log(arrayPosts.length);
+/*     for (let i=0; i<arrayPost.length; i++);
+    divPost.innerHTML = getPosts(); */
+    appenMuro.style.display = 'flex';
+
+    //const divPost = document.getElementById('verPostMuro');
+
+     // appenMuro.appendChild(getPosts)
     
+    // console.log(getPosts)
+>>>>>>> d6589b76bff0da668ba92a55620d7ed189ef4410
+    /// Popup Publicarciones
+   
 
     const abrirPopup = document.getElementById('publicar');
     const overLay = document.getElementById('overLay');
@@ -87,11 +104,16 @@ export const mostrarRegistro = () => {
         const emailRegistro = document.getElementById('emailRegistro').value;
         const passwordRegistro = document.getElementById('passwordRegistro').value;
         event.preventDefault();
-        registerUSer(emailRegistro, passwordRegistro);
+       registerUSer(emailRegistro, passwordRegistro ) 
+           
+     /*    showRoot ('#/posts'); */
+       
+      
         return appePantallaRegistro;
     });
 
     // registro Gmail
     const contenedorclickGmail = document.getElementById('contenedorclickGmail');
     contenedorclickGmail.addEventListener('click', registroGmail);
+   
 };

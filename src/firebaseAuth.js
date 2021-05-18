@@ -4,72 +4,40 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
     .auth()
     .createUserWithEmailAndPassword(emailRegistro, passwordRegistro)
     .then((userCredential) => {
-      // Signed in
+     
+    window.location.hash = '#/posts';
       alert('Bienvenido a Beer Lovers', userCredential.user);
-      // var user = userCredential.user;
     })
     .catch((error) => {
       alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
-      // var errorCode = error.code;
-      // var errorMessage = error.message;
+     
     });
 };
 
 export const loginUSer = (emailLogin, passwordLogin) => {
-  console.log("Estoy en loginUser")
+  console.log("Estoy en loginUser");
   firebase
     .auth()
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
-      console.log("then then loginUser")
-      // Signed in
+   
+    window.location.hash = '#/posts'; // Con esto si el usuario se loguea correctamente muestra el muro.
       alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
-      /*   mostrarMuro (); */
-      /*  console.log(mostrarMuro()); */
-
-      var user = userCredential.user;
-      console.log(user)
     })
     .catch((error) => {
-      console.log("cath loginUser")
       alert('Contraseña no válida. Vuelve a intentarlo', error.message);
-
-
-      /*    const mensajeErrorLogin = document.getElementById ('errorLogin');
-         mensajeErrorLogin.innerHTML= 'Credenciales inválidas';
-          */
-
-      // var errorCode = error.code;
-
-      const errorMessage = error.message;
-      console.log(errorMessage)
     });
 };
-/* console.log(loginUSer()); */
 export const registroGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
-      // /** @type {firebase.auth.OAuthCredential} */
-      // var credential = result.credential;
+      window.location.hash = '#/posts';
       alert('Gracias por registrarte. Bienvenido a Beer Lovers', result);
-
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      // var token = credential.accessToken;
-      // The signed-in user info.
-      // var user = result.user;
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      // var errorCode = error.code;
-      // var errorMessage = error.message;
-      // // The email of the user's account used.
-      // var email = error.email;
-      // // The firebase.auth.AuthCredential type that was used.
-      // var credential = error.credential;
-      // ...
+    })
+    .catch((error) => { 
       alert('Por favor usa una cuenta válida', error);
     });
 };

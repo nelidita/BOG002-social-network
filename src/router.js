@@ -1,5 +1,5 @@
 import { mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro } from './views.js';
-// import { loginUSer } from './firebaseAuth.js';
+
 
 // preguntar si se puede retornar de una vez o es una buena practica el break
 export const showRoot = (router) => {
