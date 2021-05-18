@@ -76,17 +76,16 @@ export const registroGmail = () => {
 
 export const getPosts = () => {
   let posts = [];
-  firebase.firestore().collection("post")
+  firebase
+    .firestore()
+    .collection("post")
     .onSnapshot((querySnapshot) => {
-     
-      
       querySnapshot.forEach((doc) => {
-        posts.push({NombreUsuario: doc.NombreUsuario, ...doc.data()});
+        posts.push({ NombreUsuario: doc.NombreUsuario, ...doc.data() });
       });
       // callback(posts);
-      console.log("estos son nuestros post: ", posts);
-      
     });
-    return posts;
-    // console.log(posts);
+  console.log("estos son nuestros post: ", posts);
+  return posts;
+
 }

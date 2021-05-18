@@ -43,16 +43,16 @@ export const mostrarMuro = () => {
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
    
-    const arrayPosts = getPosts();
-    console.log(arrayPosts);
+    // const arrayPosts = getPosts();
+    // console.log(arrayPosts);
     // console.log(arrayPosts.length);
+    
     // for (let i=0; i<)
     //     divPost.innerHTML = getPosts();
     appenMuro.style.display = 'flex';
 
     //  const divPost = document.getElementById('verPostMuro');
-    // divPost.appendChild(getPosts) ;
-    // console.log(getPosts)
+    // divPost.appendChild(arrayPosts) ;
     /// Popup Publicarciones
     // appenMuro.appendChild(getPosts)
     
