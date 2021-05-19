@@ -43,3 +43,5 @@ export const publicaciones = () => {
 <img alt="brindis" class="iconoLikes" id="likes"src = "Imagenes/salud.png"/>
 <img alt="comentar" class="iconoComentarios" id="comentarios"src = "Imagenes/comentario.png"/>
 </div>  */}
+
+

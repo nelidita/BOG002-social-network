@@ -50,8 +50,7 @@ export const mostrarMuro = () => {
     });
 
     const data = firebase.firestore();
-    const formPublicacion = document.getElementById("formPublicacion");
-    const postsContainer = document.getElementById("postsContainer");
+    
 
     const crearPost = (titulo, descripcion) => {
         data.collection("posts").doc().set({
@@ -62,8 +61,15 @@ export const mostrarMuro = () => {
     
     const getPosts = () => data.collection("posts").get();
 
+    //Funciona view post independiente pero duplica los post con cada
+    const viewPost = () => {
+
+    const formPublicacion = document.getElementById("formPublicacion");
+    const postsContainer = document.getElementById("postsContainer");
     
+
     formPublicacion.addEventListener("submit", async (e) => {
+        postsContainer.innerHTML="";
         e.preventDefault();
         const titulo = formPublicacion["titulo"];
         const descripcion = formPublicacion["descripcion"];
@@ -71,6 +77,8 @@ export const mostrarMuro = () => {
 
         await crearPost(titulo.value,descripcion.value);
 
+
+        
         const querySnapshot = await getPosts();
         querySnapshot.forEach( doc => {
             postsContainer.innerHTML +=
@@ -94,8 +102,8 @@ export const mostrarMuro = () => {
         formPublicacion.reset();
         titulo.focus();
     })
-
-
+}
+    viewPost();
     return appenMuro;
 };
 
