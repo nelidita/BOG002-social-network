@@ -1,7 +1,7 @@
 import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
-import { publicaciones/*, createDivPost*/} from './lib/publicaciones.js';
+import { publicaciones, viewPost, viewListPost } from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail } from './firebaseAuth.js';
 
 
@@ -23,16 +23,33 @@ export const mostrarLogin = () => {
         event.preventDefault();
 
         loginUSer(emailLogin, passwordLogin);
+
     });
 
     return appPantallaLogin;
 };
 
-export const mostrarMuro = () => {
+
+//crear el post list parametro mostrar muro
+const postList = async () => {
+    let arraydata =[];
+    // await crearPost(titulo.value, descripcion.value);
+    const querySnapshot = await getPosts();
+    querySnapshot.forEach(doc => {
+       arraydata.push(doc.data());
+       })
+    return arraydata;
+}
+
+
+export const mostrarMuro =async() => {
+    let arrpost = await postList();
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
     appenMuro.style.display = 'flex';
-    viewPost();
+    document.getElementById("postsContainer").innerHTML = viewListPost(arrpost);
+    publicarPost();
+
     // Popup Publicarciones
     const abrirPopup = document.getElementById('publicar');
     const overLay = document.getElementById('overLay');
@@ -48,7 +65,7 @@ export const mostrarMuro = () => {
         overLay.classList.remove('active');
         popUp.classList.remove('active');
     });
-    
+
     return appenMuro;
 };
 const data = firebase.firestore();
@@ -60,51 +77,35 @@ const crearPost = (titulo, descripcion) => {
         titulo,
         descripcion
     })
+
 }
- const viewPost = () => {
+
+const createPlacePost = async (e) => {
+    const postsContainer = document.getElementById("postsContainer");
+    postsContainer.innerHTML = "";
+    e.preventDefault();
+    const titulo = formPublicacion["titulo"];
+    const descripcion = formPublicacion["descripcion"];
+    console.log(titulo, descripcion)
+
+    await crearPost(titulo.value, descripcion.value);
+    const querySnapshot = await getPosts();
+    querySnapshot.forEach(doc => {
+        postsContainer.innerHTML += viewPost(doc.data())
+    })
+    titulo.focus();
+}
+
+const publicarPost = () => {
 
     const formPublicacion = document.getElementById("formPublicacion");
-    const postsContainer = document.getElementById("postsContainer");
-     
-    formPublicacion.addEventListener("submit", async (e) => {
-        postsContainer.innerHTML="";
-        e.preventDefault();
-        const titulo = formPublicacion["titulo"];
-        const descripcion = formPublicacion["descripcion"];
-        console.log(titulo,descripcion)
+    formPublicacion.addEventListener("submit", createPlacePost);
+    formPublicacion.reset();
 
-        await crearPost(titulo.value,descripcion.value);
-
-        // const createPlacePost = () =>  {
-        const querySnapshot = await getPosts();
-        querySnapshot.forEach( doc => {
-            let titulos = doc.data().titulo;
-            let contenido=doc.data().descripcion;
-            // postsContainer.innerHTML += createDivPost();
-            postsContainer.innerHTML += 
-            `<div class="bodyPost">
-                <h3>${titulos}</h3>
-                <p>${contenido}</p>
-                <div class="menuDesplegable">
-                    <a href="#" class= "iconoMenu"><i class="fas fa-ellipsis-h"></i></a>
-                    <nav>
-                         <ul>
-                            <li><a href="#">Editar</a></li>
-                            <li><a href="#">Eliminar</a></li>
-                         </ul>
-                    </nav>
-                </div>
-            </div>`
-            //vamos a mover el div de publicaciones
-            console.log(doc.data());
-        })
-  
-        formPublicacion.reset();
-        titulo.focus();
-
-    })
-    
 }
+
+
+
 
 export const mostrarRegistro = () => {
     const rootHtml = document.getElementById('root');
