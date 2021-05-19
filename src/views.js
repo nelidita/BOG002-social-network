@@ -61,7 +61,7 @@ const crearPost = (titulo, descripcion) => {
         descripcion
     })
 }
- /*export*/ const viewPost = () => {
+ const viewPost = () => {
 
     const formPublicacion = document.getElementById("formPublicacion");
     const postsContainer = document.getElementById("postsContainer");
@@ -98,8 +98,7 @@ const crearPost = (titulo, descripcion) => {
             //vamos a mover el div de publicaciones
             console.log(doc.data());
         })
-    // }
-    //    createPlacePost();
+  
         formPublicacion.reset();
         titulo.focus();
 
