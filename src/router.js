@@ -1,4 +1,4 @@
-import { mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro } from './views.js';
+import { mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro} from './views.js';
 
 
 // preguntar si se puede retornar de una vez o es una buena practica el break
@@ -8,19 +8,15 @@ export const showRoot = (router) => {
     switch (router) {
         case "#/Login":
             mostrarLogin();
+            // viewPost();
             break;
         case "#/Registro":
             mostrarRegistro();
+            // viewPost();
             break;
         case "#/posts":
-            // var user = firebase.auth().currentUser;
-            // console.log(user)
-            // if (user) {
-            //     console.log("estoy en el post")
-            // } else {
-            //     console.log("no estoy entrando a post")
-            // }
-            mostrarMuro();
+               mostrarMuro();
+            
             break;
         default:
             mostrarHome();
