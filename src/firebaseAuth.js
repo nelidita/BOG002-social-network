@@ -1,4 +1,3 @@
-
 export const registerUSer = (emailRegistro, passwordRegistro) => {
   firebase
     .auth()
