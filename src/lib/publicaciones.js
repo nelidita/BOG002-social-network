@@ -20,7 +20,7 @@ export const publicaciones = () => {
   <section id="popUpPublicación">
     <div class="overLay" id="overLay">
       <div class="popUp" id="popUp">
-        <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
+         <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
         <form action='multipart/form-data' action = 'uploader.php' method= 'POST'>
           <div class="inputPopup">
           <input class= 'tituloPopup' type="text" placeholder="Título de tu publicación">
