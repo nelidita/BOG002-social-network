@@ -2,78 +2,38 @@ import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones } from './lib/publicaciones.js';
-import { registerUSer, loginUSer, registroGmail, getPosts } from './firebaseAuth.js';
-/* import {showRoot} from './router.js'; */
+import { registerUSer, loginUSer, registroGmail } from './firebaseAuth.js';
+
 
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
     const appPantallaInicio = rootHtml.appendChild(pantallaInicio());
-  /*   const bntRegistro = document.getElementById('btnRegistrate');
-    const btnIniciarSesion = document.getElementById('btnIniciarSesion');
-    bntRegistro.addEventListener('click', mostrarRegistro);
-    btnIniciarSesion.addEventListener('click', mostrarLogin); */
 
     return appPantallaInicio;
 }
 
 export const mostrarLogin = () => {
-
-    //no funciona xq esta retornando unicamente el append child de appPantallaLogin
-    // debemos crear un nuevo div que contenga  app pantalla login y  el formulario que carga los parametros de login user 
-
     const rootHtml = document.getElementById('root');
     const appPantallaLogin = rootHtml.appendChild(inicioSesion());
-
-    // const botonLogin = document.getElementById('botonLogin');
     const formularioInicioSesion = document.getElementById('formularioInicioSesion');
+
     formularioInicioSesion.addEventListener('submit', (event) => {
         const emailLogin = document.getElementById('emailLogin').value;
         const passwordLogin = document.getElementById('passwordLogin').value;
         event.preventDefault();
-        console.log("Antes de ejecutar loginUSer");
-        
+
         loginUSer(emailLogin, passwordLogin);
-       /*  showRoot ('#/posts'); */
     });
 
-    //  const mensajeErrorLogin = document.getElementById ('errorLogin'); 
-    //  botonLogin.addEventListener('click', mostrarMuro);//lo que va a decidir que mostrar es la ruta.
     return appPantallaLogin;
 };
-
 
 export const mostrarMuro = () => {
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
-   
-<<<<<<< HEAD
-    // const arrayPosts = getPosts();
-    // console.log(arrayPosts);
-    // console.log(arrayPosts.length);
-    
-    // for (let i=0; i<)
-    //     divPost.innerHTML = getPosts();
     appenMuro.style.display = 'flex';
 
-    //  const divPost = document.getElementById('verPostMuro');
-    // divPost.appendChild(arrayPosts) ;
-=======
-    const arrayPosts = getPosts();
-    console.log(arrayPosts);
-    console.log(arrayPosts.length);
-/*     for (let i=0; i<arrayPost.length; i++);
-    divPost.innerHTML = getPosts(); */
-    appenMuro.style.display = 'flex';
-
-    //const divPost = document.getElementById('verPostMuro');
-
-     // appenMuro.appendChild(getPosts)
-    
-    // console.log(getPosts)
->>>>>>> d6589b76bff0da668ba92a55620d7ed189ef4410
-    /// Popup Publicarciones
-   
-
+    // Popup Publicarciones
     const abrirPopup = document.getElementById('publicar');
     const overLay = document.getElementById('overLay');
     const popUp = document.getElementById('popUp');
@@ -82,38 +42,81 @@ export const mostrarMuro = () => {
         overLay.classList.add('active');
         popUp.classList.add('active');
     });
+
     btnCerrarPopup.addEventListener('click', (e) => {
         e.preventDefault();
         overLay.classList.remove('active');
         popUp.classList.remove('active');
     });
-    /*     console.log(errorMessage); */
+
+    const data = firebase.firestore();
+    const formPublicacion = document.getElementById("formPublicacion");
+    const postsContainer = document.getElementById("postsContainer");
+
+    const crearPost = (titulo, descripcion) => {
+        data.collection("posts").doc().set({
+            titulo,
+            descripcion
+        })
+    }
+    
+    const getPosts = () => data.collection("posts").get();
+
+    
+    formPublicacion.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const titulo = formPublicacion["titulo"];
+        const descripcion = formPublicacion["descripcion"];
+        console.log(titulo,descripcion)
+
+        await crearPost(titulo.value,descripcion.value);
+
+        const querySnapshot = await getPosts();
+        querySnapshot.forEach( doc => {
+            postsContainer.innerHTML +=
+            `<div class="bodyPost">
+                <h3>${doc.data().titulo}</h3>
+                <p>${doc.data().descripcion}</p>
+                <div class="menuDesplegable">
+                    <a href="#" class= "iconoMenu"><i class="fas fa-ellipsis-h"></i></a>
+                    <nav>
+                         <ul>
+                            <li><a href="#">Editar</a></li>
+                            <li><a href="#">Eliminar</a></li>
+                         </ul>
+                    </nav>
+                </div>
+            </div>`
+            
+            console.log(doc.data());
+        })
+
+        formPublicacion.reset();
+        titulo.focus();
+    })
+
+
     return appenMuro;
 };
-
 
 export const mostrarRegistro = () => {
     const rootHtml = document.getElementById('root');
     const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
     appePantallaRegistro.style.display = 'flex';
 
-
-    // aqui vamos a traer la información del formulario del registro 41:51
+    // aqui vamos a traer la información del formulario del registro.
     const formularioRegistro = document.getElementById('formularioRegistroUsuario');
     formularioRegistro.addEventListener('submit', (event) => {
         const emailRegistro = document.getElementById('emailRegistro').value;
         const passwordRegistro = document.getElementById('passwordRegistro').value;
         event.preventDefault();
-       registerUSer(emailRegistro, passwordRegistro ) 
-           
-     /*    showRoot ('#/posts'); */
-       
-      
+        registerUSer(emailRegistro, passwordRegistro)
+
         return appePantallaRegistro;
     });
 
     // registro Gmail
     const contenedorclickGmail = document.getElementById('contenedorclickGmail');
     contenedorclickGmail.addEventListener('click', registroGmail);
-   
+
 };
