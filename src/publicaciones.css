@@ -36,7 +36,7 @@
     color: #BBBBBB;
 }
 .popUp .cerrarPopup:hover{
-    color: rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.644);
 }
 
 .popUp form .inputPopup{
@@ -90,8 +90,6 @@
 /* * ==== ANIMACIONES POPUP === */
 .popUp.active { transform: scale(1); opacity: 1; }
 
- 
-
 @media (max-width:500px){
     .contenedorPublicaciones{
         flex-wrap: wrap;
@@ -110,10 +108,23 @@
         text-align-last: justify;
     }
     .iconosNavegacion{
-        width: 20px;
+        width: 22px;
+    }
+    .bodyPost{
+        width: 200px;
+        height: 100px;
+        text-align: center;
+        background: rgb(239 224 172);
+        border: 3px solid rgba(77, 45, 7, 0.37);
+        margin: 20px;
+        border-radius: 10px;
     }
     .iconoPublicar{
         width: 20px;
+        margin: 2px;
+    }
+    .popUp{
+        margin: 20px;
     }
     .footerPublicaciones{
         width: 100%;
@@ -134,13 +145,73 @@
         text-align-last: center;
     }
     .logoPublicar{
-        width: 200px;
+        width: 160px;
+    }
+    .iconosEnlaces{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-around;
+        margin-left: 70px;
+        margin-right: 70px;
+        margin-bottom: 5px;
     }
     .iconosNavegacion{
-        width: 40px;
+        width: 30px;
+    }
+    #postsContainer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+    .bodyPost{
+        width: 200px;
+        height: 100px;
+        text-align: center;
+        background: rgb(239 224 172);
+        border: 3px solid rgba(77, 45, 7, 0.37);
+        margin: 20px;
+        border-radius: 10px;
+    }
+    .menuDesplegable{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    }
+    .menuDesplegable li{
+        list-style-type:none;
+        position:relative;
+        width:120px;
+    }
+    .menuDesplegable li a{
+        text-decoration:none;
+        display:inline-block;
+        padding:5px 10px;
+        width:120px;
+        height:30px;
+        border:1px solid #000;
+        color:#fff;
+        background-color:#000;
+    }
+    .menuDesplegable li a:hover{
+        color:#000;
+        background-color:#fff;
+    }
+    .menuDesplegable nav li ul{
+        display:none;
+        position:absolute;
+        top:0px;
+        left:120px;
+    }
+    .menuDesplegable nav li:hover ul{display:block;}
+    .iconoMenu{
+        color: #000;
     }
     .iconoPublicar{
-        width: 40px;
+        width: 30px;
+        margin-bottom: 10px;
+        margin-top: 4px;
     }
     .footerPublicaciones{
         width: 100%;

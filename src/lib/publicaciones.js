@@ -7,28 +7,26 @@ export const publicaciones = () => {
     <img alt="logoPublicaciones" class="logoPublicar" id="logoPublicaciones"src = "Imagenes/LogoBeer.png"/>
   </div>
   <div class = "iconosEnlaces">
-    <img alt="perfil" class="iconosNavegacion" id="perfilUsuario"src = "Imagenes/hombre.png"/>
-    <img alt="busqueda" class="iconosNavegacion" id="buscar"src = "Imagenes/lupa.png"/>
-    <a href ="#/Inicio"><img alt="home" class="iconosNavegacion" id="home"src = "Imagenes/casa.png"/></a>
-    <img alt="brindis" class="iconosNavegacion" id="likes"src = "Imagenes/salud.png"/>
-    <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir"src = "Imagenes/salida.png"/></a>
+    <img alt="perfil" class="iconosNavegacion" id="perfilUsuario" src = "Imagenes/hombre.png"/>
+    <img alt="busqueda" class="iconosNavegacion" id="buscar" src = "Imagenes/lupa.png"/>
+    <a href ="#/Inicio"><img alt="home" class="iconosNavegacion" id="home" src = "Imagenes/casa.png"/></a>
+    <img alt="brindis" class="iconosNavegacion" id="likes" src = "Imagenes/salud.png"/>
+    <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir" src = "Imagenes/salida.png"/></a>
   </div>
-  <div id = "verPostMuro"></div>
+  <div id = "postsContainer"></div>
   <div class="footerPublicaciones">
     <img alt="newPost" class="iconoPublicar" id="publicar"src = "Imagenes/mas.png"/>
   </div>
   <section id="popUpPublicación">
     <div class="overLay" id="overLay">
       <div class="popUp" id="popUp">
-         <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
-        <form action='multipart/form-data' action = 'uploader.php' method= 'POST'>
+        <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
+        <form id="formPublicacion">
           <div class="inputPopup">
-          <input class= 'tituloPopup' type="text" placeholder="Título de tu publicación">
-           <input class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
+            <input id="titulo" class= 'tituloPopup' type="text" placeholder="Título de tu publicación">
+            <input id="descripcion" class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
           </div>
           <input type="submit" class="submitPublicar" value="Publicar">
-          <input name='uploadedfile' type="file" class="cargarImagen" value="Subir imagen">
-         
         </form>
       </div>
     </div>
