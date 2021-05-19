@@ -1,7 +1,7 @@
 import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
-import { publicaciones } from './lib/publicaciones.js';
+import { publicaciones/*, createDivPost*/} from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail } from './firebaseAuth.js';
 
 
@@ -32,7 +32,7 @@ export const mostrarMuro = () => {
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
     appenMuro.style.display = 'flex';
-
+    viewPost();
     // Popup Publicarciones
     const abrirPopup = document.getElementById('publicar');
     const overLay = document.getElementById('overLay');
@@ -48,26 +48,24 @@ export const mostrarMuro = () => {
         overLay.classList.remove('active');
         popUp.classList.remove('active');
     });
-
-    const data = firebase.firestore();
     
+    return appenMuro;
+};
+const data = firebase.firestore();
 
-    const crearPost = (titulo, descripcion) => {
-        data.collection("posts").doc().set({
-            titulo,
-            descripcion
-        })
-    }
-    
-    const getPosts = () => data.collection("posts").get();
+const getPosts = () => data.collection("posts").get();
 
-    //Funciona view post independiente pero duplica los post con cada
-    const viewPost = () => {
+const crearPost = (titulo, descripcion) => {
+    data.collection("posts").doc().set({
+        titulo,
+        descripcion
+    })
+}
+ /*export*/ const viewPost = () => {
 
     const formPublicacion = document.getElementById("formPublicacion");
     const postsContainer = document.getElementById("postsContainer");
-    
-
+     
     formPublicacion.addEventListener("submit", async (e) => {
         postsContainer.innerHTML="";
         e.preventDefault();
@@ -77,14 +75,16 @@ export const mostrarMuro = () => {
 
         await crearPost(titulo.value,descripcion.value);
 
-
-        
+        // const createPlacePost = () =>  {
         const querySnapshot = await getPosts();
         querySnapshot.forEach( doc => {
-            postsContainer.innerHTML +=
+            let titulos = doc.data().titulo;
+            let contenido=doc.data().descripcion;
+            // postsContainer.innerHTML += createDivPost();
+            postsContainer.innerHTML += 
             `<div class="bodyPost">
-                <h3>${doc.data().titulo}</h3>
-                <p>${doc.data().descripcion}</p>
+                <h3>${titulos}</h3>
+                <p>${contenido}</p>
                 <div class="menuDesplegable">
                     <a href="#" class= "iconoMenu"><i class="fas fa-ellipsis-h"></i></a>
                     <nav>
@@ -95,17 +95,17 @@ export const mostrarMuro = () => {
                     </nav>
                 </div>
             </div>`
-            
+            //vamos a mover el div de publicaciones
             console.log(doc.data());
         })
-
+    // }
+    //    createPlacePost();
         formPublicacion.reset();
         titulo.focus();
+
     })
+    
 }
-    viewPost();
-    return appenMuro;
-};
 
 export const mostrarRegistro = () => {
     const rootHtml = document.getElementById('root');

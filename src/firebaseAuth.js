@@ -20,8 +20,9 @@ export const loginUSer = (emailLogin, passwordLogin) => {
     .auth()
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
-   
+    
     window.location.hash = '#/posts'; // Con esto si el usuario se loguea correctamente muestra el muro.
+ 
       alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
     })
     .catch((error) => {
