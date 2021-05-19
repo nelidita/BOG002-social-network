@@ -4,7 +4,6 @@ import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones, viewPost, viewListPost } from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail } from './firebaseAuth.js';
 
-
 export const mostrarHome = () => {
     const rootHtml = document.getElementById('root');
     const appPantallaInicio = rootHtml.appendChild(pantallaInicio());
@@ -29,25 +28,28 @@ export const mostrarLogin = () => {
     return appPantallaLogin;
 };
 
-
 //crear el post list parametro mostrar muro
 const postList = async () => {
     let arraydata =[];
     // await crearPost(titulo.value, descripcion.value);
     const querySnapshot = await getPosts();
     querySnapshot.forEach(doc => {
-       arraydata.push(doc.data());
-       })
+       arraydata.push({...doc.data(), id:doc.id}); //los 3 puntos es para descomponer el objeto grande, los corchetes es para crear un nuevo objeto y con el id: doc.id agregamos el id a ese objeto.
+    })
     return arraydata;
 }
 
-
-export const mostrarMuro =async() => {
+const pintarPosts = async() => {
     let arrpost = await postList();
+    document.getElementById("postsContainer").innerHTML = viewListPost(arrpost);
+}
+
+export const mostrarMuro = async() => {
+    
     const rootHtml = document.getElementById('root');
     const appenMuro = rootHtml.appendChild(publicaciones());
+    await pintarPosts();
     appenMuro.style.display = 'flex';
-    document.getElementById("postsContainer").innerHTML = viewListPost(arrpost);
     publicarPost();
 
     // Popup Publicarciones
@@ -66,6 +68,19 @@ export const mostrarMuro =async() => {
         popUp.classList.remove('active');
     });
 
+    const iconoMenu = document.querySelectorAll(".iconoMenu");
+    console.log(iconoMenu)
+    iconoMenu.forEach ((iconoDom) => {
+        iconoDom.addEventListener("click", (event) =>{
+            const idNav = "#nav-" + event.currentTarget.id
+            console.log(idNav)
+            const menu = document.querySelector(idNav)
+            menu.style.display = "block"
+            console.log(menu)
+
+        })
+    })
+
     return appenMuro;
 };
 const data = firebase.firestore();
@@ -77,22 +92,18 @@ const crearPost = (titulo, descripcion) => {
         titulo,
         descripcion
     })
-
 }
 
 const createPlacePost = async (e) => {
-    const postsContainer = document.getElementById("postsContainer");
+    
     postsContainer.innerHTML = "";
     e.preventDefault();
     const titulo = formPublicacion["titulo"];
     const descripcion = formPublicacion["descripcion"];
-    console.log(titulo, descripcion)
-
     await crearPost(titulo.value, descripcion.value);
-    const querySnapshot = await getPosts();
-    querySnapshot.forEach(doc => {
-        postsContainer.innerHTML += viewPost(doc.data())
-    })
+    pintarPosts();
+    overLay.classList.remove('active');
+    popUp.classList.remove('active');
     titulo.focus();
 }
 
@@ -103,9 +114,6 @@ const publicarPost = () => {
     formPublicacion.reset();
 
 }
-
-
-
 
 export const mostrarRegistro = () => {
     const rootHtml = document.getElementById('root');

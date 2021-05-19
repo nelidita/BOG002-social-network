@@ -31,7 +31,6 @@ export const loginUSer = (emailLogin, passwordLogin) => {
 };
 export const registroGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-
   firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {

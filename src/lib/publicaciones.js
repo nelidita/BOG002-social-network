@@ -70,13 +70,11 @@ export const viewPost = (postData) => {
                       <h3>${postData.titulo}</h3>
                       <p>${postData.descripcion}</p>
                       <div class="menuDesplegable">
-                          <a href="#" class= "iconoMenu"><i class="fas fa-ellipsis-h"></i></a>
-                          <nav>
-                              <ul>
-                                  <li><a href="#">Editar</a></li>
-                                  <li><a href="#">Eliminar</a></li>
-                              </ul>
-                          </nav>
+                        <button class= "iconoMenu" id="${postData.id}"><i class="fas fa-ellipsis-h"></i></button>
+                        <ul id="nav-${postData.id}">
+                          <li><a href="#">Editar</a></li>
+                          <li><a href="#">Eliminar</a></li>
+                        </ul>
                       </div>
                    </div>`
   return divPost;
