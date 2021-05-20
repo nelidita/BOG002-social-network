@@ -4,11 +4,7 @@
   text-decoration: none;
   font-family: 'Ubuntu', sans-serif;
 }
-body {
-  background-repeat: no-repeat;
-  background: url("Imagenes/img2blur.jpg") no-repeat center center fixed;
-  background-size: 100% 100%;
-}
+
 footer{   
   position: absolute;
   text-align: center;
@@ -31,25 +27,15 @@ footer img {
   height: 20px;
   margin-left: 30px;
 }
-.botonesInicio:hover,
-.botonesInicio:focus {
-  box-shadow: 0 0.9em 0.9em -0.7em #221910;
-  -webkit-transform: translateY(-0.25em);
-  transform: translateY(-0.25em);
-}
-.botonesInicio {
-  --hover: #8A5C28;
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
-}
-.botonesInicio:hover, button:focus {
-  border-color: var(--hover);
-  color: #fff;
-  background-color: #F7CB2D;
-}
+
 
 /* Pantalla de Inicio de Desktop*/
 @media (min-width: 501px){
+  body {
+    background-repeat: no-repeat;
+    background: url("Imagenes/img2blur.jpg") no-repeat center center fixed;
+    background-size: 100% 100%;
+  }
   .contenedorInicio{
    margin: 40px;
    text-align: center;
@@ -97,6 +83,22 @@ footer img {
   }
    #btnIniciarSesion{
     margin-top: 50px;
+  }
+  .botonesInicio:hover,
+  .botonesInicio:focus {
+    box-shadow: 0 0.9em 0.9em -0.7em #221910;
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+  }
+  .botonesInicio {
+    --hover: #8A5C28;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+  }
+  .botonesInicio:hover, button:focus {
+    border-color: var(--hover);
+    color: #fff;
+    background-color: #F7CB2D;
   }
 }
      

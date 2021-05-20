@@ -23,13 +23,12 @@ export const registroUsuario = () => {
     </div>
     <form id = "formularioRegistroUsuario">
       <input class = "inputForm" id = "emailRegistro" type ="email" placeholder = "Correo Eletrónico" required>
-      <input class = "inputForm" id = "nombreYApellido" type="name" placeholder="Nombre y Apellido" required>
       <input class = "inputForm" id = "nombreDeUsuario" type ="nickname" placeholder = "Nombre de Usuario" required>
       <input class = "inputForm" id = "passwordRegistro" type ="password" placeholder ="Contraseña" required>
-      <p class="registro">¿Ya tienes cuenta?<a href = " "> Iniciar sesión</a></p>
+      <p class="registro">¿Ya tienes cuenta?<a href = "#/Inicio"> Iniciar sesión</a></p>
       <p>Para formar parte de la comunidad Beer Lovers debes aceptar que  eres mayor de edad.</p>
       <input class = "checkbox" type ="checkbox"><label for="">Soy mayor de edad</label>
-      <button class="registrarme" type="submit"> Registrarme </button>
+      <div> <button location.href="#/posts" class="registrarme" type="submit"> Registrarme </button></div>
     </form>
   `;
 

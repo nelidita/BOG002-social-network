@@ -45,20 +45,22 @@ height: 41px;
 border-radius: 5px;
 background: #F1E5B9;
 border: 0.2px solid #000000;
-margin: 2px;
+margin: 12px;
 font-family: inherit;
 font-size: 18px;
 font-weight: bold;
 text-align: center;
 }
-
+#formularioRegistroUsuario{
+    margin: 5px;
+}
 #formularioRegistroUsuario p{
-    font-size: 14px;
+    font-size: 18px;
     font-family: inherit;
-    color: #F1e5B9;
+    color: #000;
     font-weight: bold;
     margin-top: 5px;
-    text-shadow:  0.1em 0.1em 1px #000;
+    -webkit-text-stroke: 0.2px #1d1c19ad;
 }
 #formularioRegistroUsuario a{
     font-size: 16px;
@@ -72,23 +74,22 @@ text-align: center;
     
     font-size: 14px;
     font-family: inherit;
-    color: #F1e5B9;
+    color: #000;
     font-weight: bold;
-    margin-top: 5px;
-    text-shadow:  0.1em 0.1em 1px #000;
+    -webkit-text-stroke: 0.5px #1d1c19ad;
+    margin-left: 8px;
 }
 .registrarme{
     width: 220px;
-    height: 40px;
+    height: 60px;
     border-radius: 79px;
     background: #523412;
     border: 0.2px solid #000000;
-    margin-top: 8px;
+    margin-top: 18px;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     color: #EDD376;
-
 } 
 }
 
