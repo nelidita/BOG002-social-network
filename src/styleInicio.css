@@ -28,8 +28,6 @@ footer img {
   margin-left: 30px;
 }
 
-
-/* Pantalla de Inicio de Desktop*/
 @media (min-width: 501px){
   body {
     background-repeat: no-repeat;
@@ -114,6 +112,9 @@ footer img {
     margin-top: 40px;
     flex-direction: row;
     align-content: center;
+  }
+  .logoBotones a{
+    text-align: -webkit-center;
   }
   #logoInicio{
     width: 286px;

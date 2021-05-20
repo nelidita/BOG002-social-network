@@ -9,6 +9,10 @@ export const inicioSesion = () => {
     <div class = "contenidoInputs">
         <img alt="logoIniciosesion" class="logoIniciosesion" id="logoIniciosesion"src = "Imagenes/LogoBeer.png"/>
         <h3 class='mensajeCervecero2'> Para los verdaderos amantes de la cerveza.</h3>
+        <div class= "contenedorGmailLogin" id="contenedorGmailLogin">
+          <p> Iniciar sesión con Google</p>
+          <img alt="gmail" class="gmail" src="Imagenes/google.png"/>
+        </div>
         <form id = "formularioInicioSesion">
         <input class = "inputSesion" id = "emailLogin" type ="email" placeholder = "Correo Eletrónico" required>
         <input class = "inputSesion" id= "passwordLogin" type ="password" placeholder ="Contraseña" required>

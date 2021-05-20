@@ -25,7 +25,9 @@ export const mostrarLogin = () => {
 
     loginUSer(emailLogin, passwordLogin);
   });
-
+  //Inicio de sesion con gmail
+  const contenedorGmailLogin = document.getElementById('contenedorGmailLogin');
+  contenedorGmailLogin.addEventListener('click', registroGmail);
   return appPantallaLogin;
 };
 

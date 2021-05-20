@@ -16,20 +16,33 @@
   text-align: right;
   text-shadow: 0.1em 0.1em 3px #000;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 15px;
   margin-left: 100px;
  }
+ .contenedorGmailLogin p{
+  font-size: 18px;
+  color: #F7CB2D;
+  text-shadow: 0.1em 0.1em 1px #000;
+  font-weight: bold;
+}
+.contenedorGmailLogin {
+  display: inline-flex;
+  width: 275px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+}
  .contenidoInputs{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
   flex-direction: row;
   align-content: center; 
  }
  #logoIniciosesion{
-  width: 270px;  
+  width: 220px;  
  }
  .inputSesion{
   width: 275px;
@@ -47,7 +60,7 @@
   display: none;
  }
   #emailLogin{
-  margin-top: 35px;
+  margin-top: 20px;
   }
  #formularioInicioSesion{
   text-align: -webkit-center;
@@ -97,7 +110,7 @@
    margin-left: 150px;   
  }
  .logoIniciosesion {
-    width: 270px;
+    width: 220px;
     margin-top: 40px;
    }
  .mensajeCervecero1 {
@@ -110,7 +123,25 @@
  .mensajeCervecero2 {
   display: none;
  }
- 
+ .contenedorGmailLogin{
+  display: inline-flex;
+  width: 275px;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 20px
+}
+/*Efecto hoover al contenedor Gmail*/
+.contenedorGmailLogin:hover {
+  transform: scale(1.10); 
+}
+
+.contenedorGmailLogin p {
+  font-size: 18px;
+  color: #F7CB2D;
+  text-shadow: 0.1em 0.1em 3px #000;
+  font-weight: bold;
+}
  .inputSesion {
   width: 275px;
   height: 41px;
@@ -124,7 +155,7 @@
   text-align: center;
  }   
   #emailLogin{
-  margin-top: 45px;
+  margin-top: 25px;
  }
  #formularioInicioSesion .iniciarSesion {
   width: 160px;

@@ -18,7 +18,7 @@ export const registroUsuario = () => {
     <img alt="logoRegistro" class="logoRegistro" src = "Imagenes/LogoBeer.png"/>
     <div class= "contenedorFraseInvitacionder"><p> Conviértete en un Beer Lover's </p></div>
     <div class= "contenedorGmail" id="contenedorclickGmail">
-      <p> Regístrate con Google</p>
+      <p> Iniciar sesión con Google</p>
       <img alt="gmail" class="gmail" src="Imagenes/google.png"/>
     </div>
     <form id = "formularioRegistroUsuario">

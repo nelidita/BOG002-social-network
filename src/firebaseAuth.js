@@ -28,7 +28,7 @@ export const registroGmail = () => {
     .signInWithPopup(provider)
     .then((result) => {
       window.location.hash = '#/posts';
-      alert('Gracias por registrarte. Bienvenido a Beer Lovers', result);
+      alert('Ingresaste correctamente. Bienvenido a Beer Lovers', result);
     })
     .catch((error) => {
       alert('Por favor usa una cuenta válida', error);
