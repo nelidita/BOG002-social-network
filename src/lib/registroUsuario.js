@@ -23,7 +23,6 @@ export const registroUsuario = () => {
     </div>
     <form id = "formularioRegistroUsuario">
       <input class = "inputForm" id = "emailRegistro" type ="email" placeholder = "Correo Eletrónico" required>
-      <input class = "inputForm" id = "nombreYApellido" type="name" placeholder="Nombre y Apellido" required>
       <input class = "inputForm" id = "nombreDeUsuario" type ="nickname" placeholder = "Nombre de Usuario" required>
       <input class = "inputForm" id = "passwordRegistro" type ="password" placeholder ="Contraseña" required>
       <p class="registro">¿Ya tienes cuenta?<a href = "#/Inicio"> Iniciar sesión</a></p>

@@ -198,13 +198,9 @@
         color:#000;
         background-color:#fff;
     }
-    .menuDesplegable nav li ul{
+    .menuDesplegable ul {
         display:none;
-        position:absolute;
-        top:0px;
-        left:120px;
     }
-    .menuDesplegable nav li:hover ul{display:block;}
     .iconoMenu{
         color: #000;
     }

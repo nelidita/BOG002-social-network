@@ -36,58 +36,27 @@ export const publicaciones = () => {
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
   return contenedorPublicaciones;
 };
-/* justo después de form va esto enctype = 'multipart/form-data' action = 'uploader.php' method= 'POST
-<input name='uploadedfile' type="file" class="cargarImagen" value="Subir imagen">
-/*  */
-{/* <div id="listadoPublicaciones">
-<img alt="brindis" class="iconoLikes" id="likes"src = "Imagenes/salud.png"/>
-<img alt="comentar" class="iconoComentarios" id="comentarios"src = "Imagenes/comentario.png"/>
-</div>  */}
-
-// export const createDivPost = (doc) => {
-
-
-//     const divpublicaciones = `<div class="bodyPost">
-//   <h3>${doc.data().titulo}</h3>
-//   <p>${doc.data().descripcion}</p>
-//   <div class="menuDesplegable">
-//       <a href="#" class= "iconoMenu"><i class="fas fa-ellipsis-h"></i></a>
-//       <nav>
-//           <ul>
-//               <li><a href="#">Editar</a></li>
-//               <li><a href="#">Eliminar</a></li>
-//           </ul>
-//       </nav>
-//   </div>
-//   </div>`
-
-//   return divpublicaciones
-//   }
 
 export const viewPost = (postData) => {
-
   const divPost = `<div class="bodyPost">
                       <h3>${postData.titulo}</h3>
                       <p>${postData.descripcion}</p>
                       <div class="menuDesplegable">
-                          <a href="#" class= "iconoMenu"><i class="fas fa-ellipsis-h"></i></a>
-                          <nav>
-                              <ul>
-                                  <li><a href="#">Editar</a></li>
-                                  <li><a href="#">Eliminar</a></li>
-                              </ul>
-                          </nav>
+                        <button class= "iconoMenu" id="${postData.id}"><i class="fas fa-ellipsis-h"></i></button>
+                        <ul id="nav-${postData.id}">
+                          <li><a href="#">Editar</a></li>
+                          <li><a href="#">Eliminar</a></li>
+                        </ul>
                       </div>
-                   </div>`
+                   </div>`;
   return divPost;
-}
+};
 
 export const viewListPost = (arrPost) => {
-
-  let divListPost = "";
-  arrPost.forEach(postElement => {
+  let divListPost = '';
+  arrPost.forEach((postElement) => {
     divListPost += viewPost(postElement);
   });
 
   return divListPost;
-}
+};
