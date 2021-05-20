@@ -51,6 +51,15 @@ const postList = async () => {
     arraydata.push({ ...doc.data(), id: doc.id });
   });
 
+  // const arraydata = [];
+  // await data.collection("posts")
+  // .onSnapshot((querySnapshot) => {
+      
+  //     querySnapshot.forEach((doc) => {
+  //       arraydata.push({ ...doc.data(), id: doc.id });
+  //     });
+  //     // console.log("Current cities in CA: ", cities.join(", "));
+  // });
   return arraydata;
 };
 
@@ -76,6 +85,7 @@ const publicarPost = () => {
   const formPublicacion = document.getElementById('formPublicacion');
   formPublicacion.addEventListener('submit', createPlacePost);
   formPublicacion.reset();
+
 };
 
 export const mostrarMuro = async () => {
@@ -85,10 +95,10 @@ export const mostrarMuro = async () => {
   appenMuro.style.display = 'flex';
   publicarPost();
 
-  // Popup Publicarciones
+  // Popup Publicaciones
   const abrirPopup = document.getElementById('publicar');
-  const overLay = document.getElementB
-  const popUp = document.getElementByIyId('overLay');d('popUp');
+  const overLay = document.getElementById('overLay');
+  const popUp = document.getElementById('popUp');
   const btnCerrarPopup = document.getElementById('cerrarPopup');
   abrirPopup.addEventListener('click', () => {
     overLay.classList.add('active');
@@ -105,6 +115,7 @@ export const mostrarMuro = async () => {
   iconoMenu.forEach((iconoDom) => {
     iconoDom.addEventListener('click', (event) => {
       const idNav = `#nav-${event.currentTarget.id}`;
+      console.log(idNav)
       const menu = document.querySelector(idNav);
       menu.style.display = 'block';
       iconoDom.addEventListener('click', () => {
@@ -112,7 +123,6 @@ export const mostrarMuro = async () => {
       });
     });
   });
-
   return appenMuro;
 };
 

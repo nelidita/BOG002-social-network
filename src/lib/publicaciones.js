@@ -37,7 +37,7 @@ export const publicaciones = () => {
   return contenedorPublicaciones;
 };
 
-export const viewPost = (postData) => {
+const viewPost = (postData) => {
   const divPost = `<div class="bodyPost">
                       <h3>${postData.titulo}</h3>
                       <p>${postData.descripcion}</p>
