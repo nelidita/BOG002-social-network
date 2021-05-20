@@ -57,6 +57,5 @@ export const viewListPost = (arrPost) => {
   arrPost.forEach((postElement) => {
     divListPost += viewPost(postElement);
   });
-
   return divListPost;
 };

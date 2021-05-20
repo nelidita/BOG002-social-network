@@ -28,17 +28,19 @@ export const mostrarLogin = () => {
 
   return appPantallaLogin;
 };
+
 const crearPost = (titulo, descripcion) => {
   data.collection('posts').doc().set({
     titulo,
     descripcion,
   });
 };
+
 const getPosts = () => data.collection('posts').get();
+
 // crear el post list parametro mostrar muro
 const postList = async () => {
   const arraydata = [];
-  // await crearPost(titulo.value, descripcion.value);
   const querySnapshot = await getPosts();
   querySnapshot.forEach((doc) => {
     // los 3 puntos es para descomponer el objeto grande,
@@ -46,6 +48,7 @@ const postList = async () => {
     // y con el id:doc.id agregamos el id a ese objeto.
     arraydata.push({ ...doc.data(), id: doc.id });
   });
+
   return arraydata;
 };
 
@@ -55,19 +58,16 @@ const pintarPosts = async () => {
 };
 
 const createPlacePost = async (e) => {
-  const postsContainer = document.getElementById('postsContainer');
-  postsContainer.innerHTML = '';
   e.preventDefault();
   const formPublicacion = document.getElementById('formPublicacion');
   const titulo = formPublicacion.titulo;
   const descripcion = formPublicacion.descripcion;
-  crearPost(titulo.value, descripcion.value);
+  crearPost(titulo.value, descripcion.value)
   await pintarPosts();
   const overLay = document.getElementById('overLay');
   const popUp = document.getElementById('popUp');
   overLay.classList.remove('active');
   popUp.classList.remove('active');
-  titulo.focus();
 };
 
 const publicarPost = () => {
@@ -85,8 +85,8 @@ export const mostrarMuro = async () => {
 
   // Popup Publicarciones
   const abrirPopup = document.getElementById('publicar');
-  const overLay = document.getElementById('overLay');
-  const popUp = document.getElementById('popUp');
+  const overLay = document.getElementB
+  const popUp = document.getElementByIyId('overLay');d('popUp');
   const btnCerrarPopup = document.getElementById('cerrarPopup');
   abrirPopup.addEventListener('click', () => {
     overLay.classList.add('active');
@@ -100,11 +100,9 @@ export const mostrarMuro = async () => {
   });
 
   const iconoMenu = document.querySelectorAll('.iconoMenu');
-  console.log(iconoMenu);
   iconoMenu.forEach((iconoDom) => {
     iconoDom.addEventListener('click', (event) => {
       const idNav = `#nav-${event.currentTarget.id}`;
-      console.log(idNav);
       const menu = document.querySelector(idNav);
       menu.style.display = 'block';
       iconoDom.addEventListener('click', () => {
