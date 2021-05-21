@@ -25,56 +25,81 @@ export const mostrarLogin = () => {
 
     loginUSer(emailLogin, passwordLogin);
   });
-  //Inicio de sesion con gmail
+  // Inicio de sesion con gmail
   const contenedorGmailLogin = document.getElementById('contenedorGmailLogin');
   contenedorGmailLogin.addEventListener('click', registroGmail);
   return appPantallaLogin;
 };
 
 const crearPost = (titulo, descripcion) => {
-   data.collection('posts').doc().set({
+  data.collection('posts').doc().set({
     titulo,
     descripcion,
   });
 };
-const publicarPost = () => {
-  const formPublicacion = document.getElementById('formPublicacion');
-  formPublicacion.addEventListener('submit', createPlacePost);
-  formPublicacion.reset();
-};
 
-const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
-
-// crear el post list parametro mostrar muro
-const postList = async() => {
-  await onGetPost((querySnapshot) => {
-    const divListPost = document.getElementById('postsContainer');
-    divListPost.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-      const objetoPosts = ({ ...doc.data(), id: doc.id });
-      divListPost.innerHTML += viewPost(objetoPosts);
-    publicarPost ();
-    });
-  });
-}
-
-const createPlacePost = async (e) => {
+const createPlacePost = (e) => {
   e.preventDefault();
   const formPublicacion = document.getElementById('formPublicacion');
   const titulo = formPublicacion.titulo;
   const descripcion = formPublicacion.descripcion;
-  crearPost(titulo.value, descripcion.value)
-  await postList();
+  crearPost(titulo.value, descripcion.value);
   const overLay = document.getElementById('overLay');
   const popUp = document.getElementById('popUp');
   overLay.classList.remove('active');
   popUp.classList.remove('active');
 };
 
+const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
+const deletePost = (id) => data.collection("posts").doc(id).delete();
+
+
+// crear el post list parametro mostrar muro
+const postList = async () => {
+  await onGetPost((querySnapshot) => {
+    const divListPost = document.getElementById('postsContainer');
+    divListPost.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      const objetoPosts = ({ ...doc.data(), id: doc.id });
+      divListPost.innerHTML += viewPost(objetoPosts);
+
+      const iconoMenu = document.querySelectorAll('.iconoMenu');
+      iconoMenu.forEach((iconoDom) => {
+        iconoDom.addEventListener('click', (event) => {
+          const idNav = `#nav-${event.currentTarget.id}`;
+          const menu = document.querySelector(idNav);
+          menu.style.display = 'block';
+          iconoDom.addEventListener('click', () => {
+            menu.style.display = 'none';
+          });
+        });
+       
+      });
+    });
+    const btnsDelete = document.querySelectorAll(".btnEliminar");
+    btnsDelete.forEach((btn) =>
+      btn.addEventListener("click", async (event) => {
+        // const idDelete = `#${event.currentTarget.id}`;
+        // const btnBorrar = document.querySelector(idDelete);
+        // console.log(idDelete);
+        try { await deletePost(event.target.dataset.id); }
+        catch (error) {
+          console.log(error);
+        }
+      })
+    );
+  });
+}
+
+
 export const mostrarMuro = async () => {
   const rootHtml = document.getElementById('root');
   const appenMuro = rootHtml.appendChild(publicaciones());
   appenMuro.style.display = 'flex';
+
+  const formPublicacion = document.getElementById('formPublicacion');
+  formPublicacion.addEventListener('submit', createPlacePost);
+  formPublicacion.reset();
   await postList();
 
   // Popup Publicaciones
@@ -93,18 +118,6 @@ export const mostrarMuro = async () => {
     popUp.classList.remove('active');
   });
 
-  const iconoMenu = document.querySelectorAll('.iconoMenu');
-  iconoMenu.forEach((iconoDom) => {
-    iconoDom.addEventListener('click', (event) => {
-      const idNav = `#nav-${event.currentTarget.id}`;
-      console.log(idNav)
-      const menu = document.querySelector(idNav);
-      menu.style.display = 'block';
-      iconoDom.addEventListener('click', () => {
-        menu.style.display = 'none';
-      });
-    });
-  });
   return appenMuro;
 };
 
