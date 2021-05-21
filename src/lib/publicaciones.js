@@ -37,7 +37,7 @@ export const publicaciones = () => {
   return contenedorPublicaciones;
 };
 
-const viewPost = (postData) => {
+export const viewPost = (postData) => {
   const divPost = `<div class="bodyPost">
                       <h3>${postData.titulo}</h3>
                       <p>${postData.descripcion}</p>
@@ -52,10 +52,10 @@ const viewPost = (postData) => {
   return divPost;
 };
 
-export const viewListPost = (arrPost) => {
-  let divListPost = '';
-  arrPost.forEach((postElement) => {
-    divListPost += viewPost(postElement);
-  });
-  return divListPost;
-};
+// export const viewListPost = (arrPost) => {
+//   let divListPost = '';
+//   arrPost.forEach((postElement) => {
+//     divListPost += viewPost(postElement);
+//   });
+//   return divListPost;
+// };

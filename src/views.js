@@ -1,7 +1,7 @@
 import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
-import { publicaciones, viewListPost } from './lib/publicaciones.js';
+import { publicaciones, viewPost } from './lib/publicaciones.js';
 import { registerUSer, loginUSer, registroGmail } from './firebaseAuth.js';
 
 const data = firebase.firestore();
@@ -37,36 +37,26 @@ const crearPost = (titulo, descripcion) => {
     descripcion,
   });
 };
+const publicarPost = () => {
+  const formPublicacion = document.getElementById('formPublicacion');
+  formPublicacion.addEventListener('submit', createPlacePost);
+  formPublicacion.reset();
+};
 
-const getPosts = () => data.collection('posts').get();
+const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
 
 // crear el post list parametro mostrar muro
-const postList = async () => {
-  const arraydata = [];
-  const querySnapshot = await getPosts();
-  querySnapshot.forEach((doc) => {
-    // los 3 puntos es para descomponer el objeto grande,
-    // los corchetes es para crear un nuevo objeto
-    // y con el id:doc.id agregamos el id a ese objeto.
-    arraydata.push({ ...doc.data(), id: doc.id });
+const postList = async() => {
+  await onGetPost((querySnapshot) => {
+    const divListPost = document.getElementById('postsContainer');
+    divListPost.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      const objetoPosts = ({ ...doc.data(), id: doc.id });
+      divListPost.innerHTML += viewPost(objetoPosts);
+    publicarPost ();
+    });
   });
-
-  // const arraydata = [];
-  // await data.collection("posts")
-  // .onSnapshot((querySnapshot) => {
-      
-  //     querySnapshot.forEach((doc) => {
-  //       arraydata.push({ ...doc.data(), id: doc.id });
-  //     });
-  //     // console.log("Current cities in CA: ", cities.join(", "));
-  // });
-  return arraydata;
-};
-
-const pintarPosts = async () => {
-  const arrpost = await postList();
-  document.getElementById('postsContainer').innerHTML = viewListPost(arrpost);
-};
+}
 
 const createPlacePost = async (e) => {
   e.preventDefault();
@@ -74,26 +64,18 @@ const createPlacePost = async (e) => {
   const titulo = formPublicacion.titulo;
   const descripcion = formPublicacion.descripcion;
   crearPost(titulo.value, descripcion.value)
-  await pintarPosts();
+  await postList();
   const overLay = document.getElementById('overLay');
   const popUp = document.getElementById('popUp');
   overLay.classList.remove('active');
   popUp.classList.remove('active');
 };
 
-const publicarPost = () => {
-  const formPublicacion = document.getElementById('formPublicacion');
-  formPublicacion.addEventListener('submit', createPlacePost);
-  formPublicacion.reset();
-
-};
-
 export const mostrarMuro = async () => {
   const rootHtml = document.getElementById('root');
   const appenMuro = rootHtml.appendChild(publicaciones());
-  await pintarPosts();
   appenMuro.style.display = 'flex';
-  publicarPost();
+  await postList();
 
   // Popup Publicaciones
   const abrirPopup = document.getElementById('publicar');
