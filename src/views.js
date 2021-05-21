@@ -32,7 +32,7 @@ export const mostrarLogin = () => {
 };
 
 const crearPost = (titulo, descripcion) => {
-  data.collection('posts').doc().set({
+   data.collection('posts').doc().set({
     titulo,
     descripcion,
   });
