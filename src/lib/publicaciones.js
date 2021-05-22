@@ -26,7 +26,7 @@ export const publicaciones = () => {
             <input id="titulo" class= 'tituloPopup' type="text" placeholder="Título de tu publicación">
             <input id="descripcion" class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
           </div>
-          <input type="submit" class="submitPublicar" value="Publicar">
+          <input type="submit" class="submitPublicar" id="btnPublicar" value="Publicar">
         </form>
       </div>
     </div>

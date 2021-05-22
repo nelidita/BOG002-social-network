@@ -38,7 +38,12 @@ const crearPost = (titulo, descripcion) => {
   });
 };
 
-const createPlacePost = (e) => {
+const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
+const deletePost = (id) => data.collection("posts").doc(id).delete();
+const editPost = (id, updatedPost) => data.collection('posts').doc(id).update(updatedPost);
+const getPostEditar = (id) => db.collection("tasks").doc(id).get();
+
+const createPlacePost = async (e) => {
   e.preventDefault();
   const formPublicacion = document.getElementById('formPublicacion');
   const titulo = formPublicacion.titulo;
@@ -48,10 +53,45 @@ const createPlacePost = (e) => {
   const popUp = document.getElementById('popUp');
   overLay.classList.remove('active');
   popUp.classList.remove('active');
+
+  let editStatus = false;
+  const btnsEdit = document.querySelectorAll(".btnEditar");
+  btnsEdit.forEach((btn) => {
+    btn.addEventListener("click", async (event) => {
+      try {
+        
+        const doc = await getPostEditar(event.target.dataset.id);
+        const postsEdit = doc.data();
+        formPublicacion["titulo"].value = postsEdit.title;
+        formPublicacion["descripcion"].value = postsEdit.description;
+        editStatus = true;
+        id = doc.id;
+        formPublicacion["btnPublicar"].innerText = "Actualizar";
+        console.log(formPublicacion);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  });
+  try {
+    if (!editStatus) {
+      await crearPost(titulo.value, descripcion.value);
+    } else {
+      editPost(id, {
+        titulo: titulo.value,
+        descripcion: descripcion.value,
+      })
+
+      editStatus = false;
+      id = '';
+      formPublicacion['btnPublicar'].innerText = 'Publicar';
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
-const deletePost = (id) => data.collection("posts").doc(id).delete();
+
 
 
 // crear el post list parametro mostrar muro
@@ -73,7 +113,7 @@ const postList = async () => {
             menu.style.display = 'none';
           });
         });
-       
+
       });
     });
     const btnsDelete = document.querySelectorAll(".btnEliminar");
@@ -90,7 +130,6 @@ const postList = async () => {
     );
   });
 }
-
 
 export const mostrarMuro = async () => {
   const rootHtml = document.getElementById('root');
