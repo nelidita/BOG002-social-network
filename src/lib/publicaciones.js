@@ -30,9 +30,8 @@ export const publicaciones = () => {
         </form>
       </div>
     </div>
-  </section>
-
-      `;
+  </section>    
+ `;
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
   return contenedorPublicaciones;
 };
@@ -44,10 +43,12 @@ export const viewPost = (postData) => {
                       <div class="menuDesplegable">
                         <button class= "iconoMenu" id="${postData.id}"><i class="fas fa-ellipsis-h"></i></button>
                         <ul id="nav-${postData.id}">
-                          <li><a href="#/posts" class= "btnEditar" data-id="${postData.id}">Editar</a></li>
-                          <li><a href="#/posts" class= "btnEliminar"  data-id="${postData.id}">Eliminar</a></li>
+                          <li><a href="#/posts" class="btnEditar" data-id="${postData.id}">Editar</a></li>
+                          <li><a href="#/posts" class="btnEliminar"  data-id="${postData.id}">Eliminar</a></li>
                         </ul>
                       </div>
                    </div>`;
   return divPost;
 };
+
+ 
