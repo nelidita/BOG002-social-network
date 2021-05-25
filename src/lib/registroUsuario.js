@@ -22,13 +22,27 @@ export const registroUsuario = () => {
       <img alt="gmail" class="gmail" src="Imagenes/google.png"/>
     </div>
     <form id = "formularioRegistroUsuario">
-      <input class = "inputForm" id = "emailRegistro" type ="email" placeholder = "Correo Eletrónico" required>
-      <input class = "inputForm" id = "nombreDeUsuario" type ="nickname" placeholder = "Nombre de Usuario" required>
-      <input class = "inputForm" id = "passwordRegistro" type ="password" placeholder ="Contraseña" required>
+    <div class="grupo__registro" id="grupo__email2">
+      <input class = "inputForm" id = "emailRegistro" name:"email2" type ="email" placeholder = "Correo Eletrónico" required>
+      <p class= "mensajeErrorRegistro" id = "errorRegistroEmail">Debes introducir un correo válido.</p>
+      </div>
+      <div class="grupo__registro" id="grupo__nombre">
+      <input class = "inputForm" id = "nombreDeUsuario" name:"nombre" type ="nickname" placeholder = "Nombre de Usuario" required>
+      <p class= "mensajeErrorRegistro" id = "errorRegistronombre"> El usuario tiene que ser de 4 a 16 dígitos y solo puede contener numeros, letras y guion bajo.</p>
+      </div>
+      <div class="grupo__registro" id="grupo__password2">
+      <input class = "inputForm" id = "passwordRegistro" name:"password2" type ="password" placeholder ="Contraseña" required>
+      <p class= "mensajeErrorRegistro" id = "errorRegistroPassword"> Contraseña inválida, vueve a intentarlo.</p>
+      </div>
       <p class="registro">¿Ya tienes cuenta?<a href = "#/Inicio"> Iniciar sesión</a></p>
-      <p>Para formar parte de la comunidad Beer Lovers debes aceptar que  eres mayor de edad.</p>
-      <input class = "checkbox" type ="checkbox"><label for="">Soy mayor de edad</label>
+      <p class="terminosBeerlover">Para formar parte de la comunidad Beer Lovers debes aceptar que  eres mayor de edad.</p>
+      <div class="grupo__registro" id="grupo__terminos">
+      <input class = "checkbox" name:"terminos" id="terminos" type ="checkbox"><label for="">Soy mayor de edad</label>
+      </div>
       <div> <button location.href="#/posts" class="registrarme" type="submit"> Registrarme </button></div>
+      <div class="registroMensaje" id="formulario__mensajeRegistro">
+      <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor completa los campos correctamente. </p>
+    </div>
     </form>
   `;
 

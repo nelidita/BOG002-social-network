@@ -13,11 +13,21 @@ export const inicioSesion = () => {
           <p> Iniciar sesión con Google</p>
           <img alt="gmail" class="gmail" src="Imagenes/google.png"/>
         </div>
-        <form id = "formularioInicioSesion">
-        <input class = "inputSesion" id = "emailLogin" type ="email" placeholder = "Correo Eletrónico" required>
-        <input class = "inputSesion" id= "passwordLogin" type ="password" placeholder ="Contraseña" required>
-        <p class= "mensajeError" id = "errorLogin"></p>
-        <div> <button location.href="#/posts" class="iniciarSesion" id="botonLogin" type="submit"> Iniciar sesión </button></div>
+        <form id = "formularioInicioSesion" >
+        <div id = "validacionInicio" >
+        <input class = "inputSesion" name= "email" id = "emailLogin" type ="email" placeholder = "Correo Eletrónico">
+        <p class= "mensajeError" id = "errorLoginEmail">Debes introducir un correo válido.</p>
+        </div>
+        <div id = "validacionIniciopass">
+        <input class = "inputSesion" id= "passwordLogin" name="password" type ="password" placeholder ="Contraseña">
+        <p class= "mensajeError" id = "errorLoginPassword"> Contraseña inválida, vueve a intentarlo.</p>
+        </div>
+        <div> <button location.href="#/posts" class="iniciarSesion" id="botonLogin" type="submit"> Iniciar sesión </button>
+        <p class="mensaje-exitoLogin" id="mensaje-exitoLogin">Ingresaste correctamente. Bienvenido a Beer Lovers!</p>
+        </div>
+        <div class="inicioSesionmensaje" id="formulario__mensaje">
+				<p class="advertencia"><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor completa los campos correctamente. </p>
+			</div>
         </form>
         <p class = "mensajeCuentainicio">¿No tienes cuenta?<a href = "#/Inicio"> Regístrate</a></p>
     </div>

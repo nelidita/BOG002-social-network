@@ -56,6 +56,46 @@
   font-weight: bold;
   text-align: center;
  }
+ .inputSesion:focus {
+  border: 3px solid #000000;
+  outline: none;
+  box-shadow: 3px 0px 30 px rgba(163, 163, 163, 0.4);
+}
+.mensajeError {
+  font-size: 13px;
+  margin-bottom: 0;
+  display: none;
+  font-weight: bolder;
+  color: rgba(10, 10, 10, 0.699);
+
+}
+.mensajeError-activo {
+  display: block;
+}
+.inicioSesionmensaje {
+  height: 35px;
+  line-height: 25px;
+  background: #f70a0a;
+  padding: 0 10px;
+  border-radius: 3px;
+  display: none;
+}
+.inicioSesionmensaje .advertencia  {
+  margin:0;
+  font-size: 12px;
+}
+.inicioSesionmensaje-activo{
+  display: block;
+}
+.mensaje-exitoLogin {
+ font-size: 14px;
+ color:#0f0f0f;
+ font-weight: bold;
+ display: none;
+}
+.mensaje-exitoLogin-activo{
+ display: block;
+}
  .mensajeCervecero1 {
   display: none;
  }
@@ -100,6 +140,7 @@
    text-align: center;
    margin: 40px;
    display: block;
+   cursor: pointer;
  }
  .contenidoInputs{
    width: 337px;
@@ -154,10 +195,54 @@
   font-weight: bold;
   text-align: center;
  }   
-  #emailLogin{
+
+ .inputSesion:focus {
+   border: 3px solid #000000;
+   outline: none;
+   box-shadow: 3px 0px 30 px rgba(163, 163, 163, 0.4);
+ }
+ .mensajeError {
+   font-size: 13px;
+   margin-bottom: 0;
+   display: none;
+   font-weight: bolder;
+   color: rgba(10, 10, 10, 0.699);
+ 
+ }
+ .mensajeError-activo {
+   display: block;
+ }
+ .inicioSesionmensaje {
+   height: 35px;
+   line-height: 25px;
+   background: #f70a0a;
+   padding: 0 10px;
+   border-radius: 3px;
+   display: none;
+ }
+ .inicioSesionmensaje .advertencia {
+   margin:0;
+   font-size: 12px;
+   font-weight: bolder;
+ }
+ .inicioSesionmensaje-activo{
+   display: block;
+ }
+.mensaje-exitoLogin {
+  font-size: 14px;
+  color:#0f0f0f;
+  font-weight: bold;
+  display: none;
+}
+.mensaje-exitoLogin-activo{
+  display: block;
+}
+
+ #emailLogin{
   margin-top: 25px;
  }
  #formularioInicioSesion .iniciarSesion {
+  position: relative;
   width: 160px;
   height: 52px;
   border-radius: 79px;
@@ -209,4 +294,11 @@
   font-family: sans-serif;
   margin-left: 5px;
  }
+}
+/* ------- Estilos para validación --------*/
+.inputSesion-incorrecto .inputSesion{
+  border: 3px solid #bb2929;
+}
+.inputSesion-correcto .inputSesion{
+  border: 3px solid #1bf008;
 }

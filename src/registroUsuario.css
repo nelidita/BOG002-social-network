@@ -50,7 +50,7 @@ font-size: 18px;
 font-weight: bold;
 text-align: center;
 }
-#formularioRegistroUsuario p{
+#formularioRegistroUsuario .terminosBeerlover{
     font-size: 16px;
     font-family: inherit;
     color: #000;
@@ -176,7 +176,7 @@ text-align: center;
 #formularioRegistroUsuario{
     margin-top: 5px;
 }
-#formularioRegistroUsuario p{
+#formularioRegistroUsuario .terminosBeerlover{
     font-size: 17px;
     font-family: inherit;
     color: #F1e5B9;
@@ -230,3 +230,43 @@ text-align: center;
   background-color: #F7CB2D;
 }
 }
+.inputForm:focus{
+   border: 3px solid #000000;
+   outline: none;
+   box-shadow: 3px 0px 30 px rgba(163, 163, 163, 0.4); 
+}
+.mensajeErrorRegistro {
+    font-size: 13px;
+    margin-bottom: 0;
+    display: none;
+    font-weight: bolder;
+    color: rgba(10, 10, 10, 0.89);
+  
+  }
+  .mensajeErrorRegistro-activo {
+    display: block;
+  }
+  .registroMensaje {
+    height: 35px;
+    line-height: 25px;
+    background: #f70a0a;
+    padding: 0 10px;
+    border-radius: 3px;
+    display: none;
+  }
+  .registroMensaje  {
+    margin:0;
+    font-size: 12px;
+    font-weight: bolder;
+  }
+  .registroMensaje-activo{
+    display: block;
+  }
+ 
+ /* ------- Estilos para validación --------*/
+.inputForm-incorrecto .inputForm{
+    border: 3px solid #bb2929;
+  }
+.inputForm-correcto .inputForm{
+    border: 3px solid #1bf008;
+  }

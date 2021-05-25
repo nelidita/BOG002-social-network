@@ -19,7 +19,7 @@ export const loginUSer = (emailLogin, passwordLogin) => {
       alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
     })
     .catch((error) => {
-      alert('Contraseña no válida. Vuelve a intentarlo', error.message);
+      console.log('Contraseña no válida. Vuelve a intentarlo', error.message);
     });
 };
 export const registroGmail = () => {
