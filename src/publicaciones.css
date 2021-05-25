@@ -131,7 +131,6 @@
 .popUp.active { transform: scale(1); opacity: 1; }
 .contenedorEncabezadoPublicaciones{
     position: sticky;
-    text-align: -webkit-center;
     top: 0px;
     background: beige;
     width: 100%;
@@ -145,6 +144,9 @@
 }
 
 @media (max-width:500px){
+    .contenedorEncabezadoPublicaciones{
+        text-align: -webkit-center;
+    }
     .contenedorPublicaciones{
         flex-wrap: wrap;
         background: beige;
