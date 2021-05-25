@@ -6,10 +6,10 @@
 }
 
 footer{   
-  position: absolute;
+  position: fixed;
+  bottom: 0px;
   text-align: center;
   width: 100%;
-  bottom: 0; /* esta llevando el footer al final pero debemos revisar si asignandole un tamaño a body estaria sobrando */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

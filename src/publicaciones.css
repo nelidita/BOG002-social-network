@@ -1,3 +1,45 @@
+.contenedorLogoPublicaciones{
+    width: 100%;
+}
+#postsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+.bodyPost{
+    height: 100px;
+    text-align: center;
+    background: rgb(239 224 172);
+    border: 3px solid rgba(77, 45, 7, 0.37);
+    border-radius: 10px;
+}
+.menuDesplegable{
+    float: right;
+    margin-right: 6px;
+}
+.menuDesplegable li{
+    list-style-type:none;
+    position:relative;
+    width:120px;
+}
+.menuDesplegable li a{
+    text-decoration:none;
+    display:inline-block;
+    padding:5px 10px;
+    width:120px;
+    height:30px;
+    border:1px solid #000;
+    color:#fff;
+    background-color:#000;
+}
+.menuDesplegable li a:hover{
+    color:#000;
+    background-color:#fff;
+}
+.menuDesplegable ul {
+    display:none;
+}
 /* Popup Publicaciones */
 .overLay {
     position: fixed;
@@ -11,9 +53,7 @@
     visibility: hidden;
     background-color: rgba(0, 0, 0, 0.3);
 }
-.overLay.active {
-    visibility: visible;
-}
+.overLay.active { visibility: visible }
 .popUp{
     background: #F1e5B9;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
@@ -89,35 +129,44 @@
 }
 /* * ==== ANIMACIONES POPUP === */
 .popUp.active { transform: scale(1); opacity: 1; }
+.contenedorEncabezadoPublicaciones{
+    position: sticky;
+    top: 0px;
+    background: beige;
+    width: 100%;
+}
+.footerPublicaciones{
+    width: 100%;
+    text-align-last: center;
+    background: beige;
+    position: fixed;
+    bottom: 8px;
+}
 
 @media (max-width:500px){
+    .contenedorEncabezadoPublicaciones{
+        text-align: -webkit-center;
+    }
     .contenedorPublicaciones{
         flex-wrap: wrap;
         background: beige;
         justify-content: center;
     }
-    .contenedorLogoPublicaciones{
-        width: 100%;
-        text-align-last: center;
-    }
     .logoPublicar{
         width: 100px;
     }
     .iconosEnlaces{
-        width: 80%;
+        border-bottom: 3px solid rgba(77, 45, 7, 0.37);
+        width: 100%;
         text-align-last: justify;
     }
-    .iconosNavegacion{
-        width: 22px;
-    }
+    .iconosNavegacion{ width: 22px }
+    #perfilUsuario{ margin-left: 30px }
+    #salir{ margin-right: 30px }
+    #postsContainer{ margin-top: 8px }
     .bodyPost{
-        width: 200px;
-        height: 100px;
-        text-align: center;
-        background: rgb(239 224 172);
-        border: 3px solid rgba(77, 45, 7, 0.37);
-        margin: 20px;
-        border-radius: 10px;
+        width: 80%;
+        margin: 8px;
     }
     .iconoPublicar{
         width: 20px;
@@ -126,80 +175,34 @@
     .popUp{
         margin: 20px;
     }
-    .footerPublicaciones{
-        width: 100%;
-        text-align-last: center;
-        bottom: 0;
-        position: absolute;
-        background: beige;
-        margin-bottom: 10px;
-    }
+   
 }
 @media (min-width: 501px){
+    .contenedorEncabezadoPublicaciones{ 
+        display: flex;
+        border-bottom: 3px solid rgba(77, 45, 7, 0.37);
+    }
     .contenedorPublicaciones{
+        display: flex;
         flex-wrap: wrap;
         background: beige;
-    }
-    .contenedorLogoPublicaciones{
-        width: 100%;
-        text-align-last: center;
     }
     .logoPublicar{
         width: 160px;
+        margin: 3px;
     }
     .iconosEnlaces{
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: space-around;
-        margin-left: 70px;
-        margin-right: 70px;
-        margin-bottom: 5px;
+        min-width: max-content;
+        align-self: center;
     }
     .iconosNavegacion{
         width: 30px;
+        margin: 10px;
     }
-    #postsContainer{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-    }
+    #postsContainer{ margin-top: 15px }
     .bodyPost{
-        width: 200px;
-        height: 100px;
-        text-align: center;
-        background: rgb(239 224 172);
-        border: 3px solid rgba(77, 45, 7, 0.37);
-        margin: 20px;
-        border-radius: 10px;
-    }
-    .menuDesplegable{
-        box-sizing:border-box;
-        margin:0;
-        padding:0;
-    }
-    .menuDesplegable li{
-        list-style-type:none;
-        position:relative;
-        width:120px;
-    }
-    .menuDesplegable li a{
-        text-decoration:none;
-        display:inline-block;
-        padding:5px 10px;
-        width:120px;
-        height:30px;
-        border:1px solid #000;
-        color:#fff;
-        background-color:#000;
-    }
-    .menuDesplegable li a:hover{
-        color:#000;
-        background-color:#fff;
-    }
-    .menuDesplegable ul {
-        display:none;
+       width: 60%;
+       margin: 15px;
     }
     .iconoMenu{
         color: #000;
@@ -208,13 +211,5 @@
         width: 30px;
         margin-bottom: 10px;
         margin-top: 4px;
-    }
-    .footerPublicaciones{
-        width: 100%;
-        text-align-last: center;
-        bottom: 0;
-        position: absolute;
-        background: beige;
-        margin-bottom: 10px;
     }
 }

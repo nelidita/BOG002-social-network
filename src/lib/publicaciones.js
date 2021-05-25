@@ -3,15 +3,17 @@ export const publicaciones = () => {
   contenedorPublicaciones.className = 'contenedorPublicaciones';
 
   const contenidoEncabezadopublicaciones = `
-  <div class="contenedorLogoPublicaciones">
-    <img alt="logoPublicaciones" class="logoPublicar" id="logoPublicaciones"src = "Imagenes/LogoBeer.png"/>
-  </div>
-  <div class = "iconosEnlaces">
-    <img alt="perfil" class="iconosNavegacion" id="perfilUsuario" src = "Imagenes/hombre.png"/>
-    <img alt="busqueda" class="iconosNavegacion" id="buscar" src = "Imagenes/lupa.png"/>
-    <a href ="#/Inicio"><img alt="home" class="iconosNavegacion" id="home" src = "Imagenes/casa.png"/></a>
-    <img alt="brindis" class="iconosNavegacion" id="likes" src = "Imagenes/salud.png"/>
-    <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir" src = "Imagenes/salida.png"/></a>
+  <div class="contenedorEncabezadoPublicaciones">
+    <div class="contenedorLogoPublicaciones">
+      <img alt="logoPublicaciones" class="logoPublicar" id="logoPublicaciones"src = "Imagenes/LogoBeer.png"/>
+    </div>
+    <div class = "iconosEnlaces">
+      <img alt="perfil" class="iconosNavegacion" id="perfilUsuario" src = "Imagenes/hombre.png"/>
+      <img alt="busqueda" class="iconosNavegacion" id="buscar" src = "Imagenes/lupa.png"/>
+      <a href ="#/Inicio"><img alt="home" class="iconosNavegacion" id="home" src = "Imagenes/casa.png"/></a>
+      <img alt="brindis" class="iconosNavegacion" id="likes" src = "Imagenes/salud.png"/>
+      <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir" src = "Imagenes/salida.png"/></a>
+    </div>
   </div>
   <div id = "postsContainer"></div>
   <div class="footerPublicaciones">
@@ -30,24 +32,28 @@ export const publicaciones = () => {
         </form>
       </div>
     </div>
-  </section>
-
-      `;
+  </section>    
+ `;
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
   return contenedorPublicaciones;
 };
 
 export const viewPost = (postData) => {
-  const divPost = `<div class="bodyPost">
-                      <h3>${postData.titulo}</h3>
-                      <p>${postData.descripcion}</p>
-                      <div class="menuDesplegable">
-                        <button class= "iconoMenu" id="${postData.id}"><i class="fas fa-ellipsis-h"></i></button>
-                        <ul id="nav-${postData.id}">
-                          <li><a href="#/posts" class= "btnEditar" data-id="${postData.id}">Editar</a></li>
-                          <li><a href="#/posts" class= "btnEliminar"  data-id="${postData.id}">Eliminar</a></li>
-                        </ul>
-                      </div>
-                   </div>`;
+  const divPost = `
+    <div class="bodyPost">
+      <div class="menuDesplegable">
+        <a class= "iconoMenu" id="${postData.id}"><i class="fas fa-ellipsis-h"></i></a>
+        <ul id="nav-${postData.id}">
+          <li><a href="#/posts" class= "btnEditar" data-id="${postData.id}">Editar</a></li>
+          <li><a href="#/posts" class= "btnEliminar"  data-id="${postData.id}">Eliminar</a></li>
+        </ul>
+      </div>
+      <h3>${postData.titulo}</h3>
+      <p>${postData.descripcion}</p>
+                      
+    </div>
+  `;
   return divPost;
 };
+
+ 

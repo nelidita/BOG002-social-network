@@ -67,7 +67,6 @@
   display: none;
   font-weight: bolder;
   color: rgba(10, 10, 10, 0.699);
-
 }
 .mensajeError-activo {
   display: block;
@@ -176,7 +175,6 @@
 .contenedorGmailLogin:hover {
   transform: scale(1.10); 
 }
-
 .contenedorGmailLogin p {
   font-size: 18px;
   color: #F7CB2D;
@@ -195,7 +193,6 @@
   font-weight: bold;
   text-align: center;
  }   
-
  .inputSesion:focus {
    border: 3px solid #000000;
    outline: none;
@@ -207,7 +204,6 @@
    display: none;
    font-weight: bolder;
    color: rgba(10, 10, 10, 0.699);
- 
  }
  .mensajeError-activo {
    display: block;
@@ -271,17 +267,67 @@
   color: #fff;
   background-color: #F7CB2D;
 }
-
 .mensajeCuentainicio {
   font-size: 17px;
+  }
+  .contenedorGmailLogin:hover {
+    transform: scale(1.10); 
+  }
+  .contenedorGmailLogin p {
+    font-size: 18px;
+    color: #F7CB2D;
+    text-shadow: 0.1em 0.1em 1px #000;
+    font-weight: bold;
+  }
+  .inputSesion {
+    width: 275px;
+    height: 41px;
+    border-radius: 5px;
+    background: #F1e5B9;
+    border: 0.2px solid #000000;
+    margin: 12px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }   
+    #emailLogin{
+    margin-top: 25px;
+  }
+  .iniciarSesion {
+    width: 160px;
+    height: 50px;
+    border-radius: 79px;
+    background:#523412;
+    border: 0.2px solid #000000;
+    margin: 15px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    color: #EDD376;
+    cursor: pointer;
+  }
+  .iniciarSesion {
+    --hover: #8A5C28;
+    transition: 0.25s;
+  }
+  .iniciarSesion:hover, button:focus {
+    border-color: var(--hover);
+    color: #fff;
+    background-color: #F7CB2D;
+    box-shadow: 0 0.9em 0.9em -0.7em #221910;
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+  }
+  .mensajeCuentainicio {
+    font-size: 17px;
     font-family: inherit;
     color: #F1e5B9;
     font-weight: bold;
     margin: 7px;
-    text-shadow: 0.1em 0.1em 1px #000;
-}
-
- .textoSesionGrande {
+    text-shadow: 0.1em 0.1em 0.5px #000;
+  }
+  .textoSesionGrande {
     float: right;
     max-width: 340px;
     margin-right: 40px;
@@ -301,4 +347,13 @@
 }
 .inputSesion-correcto .inputSesion{
   border: 3px solid #1bf008;
+  }
+  .contenedorIniciosesion a{
+    font-size: 16px;
+    color: #252421;
+    font-weight: bolder;
+    text-shadow: 0.1em 0.1em 2px #edd376;
+    font-family: sans-serif;
+    margin-left: 5px;
+  }
 }

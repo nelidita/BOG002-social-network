@@ -22,6 +22,7 @@ export const mostrarLogin = () => {
     event.preventDefault();
     loginUSer(emailLogin, passwordLogin);
   });
+
   // Inicio de sesion con gmail
   const contenedorGmailLogin = document.getElementById('contenedorGmailLogin');
   contenedorGmailLogin.addEventListener('click', registroGmail);
@@ -33,6 +34,10 @@ const crearPost = (titulo, descripcion) => {
     titulo,
     descripcion,
   });
+  const overLay = document.getElementById('overLay'); /// AGREGADO DESPUÉS DEL PUSH DE JESSI PARA QUE SE PUBLIQUE Y EL POPUP CIERRE
+  const popUp = document.getElementById('popUp');
+   overLay.classList.remove('active');
+    popUp.classList.remove('active');
 };
 
 const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
@@ -69,7 +74,7 @@ const postList = async () => {
         try {
           const doc = await getPostEditar(event.target.dataset.id);
           const postsEdit = doc.data();
-                    const overLay = document.getElementById('overLay');
+          const overLay = document.getElementById('overLay');
           const popUp = document.getElementById('popUp');
           const btnCerrarPopup = document.getElementById('cerrarPopup');
           // activamos el pop up automaticamente con el click
@@ -79,9 +84,10 @@ const postList = async () => {
           id = doc.id;
           formPublicacion['btnPublicar'].innerText = 'Actualizar';
           // Cerramos el pop up con la X
+           
           btnCerrarPopup.addEventListener('click', (e) => {
             e.preventDefault();
-            overLay.classList.remove('active');
+            overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
             popUp.classList.remove('active');
           });
           formPublicacion['titulo'].value = postsEdit.titulo;
@@ -90,12 +96,12 @@ const postList = async () => {
         catch (error) {
           console.log(error);
         }
+        
       })
     );
     const btnsDelete = document.querySelectorAll(".btnEliminar");
     btnsDelete.forEach((btn) =>
       btn.addEventListener("click", async (event) => {
-        
         try { await deletePost(event.target.dataset.id); }
         catch (error) {
           console.log(error);
@@ -105,7 +111,6 @@ const postList = async () => {
     
   });
 }
-
 export const mostrarMuro = async () => {
   const rootHtml = document.getElementById('root');
   const appenMuro = rootHtml.appendChild(publicaciones());
@@ -134,8 +139,6 @@ export const mostrarMuro = async () => {
     }
   });
   await postList();
-  
-
   // Popup Publicaciones
   const abrirPopup = document.getElementById('publicar');
   const overLay = document.getElementById('overLay');
@@ -152,7 +155,6 @@ export const mostrarMuro = async () => {
   });
   return appenMuro;
 };
-
 export const mostrarRegistro = () => {
   const rootHtml = document.getElementById('root');
   const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
@@ -166,7 +168,6 @@ export const mostrarRegistro = () => {
     registerUSer(emailRegistro, passwordRegistro);
     return appePantallaRegistro;
   });
-
   // registro Gmail
   const contenedorclickGmail = document.getElementById('contenedorclickGmail');
   contenedorclickGmail.addEventListener('click', registroGmail);
