@@ -130,6 +130,7 @@ const postList = async () => {
 export const mostrarMuro = async () => {
   const rootHtml = document.getElementById('root');
   const appenMuro = rootHtml.appendChild(publicaciones());
+
   appenMuro.style.display = 'flex';
   const formPublicacion = document.getElementById('formPublicacion');
   // formPublicacion.addEventListener('submit', createPlacePost);

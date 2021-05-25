@@ -32,9 +32,8 @@ export const publicaciones = () => {
         </form>
       </div>
     </div>
-  </section>
-
-      `;
+  </section>    
+ `;
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
   return contenedorPublicaciones;
 };
@@ -56,3 +55,5 @@ export const viewPost = (postData) => {
   `;
   return divPost;
 };
+
+ 
