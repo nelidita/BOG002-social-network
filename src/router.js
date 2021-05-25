@@ -1,8 +1,5 @@
-import {
-  mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro,
-} from './views.js';
+import { mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro } from './views.js';
 
-// preguntar si se puede retornar de una vez o es una buena practica el break
 export const showRoot = (router) => {
   const root = document.getElementById('root');
   root.innerHTML = '';
