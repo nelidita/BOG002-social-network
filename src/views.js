@@ -31,7 +31,6 @@ export const mostrarLogin = () => {
 
 const crearPost = (titulo, descripcion) => {
   data.collection('posts').doc().set({
-    titulo,
     descripcion,
     img,
   });
@@ -56,7 +55,7 @@ const postList = async () => {
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
-      
+
     });
 
     const formPublicacion = document.getElementById('formPublicacion');
@@ -111,25 +110,27 @@ export const mostrarMuro = async () => {
   const formPublicacion = document.getElementById('formPublicacion');
   formPublicacion.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     // Create a root reference
-    const storageRef = firebase.storage().ref();
-    console.log(storageRef)
-    // Create a reference to 'mountains.jpg'
-    const ref = storageRef.child('mountains.jpg');
+    // const storageRef = firebase.storage().ref();
+    // console.log(storageRef)
+    // // Create a reference to 'mountains.jpg'
+    // const ref = storageRef.child('mountains.jpg');
 
-    const img = formPublicacion['img']
-    // console.log(img.files[0])
+    
+    // // console.log(img.files[0])
 
-    ref.put(img).then(function (snapshot) {
+    // ref.put(img).then(function (snapshot) {
       
-      console.log(snapshot);
-    });
+    //   console.log(snapshot);
+    // });
 
-    const titulo = formPublicacion['titulo']
     const descripcion = formPublicacion['descripcion'];
+    const img = formPublicacion['img'];
+    console.log(img.files[0]);
     try {
       if (!editStatus) {
-        await crearPost(titulo.value, descripcion.value);
+        await crearPost(descripcion.value, img.files[0]);
       } else {
         await editPost(id, {
           titulo: titulo.value,
