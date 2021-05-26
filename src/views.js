@@ -56,18 +56,7 @@ const postList = async () => {
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
-
-      // const iconoMenu = document.querySelectorAll('.iconoMenu');
-      // iconoMenu.forEach((iconoDom) => {
-      //   iconoDom.addEventListener('click', (event) => {
-      //     const idNav = `#nav-${event.currentTarget.id}`;
-      //     const menu = document.querySelector(idNav);
-      //     menu.style.display = 'block';
-      //     iconoDom.addEventListener('click', () => {
-      //       menu.style.display = 'none';
-      //     });
-      //   });
-      // });
+      
     });
 
     const formPublicacion = document.getElementById('formPublicacion');
