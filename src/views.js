@@ -33,11 +33,12 @@ const crearPost = (titulo, descripcion) => {
   data.collection('posts').doc().set({
     titulo,
     descripcion,
+    img,
   });
   const overLay = document.getElementById('overLay'); /// AGREGADO DESPUÉS DEL PUSH DE JESSI PARA QUE SE PUBLIQUE Y EL POPUP CIERRE
   const popUp = document.getElementById('popUp');
-   overLay.classList.remove('active');
-    popUp.classList.remove('active');
+  overLay.classList.remove('active');
+  popUp.classList.remove('active');
 };
 
 const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
@@ -86,7 +87,7 @@ const postList = async () => {
           id = doc.id;
           formPublicacion['btnPublicar'].innerText = 'Actualizar';
           // Cerramos el pop up con la X
-           
+
           btnCerrarPopup.addEventListener('click', (e) => {
             e.preventDefault();
             overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
@@ -94,11 +95,12 @@ const postList = async () => {
           });
           formPublicacion['titulo'].value = postsEdit.titulo;
           formPublicacion['descripcion'].value = postsEdit.descripcion;
+
         }
         catch (error) {
           console.log(error);
         }
-        
+
       })
     );
     const btnsDelete = document.querySelectorAll(".btnEliminar");
@@ -110,7 +112,7 @@ const postList = async () => {
         }
       })
     );
-    
+
   });
 }
 export const mostrarMuro = async () => {
@@ -120,6 +122,20 @@ export const mostrarMuro = async () => {
   const formPublicacion = document.getElementById('formPublicacion');
   formPublicacion.addEventListener('submit', async (e) => {
     e.preventDefault();
+    // Create a root reference
+    const storageRef = firebase.storage().ref();
+    console.log(storageRef)
+    // Create a reference to 'mountains.jpg'
+    const ref = storageRef.child('mountains.jpg');
+
+    const img = formPublicacion['img']
+    // console.log(img.files[0])
+
+    ref.put(img).then(function (snapshot) {
+      
+      console.log(snapshot);
+    });
+
     const titulo = formPublicacion['titulo']
     const descripcion = formPublicacion['descripcion'];
     try {
@@ -132,7 +148,7 @@ export const mostrarMuro = async () => {
         })
         editStatus = false;
         id = '';
-        formPublicacion['btnPublicar'].innerText= 'Publicar';
+        formPublicacion['btnPublicar'].innerText = 'Publicar';
       }
       formPublicacion.reset();
       titulo.focus();

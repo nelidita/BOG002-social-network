@@ -34,3 +34,4 @@ export const registroGmail = () => {
       alert('Por favor usa una cuenta válida', error);
     });
 };
+
