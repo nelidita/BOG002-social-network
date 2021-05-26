@@ -25,14 +25,14 @@
   color: #F7CB2D;
   text-shadow: 0.1em 0.1em 1px #000;
   font-weight: bold;
-}
-.contenedorGmailLogin {
+  }
+  .contenedorGmailLogin {
   display: inline-flex;
   width: 275px;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 25px;
-}
+  }
  .contenidoInputs{
   display: flex;
   flex-wrap: wrap;
@@ -60,41 +60,41 @@
   border: 3px solid #000000;
   outline: none;
   box-shadow: 3px 0px 30 px rgba(163, 163, 163, 0.4);
-}
-.mensajeError {
+  }
+  .mensajeError {
   font-size: 13px;
   margin-bottom: 0;
   display: none;
   font-weight: bolder;
   color: rgba(10, 10, 10, 0.699);
-}
-.mensajeError-activo {
-  display: block;
-}
-.inicioSesionmensaje {
-  height: 35px;
-  line-height: 25px;
-  background: #f70a0a;
-  padding: 0 10px;
-  border-radius: 3px;
+  }
+  .mensajeError-activo {
+    display: block;
+  }
+  .inicioSesionmensaje {
+    height: 35px;
+    line-height: 25px;
+    background: #f70a0a;
+    padding: 0 10px;
+    border-radius: 3px;
+    display: none;
+  }
+  .inicioSesionmensaje .advertencia  {
+    margin:0;
+    font-size: 12px;
+  }
+  .inicioSesionmensaje-activo{
+    display: block;
+  }
+  .mensaje-exitoLogin {
+  font-size: 14px;
+  color:#0f0f0f;
+  font-weight: bold;
   display: none;
-}
-.inicioSesionmensaje .advertencia  {
-  margin:0;
-  font-size: 12px;
-}
-.inicioSesionmensaje-activo{
+  }
+  .mensaje-exitoLogin-activo{
   display: block;
-}
-.mensaje-exitoLogin {
- font-size: 14px;
- color:#0f0f0f;
- font-weight: bold;
- display: none;
-}
-.mensaje-exitoLogin-activo{
- display: block;
-}
+  }
  .mensajeCervecero1 {
   display: none;
  }
@@ -134,7 +134,7 @@
  }
 }
 
- @media (min-width: 501px){
+@media (min-width: 501px){
  .contenedorIniciosesion {
    text-align: center;
    margin: 40px;
@@ -170,17 +170,17 @@
   justify-content: center;
   cursor: pointer;
   margin-top: 20px
-}
-/*Efecto hoover al contenedor Gmail*/
-.contenedorGmailLogin:hover {
-  transform: scale(1.10); 
-}
-.contenedorGmailLogin p {
-  font-size: 18px;
-  color: #F7CB2D;
-  text-shadow: 0.1em 0.1em 3px #000;
-  font-weight: bold;
-}
+  }
+  /*Efecto hoover al contenedor Gmail*/
+  .contenedorGmailLogin:hover {
+    transform: scale(1.10); 
+  }
+  .contenedorGmailLogin p {
+    font-size: 18px;
+    color: #F7CB2D;
+    text-shadow: 0.1em 0.1em 3px #000;
+    font-weight: bold;
+  }
  .inputSesion {
   width: 275px;
   height: 41px;
@@ -224,15 +224,15 @@
  .inicioSesionmensaje-activo{
    display: block;
  }
-.mensaje-exitoLogin {
-  font-size: 14px;
-  color:#0f0f0f;
-  font-weight: bold;
-  display: none;
-}
-.mensaje-exitoLogin-activo{
-  display: block;
-}
+  .mensaje-exitoLogin {
+    font-size: 14px;
+    color:#0f0f0f;
+    font-weight: bold;
+    display: none;
+  }
+  .mensaje-exitoLogin-activo{
+    display: block;
+  }
 
  #emailLogin{
   margin-top: 25px;
@@ -252,22 +252,22 @@
   cursor: pointer;
  }
  #formularioInicioSesion .iniciarSesion :hover,
-#formularioInicioSesion .iniciarSesion:focus {
-  box-shadow: 0 0.9em 0.9em -0.7em #221910;
-  -webkit-transform: translateY(-0.25em);
-  transform: translateY(-0.25em);
-}
-#formularioInicioSesion .iniciarSesion {
-  --hover: #8A5C28;
-  -webkit-transition: 0.25s;
-  transition: 0.25s;
-}
-#formularioInicioSesion .iniciarSesion:hover, #formularioInicioSesion button:focus {
-  border-color: var(--hover);
-  color: #fff;
-  background-color: #F7CB2D;
-}
-.mensajeCuentainicio {
+  #formularioInicioSesion .iniciarSesion:focus {
+    box-shadow: 0 0.9em 0.9em -0.7em #221910;
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+  }
+  #formularioInicioSesion .iniciarSesion {
+    --hover: #8A5C28;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+  }
+  #formularioInicioSesion .iniciarSesion:hover, #formularioInicioSesion button:focus {
+    border-color: var(--hover);
+    color: #fff;
+    background-color: #F7CB2D;
+  }
+  .mensajeCuentainicio {
   font-size: 17px;
   }
   .contenedorGmailLogin:hover {
@@ -340,7 +340,7 @@
   font-family: sans-serif;
   margin-left: 5px;
  }
-}
+
 /* ------- Estilos para validación --------*/
 .inputSesion-incorrecto .inputSesion{
   border: 3px solid #bb2929;

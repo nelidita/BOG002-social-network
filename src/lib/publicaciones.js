@@ -41,13 +41,19 @@ export const publicaciones = () => {
 export const viewPost = (postData) => {
   const divPost = `
     <div class="bodyPost">
+
       <div class="menuDesplegable">
-        <a class= "iconoMenu" id="${postData.id}"><i class="fas fa-ellipsis-h"></i></a>
-        <ul id="nav-${postData.id}">
-          <li><a href="#/posts" class= "btnEditar" data-id="${postData.id}">Editar</a></li>
-          <li><a href="#/posts" class= "btnEliminar"  data-id="${postData.id}">Eliminar</a></li>
-        </ul>
+
+        <input type="checkbox" class= "iconoMenu" id="${postData.id}">
+        <label for="toggle" class:"puntos"><i class="fas fa-ellipsis-h"></i></label>
+        
+        <nav class="nav" id="nav-${postData.id}">
+          <a href="#/posts" class= "btnEditar" data-id="${postData.id}">Editar</a>
+          <a href="#/posts" class= "btnEliminar"  data-id="${postData.id}">Eliminar</a>
+        </nav>
+
       </div>
+
       <h3>${postData.titulo}</h3>
       <p>${postData.descripcion}</p>
                       

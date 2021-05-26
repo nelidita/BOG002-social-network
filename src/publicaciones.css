@@ -14,32 +14,51 @@
     border: 3px solid rgba(77, 45, 7, 0.37);
     border-radius: 10px;
 }
+
 .menuDesplegable{
     float: right;
-    margin-right: 6px;
+    margin-left: -200px;
 }
-.menuDesplegable li{
-    list-style-type:none;
-    position:relative;
-    width:120px;
+.iconoMenu{
+    position: absolute;
+    margin-top: 5px;
+    opacity: 0;
+    margin-left: -5px;
+    cursor: pointer;
+} 
+label{
+    margin-left: -8px;
+    position: static;
+    margin-right: 10px;
 }
-.menuDesplegable li a{
-    text-decoration:none;
-    display:inline-block;
-    padding:5px 10px;
-    width:120px;
-    height:30px;
-    border:1px solid #000;
-    color:#fff;
-    background-color:#000;
+.nav{
+    opacity: 0;
+    background: #523412;
+    width: 150px;
+    border-radius: 5px;
+    transform: translateY(40%);
+    margin-right: -200px;
 }
-.menuDesplegable li a:hover{
-    color:#000;
-    background-color:#fff;
+.nav a{
+    text-align: center;
+    display: block;
+    margin: 10px 0 10px;;
+    color: #F1E5B9;
+    text-decoration: none;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    transition: all 300ms;
 }
-.menuDesplegable ul {
-    display:none;
+.nav a:hover{
+    color: #030303;
 }
+.iconoMenu:checked ~ .nav{
+    position: absolute;
+    opacity: 1;
+    transform: translateY(-5%);
+    margin-left: -128px;
+}
+
 /* Popup Publicaciones */
 .overLay {
     position: fixed;
@@ -125,7 +144,7 @@
     background:#f08205;
 }
 .fas fa-times{
- background: #523412;
+    background: #523412;
 }
 /* * ==== ANIMACIONES POPUP === */
 .popUp.active { transform: scale(1); opacity: 1; }
@@ -149,7 +168,6 @@
     }
     .contenedorPublicaciones{
         flex-wrap: wrap;
-        background: beige;
         justify-content: center;
     }
     .logoPublicar{
@@ -185,7 +203,6 @@
     .contenedorPublicaciones{
         display: flex;
         flex-wrap: wrap;
-        background: beige;
     }
     .logoPublicar{
         width: 160px;
@@ -203,9 +220,6 @@
     .bodyPost{
        width: 60%;
        margin: 15px;
-    }
-    .iconoMenu{
-        color: #000;
     }
     .iconoPublicar{
         width: 30px;
