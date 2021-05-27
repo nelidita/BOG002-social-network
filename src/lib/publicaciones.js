@@ -25,7 +25,6 @@ export const publicaciones = () => {
         <a href="#" id="cerrarPopup" class="cerrarPopup"><i class="fas fa-times"></i></a><br>
         <form id="formPublicacion">
           <div class="inputPopup">
-            <input id="titulo" class= 'tituloPopup' type="text" placeholder="Título de tu publicación">
             <input id="descripcion" class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
             <input id="img" class= 'imgPost' type="file" placeholder="Sube tu foto aqui!!!">
           </div>
@@ -54,13 +53,10 @@ export const viewPost = (postData) => {
         </nav>
 
       </div>
-
-      <h3>${postData.titulo}</h3>
       <p>${postData.descripcion}</p>
-      <img src="${postData.img}" />               
+      <img src="${postData.img}"/>
+
     </div>
   `;
   return divPost;
 };
-
- 

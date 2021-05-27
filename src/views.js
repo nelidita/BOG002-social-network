@@ -29,7 +29,7 @@ export const mostrarLogin = () => {
   return appPantallaLogin;
 };
 
-const crearPost = (titulo, descripcion) => {
+const crearPost = (descripcion,img) => {
   data.collection('posts').doc().set({
     descripcion,
     img,
@@ -50,6 +50,7 @@ let id = '';
 // crear el post list parametro mostrar muro
 const postList = async () => {
   await onGetPost((querySnapshot) => {
+
     const divListPost = document.getElementById('postsContainer');
     divListPost.innerHTML = '';
     querySnapshot.forEach((doc) => {
@@ -68,6 +69,7 @@ const postList = async () => {
           const overLay = document.getElementById('overLay');
           const popUp = document.getElementById('popUp');
           const btnCerrarPopup = document.getElementById('cerrarPopup');
+
           // activamos el pop up automaticamente con el click
           overLay.classList.add('active');
           popUp.classList.add('active');
@@ -103,34 +105,51 @@ const postList = async () => {
 
   });
 }
+
 export const mostrarMuro = async () => {
+
   const rootHtml = document.getElementById('root');
   const appenMuro = rootHtml.appendChild(publicaciones());
   appenMuro.style.display = 'flex';
   const formPublicacion = document.getElementById('formPublicacion');
+
   formPublicacion.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Create a root reference
-    // const storageRef = firebase.storage().ref();
-    // console.log(storageRef)
-    // // Create a reference to 'mountains.jpg'
-    // const ref = storageRef.child('mountains.jpg');
-
-    
-    // // console.log(img.files[0])
-
-    // ref.put(img).then(function (snapshot) {
-      
-    //   console.log(snapshot);
-    // });
-
+    //Cargando Imagenes
     const descripcion = formPublicacion['descripcion'];
-    const img = formPublicacion['img'];
-    console.log(img.files[0]);
+    const img = formPublicacion['img'].files[0];
+    const imgName = img.name;
+    const storageRef = firebase.storage().ref('imgPosts/' + imgName);
+    const uploadImg = storageRef.put(img);
+
+    uploadImg.on('StatusCargaImg', (snapshot) => {
+
+      let progreso=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      console.log("Estado de carga" + progreso)
+
+    }, (error) => {console.log (error.message)},
+       () => {
+        uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
+
+          firebase.database().ref('postsImg/').push().set({
+            descripcion,
+            img
+          }, (error) => {
+            if(error){
+              alert ("Error de carga de imagen");
+            } else {
+              alert ("Carga Exitosa");
+              formPublicacion.reset();
+            }
+          })
+        })
+      }
+    ); 
+
     try {
       if (!editStatus) {
-        await crearPost(descripcion.value, img.files[0]);
+        await crearPost(descripcion.value, img);
       } else {
         await editPost(id, {
           titulo: titulo.value,
@@ -140,12 +159,14 @@ export const mostrarMuro = async () => {
         id = '';
         formPublicacion['btnPublicar'].innerText = 'Publicar';
       }
-      formPublicacion.reset();
+      // formPublicacion.reset();
       titulo.focus();
     } catch (error) {
       console.log(error);
     }
+
   });
+
   await postList();
   // Popup Publicaciones
   const abrirPopup = document.getElementById('publicar');
@@ -161,8 +182,11 @@ export const mostrarMuro = async () => {
     overLay.classList.remove('active');
     popUp.classList.remove('active');
   });
+
   return appenMuro;
+  
 };
+
 export const mostrarRegistro = () => {
   const rootHtml = document.getElementById('root');
   const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
