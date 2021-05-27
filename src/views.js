@@ -53,6 +53,7 @@ const postList = async () => {
 
     const divListPost = document.getElementById('postsContainer');
     divListPost.innerHTML = '';
+
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
@@ -61,6 +62,7 @@ const postList = async () => {
 
     const formPublicacion = document.getElementById('formPublicacion');
     const btnsEdit = document.querySelectorAll(".btnEditar");
+
     btnsEdit.forEach((btn) =>
       btn.addEventListener("click", async (event) => {
         try {
@@ -117,7 +119,7 @@ export const mostrarMuro = async () => {
     e.preventDefault();
 
     //Cargando Imagenes
-    const descripcion = formPublicacion['descripcion'];
+    const descripcion = formPublicacion['descripcion'].value;
     const img = formPublicacion['img'].files[0];
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
@@ -132,9 +134,9 @@ export const mostrarMuro = async () => {
        () => {
         uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
 
-          firebase.database().ref('postsImg/').push().set({
+          firebase.firestore().collection('posts').doc().set({
             descripcion,
-            img
+            img: downloadURL
           }, (error) => {
             if(error){
               alert ("Error de carga de imagen");
@@ -184,7 +186,7 @@ export const mostrarMuro = async () => {
   });
 
   return appenMuro;
-  
+
 };
 
 export const mostrarRegistro = () => {
@@ -193,6 +195,7 @@ export const mostrarRegistro = () => {
   appePantallaRegistro.style.display = 'flex';
   // aqui vamos a traer la información del formulario del registro.
   const formularioRegistro = document.getElementById('formularioRegistroUsuario');
+  
   formularioRegistro.addEventListener('submit', (event) => {
     const emailRegistro = document.getElementById('emailRegistro').value;
     const passwordRegistro = document.getElementById('passwordRegistro').value;
@@ -200,7 +203,9 @@ export const mostrarRegistro = () => {
     registerUSer(emailRegistro, passwordRegistro);
     return appePantallaRegistro;
   });
+
   // registro Gmail
   const contenedorclickGmail = document.getElementById('contenedorclickGmail');
   contenedorclickGmail.addEventListener('click', registroGmail);
+
 };
