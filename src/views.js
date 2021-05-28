@@ -57,20 +57,35 @@ const getPostEditar = (id) => data.collection('posts').doc(id).get();
 let editStatus = false;
 let id = '';
 
-const cerrarPopUp = (btnCerrarPopup,overLay,popUp) => {
+const cerrarPopUp = (formPublicacion, btnCerrarPopup, overLay, popUp) => {
   btnCerrarPopup.addEventListener('click', (e) => {
     e.preventDefault();
+    if (!editStatus){
+    
     overLay.classList.remove('active');
     popUp.classList.remove('active');
-    formPublicacion.reset();
+    } else {
+      // await editPost(id, {
+      //   descripcion: descripcion,
+      // })
+      
+      editStatus = false;
+      id = '';
+      // formPublicacion['img'].remove();
+      formPublicacion['img'].style.display = "flex"
+      formPublicacion['btnPublicar'].innerText = 'Publicar';
+      formPublicacion.reset();
+    }
   });
 }
 
-const abrirPopup = (btnAbrirPopUp,overLay,popUp) => {
+const abrirPopup = (btnAbrirPopUp, overLay, popUp) => {
+  
   btnAbrirPopUp.addEventListener('click', () => {
     overLay.classList.add('active');
     popUp.classList.add('active');
   });
+  
 }
 
 const publicarPost = (formPublicacion) => {
@@ -80,7 +95,7 @@ const publicarPost = (formPublicacion) => {
 
     const descripcion = formPublicacion['descripcion'].value;
     const img = formPublicacion['img'].files[0];
-    // const img = !editStatus ? formPublicacion['img'].files[0] :  “ ”;
+    // const img = !editStatus ? img = formPublicacion['img'].files[0] :  “ ”;
 
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
@@ -98,11 +113,9 @@ const publicarPost = (formPublicacion) => {
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
 
             data.collection('posts').doc().set({
-
               descripcion,
               img: downloadURL
               //contador de likes
-
             }, (error) => {
               if (error) {
                 alert("Error de carga de imagen");
@@ -113,29 +126,29 @@ const publicarPost = (formPublicacion) => {
           })
 
           //Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
-        //  cerrarPopUp();
-        overLay.classList.remove('active');
-        popUp.classList.remove('active');
-
+          //  cerrarPopUp();
+          overLay.classList.remove('active');
+          popUp.classList.remove('active');
         });
-
+      
       } else {
-        await editPost(id, {
-          descripcion: descripcion,
-          img: img
-        })
+        // await editPost(id, {
+        //   descripcion: descripcion,
+        // })
+        
         editStatus = false;
         id = '';
+        formPublicacion['img'].style.display = "flex"
         formPublicacion['btnPublicar'].innerText = 'Publicar';
       }
 
-      formPublicacion.reset();
+      
       descripcion.focus();
 
     } catch (error) {
       console.log(error);
     }
-
+    formPublicacion.reset();
   });
 
 }
@@ -171,17 +184,20 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
         editStatus = true;
         id = doc.id;
         //Se eliminar el input de carga img (file)
-        formPublicacion['img'].remove();
-        formPublicacion['btnPublicar'].innerText = 'Actualizar'
-
-        //Inicializar funcion para editar firebase.
-        btnCerrarPopup.addEventListener('click', (e) => {
-          e.preventDefault();
-          overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
-          popUp.classList.remove('active');
-        });
-
         formPublicacion['descripcion'].value = postsEdit.descripcion;
+        formPublicacion['img'].style.display = "none"
+        formPublicacion['btnPublicar'].innerText = 'Actualizar'
+        
+        //Inicializar funcion para editar firebase.
+        cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp);
+
+        // btnCerrarPopup.addEventListener('click', (e) => {
+        //   e.preventDefault();
+        //   overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
+        //   popUp.classList.remove('active');
+        // });
+
+      
 
       }
       catch (error) {
@@ -223,18 +239,17 @@ export const mostrarMuro = async () => {
   const appenMuro = rootHtml.appendChild(publicaciones());
   appenMuro.style.display = 'flex';
   const formPublicacion = document.getElementById('formPublicacion');
-
-  publicarPost(formPublicacion);
-
-  await postList();
   // Popup Publicaciones
   const btnAbrirPopUp = document.getElementById('publicar');
   const overLay = document.getElementById('overLay');
   const popUp = document.getElementById('popUp');
   const btnCerrarPopup = document.getElementById('cerrarPopup');
   
-  abrirPopup(btnAbrirPopUp,overLay,popUp)
-  cerrarPopUp(btnCerrarPopup,overLay,popUp)
+  publicarPost(formPublicacion);
+  await postList();
+ 
+  abrirPopup(btnAbrirPopUp, overLay, popUp)
+  cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
 
   return appenMuro;
 
