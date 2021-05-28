@@ -29,23 +29,56 @@ export const mostrarLogin = () => {
   return appPantallaLogin;
 };
 
-const crearPost = (descripcion,img) => {
-  data.collection('posts').doc().set({
-    descripcion,
-    img,
+export const mostrarRegistro = () => {
+  const rootHtml = document.getElementById('root');
+  const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
+  appePantallaRegistro.style.display = 'flex';
+  // aqui vamos a traer la información del formulario del registro.
+  const formularioRegistro = document.getElementById('formularioRegistroUsuario');
+  
+  formularioRegistro.addEventListener('submit', (event) => {
+    const emailRegistro = document.getElementById('emailRegistro').value;
+    const passwordRegistro = document.getElementById('passwordRegistro').value;
+    event.preventDefault();
+    registerUSer(emailRegistro, passwordRegistro);
+    return appePantallaRegistro;
   });
-  const overLay = document.getElementById('overLay'); /// AGREGADO DESPUÉS DEL PUSH DE JESSI PARA QUE SE PUBLIQUE Y EL POPUP CIERRE
-  const popUp = document.getElementById('popUp');
-  overLay.classList.remove('active');
-  popUp.classList.remove('active');
+
+  // registro Gmail
+  const contenedorclickGmail = document.getElementById('contenedorclickGmail');
+  contenedorclickGmail.addEventListener('click', registroGmail);
+
 };
 
+// const crearPost = (descripcion,img) => {
+//   data.collection('posts').doc().set({
+//     descripcion,
+//     img,
+//   });
+//   const overLay = document.getElementById('overLay'); /// AGREGADO DESPUÉS DEL PUSH DE JESSI PARA QUE SE PUBLIQUE Y EL POPUP CIERRE
+//   const popUp = document.getElementById('popUp');
+//   overLay.classList.remove('active');
+//   popUp.classList.remove('active');
+// };
+
 const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
-const deletePost = (id) => data.collection("posts").doc(id).delete();
+const deletePost = (id) => data.collection('posts').doc(id).delete();
 const editPost = (id, updatedPost) => data.collection('posts').doc(id).update(updatedPost);
-const getPostEditar = (id) => data.collection("posts").doc(id).get();
+const getPostEditar = (id) => data.collection('posts').doc(id).get();
 let editStatus = false;
 let id = '';
+
+const eliminarPost = (btnsDelete) => {
+
+  btnsDelete.forEach((btn) =>
+    btn.addEventListener("click", async (event) => {
+      try { await deletePost(event.target.dataset.id); }
+      catch (error) {
+        console.log(error);
+      }
+    })
+  );
+}
 
 // crear el post list parametro mostrar muro
 const postList = async () => {
@@ -75,8 +108,12 @@ const postList = async () => {
           // activamos el pop up automaticamente con el click
           overLay.classList.add('active');
           popUp.classList.add('active');
+
+          //Hacer funcion para solo editar
           editStatus = true;
           id = doc.id;
+          //Probar eliminar el input de img
+          formPublicacion['img'].remove();
           formPublicacion['btnPublicar'].innerText = 'Actualizar';
           // Cerramos el pop up con la X
 
@@ -85,9 +122,10 @@ const postList = async () => {
             overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
             popUp.classList.remove('active');
           });
-          formPublicacion['titulo'].value = postsEdit.titulo;
+    
           formPublicacion['descripcion'].value = postsEdit.descripcion;
-
+          // formPublicacion['img'].files[0] = postsEdit.img;
+          //Funcion editar hasta aca.
         }
         catch (error) {
           console.log(error);
@@ -95,15 +133,10 @@ const postList = async () => {
 
       })
     );
+
+    //Inicializar funcion Eliminar
     const btnsDelete = document.querySelectorAll(".btnEliminar");
-    btnsDelete.forEach((btn) =>
-      btn.addEventListener("click", async (event) => {
-        try { await deletePost(event.target.dataset.id); }
-        catch (error) {
-          console.log(error);
-        }
-      })
-    );
+    eliminarPost(btnsDelete);
 
   });
 }
@@ -120,49 +153,58 @@ export const mostrarMuro = async () => {
 
     //Cargando Imagenes
     const descripcion = formPublicacion['descripcion'].value;
-    const img = formPublicacion['img'].files[0];
+    // const img = formPublicacion['img'].files[0];
+    // const img = !editStatus ? formPublicacion['img'].files[0] :  “ ”;
+
     const imgName = img.name;
+
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
 
-    uploadImg.on('StatusCargaImg', (snapshot) => {
-
-      let progreso=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-      console.log("Estado de carga" + progreso)
-
-    }, (error) => {console.log (error.message)},
-       () => {
-        uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-
-          firebase.firestore().collection('posts').doc().set({
-            descripcion,
-            img: downloadURL
-          }, (error) => {
-            if(error){
-              alert ("Error de carga de imagen");
-            } else {
-              alert ("Carga Exitosa");
-              formPublicacion.reset();
-            }
-          })
-        })
-      }
-    ); 
-
     try {
       if (!editStatus) {
-        await crearPost(descripcion.value, img);
+        // await crearPost(descripcion.value, img);
+        
+        uploadImg.on('StatusCargaImg', (snapshot) => {
+
+          let progreso= (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+          console.log("Estado de carga" + progreso)
+    
+        }, (error) => {console.log (error.message)},
+           () => {
+            uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
+    
+              data.collection('posts').doc().set({
+                descripcion,
+                img: downloadURL
+              }, (error) => {
+                if(error){
+                  alert ("Error de carga de imagen");
+                } else {
+                  alert ("Carga Exitosa");
+                }
+              })
+            })
+            const overLay = document.getElementById('overLay'); /// AGREGADO DESPUÉS DEL PUSH DE JESSI PARA QUE SE PUBLIQUE Y EL POPUP CIERRE
+            const popUp = document.getElementById('popUp');
+            overLay.classList.remove('active');
+            popUp.classList.remove('active');
+            
+          });
+          
       } else {
         await editPost(id, {
-          titulo: titulo.value,
-          descripcion: descripcion.value,
+          descripcion: descripcion,
+          img: img
         })
         editStatus = false;
         id = '';
         formPublicacion['btnPublicar'].innerText = 'Publicar';
       }
-      // formPublicacion.reset();
-      titulo.focus();
+
+      formPublicacion.reset();
+      descripcion.focus();
+
     } catch (error) {
       console.log(error);
     }
@@ -186,26 +228,5 @@ export const mostrarMuro = async () => {
   });
 
   return appenMuro;
-
-};
-
-export const mostrarRegistro = () => {
-  const rootHtml = document.getElementById('root');
-  const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
-  appePantallaRegistro.style.display = 'flex';
-  // aqui vamos a traer la información del formulario del registro.
-  const formularioRegistro = document.getElementById('formularioRegistroUsuario');
-  
-  formularioRegistro.addEventListener('submit', (event) => {
-    const emailRegistro = document.getElementById('emailRegistro').value;
-    const passwordRegistro = document.getElementById('passwordRegistro').value;
-    event.preventDefault();
-    registerUSer(emailRegistro, passwordRegistro);
-    return appePantallaRegistro;
-  });
-
-  // registro Gmail
-  const contenedorclickGmail = document.getElementById('contenedorclickGmail');
-  contenedorclickGmail.addEventListener('click', registroGmail);
 
 };
