@@ -28,6 +28,7 @@ export const publicaciones = () => {
             <input id="descripcion" class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
             <input id="img" class= 'imgPost' type="file" placeholder="Sube tu foto aqui!!!">
           </div>
+          <div id="mensajeCarga"></div>
           <button class="submitPublicar" id="btnPublicar">Publicar</button>
         </form>
       </div>
@@ -53,9 +54,9 @@ export const viewPost = (postData) => {
         </nav>
 
       </div>
-      <p>${postData.descripcion}</p>
+      
       <img src="${postData.img}"/>
-
+      <p>${postData.descripcion}</p>
     </div>
   `;
   return divPost;
