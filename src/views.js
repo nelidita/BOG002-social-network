@@ -33,7 +33,6 @@ export const mostrarRegistro = () => {
   const rootHtml = document.getElementById('root');
   const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
   appePantallaRegistro.style.display = 'flex';
-  // aqui vamos a traer la información del formulario del registro.
   const formularioRegistro = document.getElementById('formularioRegistroUsuario');
 
   formularioRegistro.addEventListener('submit', (event) => {
@@ -65,9 +64,6 @@ const cerrarPopUp = (formPublicacion, btnCerrarPopup, overLay, popUp) => {
       overLay.classList.remove('active');
       popUp.classList.remove('active');
     } else {
-      // await editPost(id, {
-      //   descripcion: descripcion,
-      // })
 
       editStatus = false;
       id = '';
@@ -94,22 +90,27 @@ const publicarPost = (formPublicacion) => {
     e.preventDefault();
 
     const descripcion = formPublicacion['descripcion'].value;
-    const img = formPublicacion['img'].files[0];
-    // const img = !editStatus ? img = formPublicacion['img'].files[0] :  “ ”;
-    const mensajeCarga = document.getElementById('mensajeCarga');;
+    // const img = formPublicacion['img'].files[0];
+    // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
+    if (editStatus === false) {
+      img = formPublicacion['img'].files[0]
+    } else {
+      img = "";
+    }
+    const mensajeCarga = document.getElementById('mensajeCarga');
+    // console.log(mensajeCarga);
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
-    
+
     try {
       if (!editStatus) {
 
         uploadImg.on('StatusCargaImg', (snapshot) => {
 
-      
-
           let porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          let textoMensajeCarga = '<p>Porcentaje de carga: ' + porcentajeDeCarga + '%</p>';
+          console.log("Estado de carga" + porcentajeDeCarga);
+          let textoMensajeCarga = `<progress  max="100">"${porcentajeDeCarga}"</progress>`;
           mensajeCarga.innerHTML = textoMensajeCarga;
 
 
@@ -130,25 +131,20 @@ const publicarPost = (formPublicacion) => {
           })
 
           //Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
-          //  cerrarPopUp();
           mensajeCarga.innerHTML = "";
           overLay.classList.remove('active');
           popUp.classList.remove('active');
         });
 
       } else {
-        // await editPost(id, {
-        //   descripcion: descripcion,
-        // })
 
-        editStatus = false;
-        id = '';
-        formPublicacion['img'].style.display = "flex"
-        formPublicacion['btnPublicar'].innerText = 'Publicar';
+        //como no esta publicando entonces inciializamos la funcion de editar
+
+        console.log("console de descr" + descripcion);
+
+        editPost(id, { descripcion: descripcion })
+
       }
-
-
-      descripcion.focus();
 
     } catch (error) {
       console.log(error);
@@ -157,6 +153,7 @@ const publicarPost = (formPublicacion) => {
   });
 
 }
+
 
 const eliminarPost = (btnsDelete) => {
   btnsDelete.forEach((btn) =>
@@ -194,25 +191,15 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
         overLay.classList.add('active');
         popUp.classList.add('active');
 
-        //Hacer funcion para solo editar
-        editStatus = true;
+               editStatus = true;
         id = doc.id;
-        //Se eliminar el input de carga img (file)
+        console.log(id);
+        
         formPublicacion['descripcion'].value = postsEdit.descripcion;
         formPublicacion['img'].style.display = "none"
         formPublicacion['btnPublicar'].innerText = 'Actualizar'
-
-        //Inicializar funcion para editar firebase.
+    
         cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp);
-
-        // btnCerrarPopup.addEventListener('click', (e) => {
-        //   e.preventDefault();
-        //   overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
-        //   popUp.classList.remove('active');
-        // });
-
-
-
       }
       catch (error) {
         console.log(error);
@@ -261,7 +248,6 @@ export const mostrarMuro = async () => {
 
   publicarPost(formPublicacion);
   await postList();
-
   abrirPopup(btnAbrirPopUp, overLay, popUp)
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
 
