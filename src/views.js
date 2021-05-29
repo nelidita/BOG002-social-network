@@ -90,7 +90,7 @@ const publicarPost = (formPublicacion) => {
     e.preventDefault();
 
     const descripcion = formPublicacion['descripcion'].value;
-    // const img = formPublicacion['img'].files[0];
+    const img = formPublicacion['img'].files[0];
     // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
     if (editStatus === false) {
       img = formPublicacion['img'].files[0]
@@ -110,7 +110,7 @@ const publicarPost = (formPublicacion) => {
 
           let porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Estado de carga" + porcentajeDeCarga);
-          let textoMensajeCarga = `<progress  max="100">"${porcentajeDeCarga}"</progress>`;
+          let textoMensajeCarga =  '<p>Porcentaje de carga: ' + porcentajeDeCarga + '%</p>';
           mensajeCarga.innerHTML = textoMensajeCarga;
 
 
@@ -129,7 +129,6 @@ const publicarPost = (formPublicacion) => {
               }
             })
           })
-
           //Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
           mensajeCarga.innerHTML = "";
           overLay.classList.remove('active');
@@ -248,7 +247,7 @@ export const mostrarMuro = async () => {
 
   publicarPost(formPublicacion);
   await postList();
-  abrirPopup(btnAbrirPopUp, overLay, popUp)
+  abrirPopup(btnAbrirPopUp, overLay, popUp) 
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
 
   return appenMuro;
