@@ -33,7 +33,6 @@ export const mostrarRegistro = () => {
   const rootHtml = document.getElementById('root');
   const appePantallaRegistro = rootHtml.appendChild(registroUsuario());
   appePantallaRegistro.style.display = 'flex';
-  // aqui vamos a traer la información del formulario del registro.
   const formularioRegistro = document.getElementById('formularioRegistroUsuario');
 
   formularioRegistro.addEventListener('submit', (event) => {
@@ -110,7 +109,7 @@ const publicarPost = (formPublicacion) => {
           
           let porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Estado de carga" + porcentajeDeCarga);
-          let textoMensajeCarga = '<p>Porcentaje de carga: ' + porcentajeDeCarga + '%</p>';
+        let textoMensajeCarga = `<progress  max="100">"${porcentajeDeCarga}"</progress>`;
           mensajeCarga.innerHTML = textoMensajeCarga;
 
 
