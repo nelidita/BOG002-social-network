@@ -64,10 +64,7 @@ const cerrarPopUp = (formPublicacion, btnCerrarPopup, overLay, popUp) => {
       overLay.classList.remove('active');
       popUp.classList.remove('active');
     } else {
-      // await editPost(id, {
-      //   descripcion: descripcion,
-      // })
-
+       
       editStatus = false;
       id = '';
       // formPublicacion['img'].remove();
@@ -93,10 +90,15 @@ const publicarPost = (formPublicacion) => {
     e.preventDefault();
 
     const descripcion = formPublicacion['descripcion'].value;
-    const img = formPublicacion['img'].files[0];
-    // const img = !editStatus ? img = formPublicacion['img'].files[0] :  “ ”;
+    // const img = formPublicacion['img'].files[0];
+    // const img = !editStatus ? img = formPublicacion['img'].files[0] :  img="";
+    if (editStatus===false){
+      img = formPublicacion['img'].files[0]
+    }else{
+      img="";
+    }
     const mensajeCarga = document.getElementById('mensajeCarga');
-    console.log(mensajeCarga);
+    // console.log(mensajeCarga);
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
@@ -106,7 +108,6 @@ const publicarPost = (formPublicacion) => {
 
         uploadImg.on('StatusCargaImg', (snapshot) => {
 
-          
           let porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Estado de carga" + porcentajeDeCarga);
         let textoMensajeCarga = `<progress  max="100">"${porcentajeDeCarga}"</progress>`;
@@ -137,18 +138,20 @@ const publicarPost = (formPublicacion) => {
         });
 
       } else {
-        // await editPost(id, {
-        //   descripcion: descripcion,
-        // })
+        
+          console.log("console de descr"+descripcion);
+    
+         editPost(id, {descripcion:descripcion})
+        // editStatus = false;
+        // id = '';
+        // formPublicacion['img'].style.display = "flex"
+        // formPublicacion['btnPublicar'].innerText = 'Publicar';
 
-        editStatus = false;
-        id = '';
-        formPublicacion['img'].style.display = "flex"
-        formPublicacion['btnPublicar'].innerText = 'Publicar';
+
       }
 
 
-      descripcion.focus();
+      // descripcion.focus();
 
     } catch (error) {
       console.log(error);
@@ -160,40 +163,39 @@ const publicarPost = (formPublicacion) => {
 
 //inicio editar
 
-const editarPost = (formPublicacion) => {
+// const editarPost = (formPublicacion) => {
 
-  formPublicacion.addEventListener('submit', async (e) => {
-    e.preventDefault();
+//   formPublicacion.addEventListener('submit', async (e) => {
+//     e.preventDefault();
 
-    const descripcion = formPublicacion['descripcion'].value;
-    console.log( "editar publicacion")
-    try {
-      if (editStatus) {
-        console.log("Try de editar publicacion")
-        
+//     const descripcion = formPublicacion['descripcion'].value;
+//     console.log( "editar publicacion")
+//     try {
+//       if (!editStatus) {
+//         console.log("Try de editar publicacion")
 
-      } else {
-        // editStatus = false;
-        id = '';
-        formPublicacion['img'].style.display = "flex"
-        formPublicacion['btnPublicar'].innerText = 'Publicar';
-        console.log("elsedeTry")
-      }
-
-      descripcion.focus();// no lo hemos inicializadp
-
-    } catch (error) {
-      console.log(error);
-    }
-    formPublicacion.reset();
-  });
-
-}
-//fin editar
+//            await editPost(id, {
+//           titulo: titulo.value,
+//           descripcion: descripcion.value,
+//         })
 
 
+//       } else {
+//         id = '';
+//         formPublicacion['img'].style.display = "flex"
+//         formPublicacion['btnPublicar'].innerText = 'Publicar';
+//         console.log("elsedeTry")
+//       }
 
+      // descripcion.focus();// no lo hemos inicializadp
 
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     formPublicacion.reset();
+//   });
+
+// }
 
 const eliminarPost = (btnsDelete) => {
 
@@ -225,23 +227,20 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
         //Hacer funcion para solo editar
         editStatus = true;
         id = doc.id;
+        console.log(id);
         //Se eliminar el input de carga img (file)
+        // editPost(id, {descripcion: descripcion.value})
         formPublicacion['descripcion'].value = postsEdit.descripcion;
         formPublicacion['img'].style.display = "none"
         formPublicacion['btnPublicar'].innerText = 'Actualizar'
 
-        //Inicializar funcion para editar firebase.
-        
+      //   const descripcion =  formPublicacion['descripcion'].value 
+      //   console.log("console de descr"+descripcion);
+  
+      //  editPost(id, {descripcion:descripcion})
+          
         cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp);
-
-        // btnCerrarPopup.addEventListener('click', (e) => {
-        //   e.preventDefault();
-        //   overLay.classList.remove('active'); //EN REALIDAD ESTE CÓDIGO NO ESTÁ HACIENDO NADA AQUÍ
-        //   popUp.classList.remove('active');
-        // });
-
-
-
+              
       }
       catch (error) {
         console.log(error);
@@ -290,7 +289,7 @@ export const mostrarMuro = async () => {
 
   publicarPost(formPublicacion);
   await postList();
-  editarPost(formPublicacion);
+  // editarPost(formPublicacion);
   abrirPopup(btnAbrirPopUp, overLay, popUp)
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
 
