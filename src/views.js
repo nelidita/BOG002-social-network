@@ -158,6 +158,43 @@ const publicarPost = (formPublicacion) => {
 
 }
 
+//inicio editar
+
+const editarPost = (formPublicacion) => {
+
+  formPublicacion.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const descripcion = formPublicacion['descripcion'].value;
+    console.log( "editar publicacion")
+    try {
+      if (editStatus) {
+        console.log("Try de editar publicacion")
+        
+
+      } else {
+        // editStatus = false;
+        id = '';
+        formPublicacion['img'].style.display = "flex"
+        formPublicacion['btnPublicar'].innerText = 'Publicar';
+        console.log("elsedeTry")
+      }
+
+      descripcion.focus();// no lo hemos inicializadp
+
+    } catch (error) {
+      console.log(error);
+    }
+    formPublicacion.reset();
+  });
+
+}
+//fin editar
+
+
+
+
+
 const eliminarPost = (btnsDelete) => {
 
   btnsDelete.forEach((btn) =>
@@ -184,7 +221,7 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
         // activamos el pop up automaticamente con el click
         overLay.classList.add('active');
         popUp.classList.add('active');
-
+        
         //Hacer funcion para solo editar
         editStatus = true;
         id = doc.id;
@@ -194,6 +231,7 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
         formPublicacion['btnPublicar'].innerText = 'Actualizar'
 
         //Inicializar funcion para editar firebase.
+        
         cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp);
 
         // btnCerrarPopup.addEventListener('click', (e) => {
@@ -252,7 +290,7 @@ export const mostrarMuro = async () => {
 
   publicarPost(formPublicacion);
   await postList();
-
+  editarPost(formPublicacion);
   abrirPopup(btnAbrirPopUp, overLay, popUp)
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
 
