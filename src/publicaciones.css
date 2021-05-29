@@ -18,7 +18,6 @@
 .bodyPost img {
     width: inherit;
 }
-
 .menuDesplegable{
     float: right;
     margin-left: -200px;
@@ -231,4 +230,28 @@ label{
         margin-bottom: 10px;
         margin-top: 4px;
     }
+}
+.fileInput {
+    padding: 5px;
+    width: 180px;
+    position: relative;
+}
+#camaraCarga {
+width: 40px;
+}
+.textoFoto{ /*  Puede ser una opción para ser mas explícito */
+    font-size: 15px;
+    color: rgb(78, 59, 5);
+    font-weight: bold;
+
+}
+.imgPost{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 }

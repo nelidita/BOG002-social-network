@@ -96,8 +96,7 @@ const publicarPost = (formPublicacion) => {
     const descripcion = formPublicacion['descripcion'].value;
     const img = formPublicacion['img'].files[0];
     // const img = !editStatus ? img = formPublicacion['img'].files[0] :  “ ”;
-    const mensajeCarga = document.getElementById('mensajeCarga');
-    console.log(mensajeCarga);
+    const mensajeCarga = document.getElementById('mensajeCarga');;
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
@@ -107,9 +106,9 @@ const publicarPost = (formPublicacion) => {
 
         uploadImg.on('StatusCargaImg', (snapshot) => {
 
-          
+      
+
           let porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Estado de carga" + porcentajeDeCarga);
           let textoMensajeCarga = '<p>Porcentaje de carga: ' + porcentajeDeCarga + '%</p>';
           mensajeCarga.innerHTML = textoMensajeCarga;
 
@@ -160,10 +159,19 @@ const publicarPost = (formPublicacion) => {
 }
 
 const eliminarPost = (btnsDelete) => {
-
   btnsDelete.forEach((btn) =>
+  
     btn.addEventListener("click", async (event) => {
-      try { await deletePost(event.target.dataset.id); }
+
+     
+      try { await deletePost(event.target.dataset.id); 
+        swal( '¿Seguro que quieres eliminar la publicación, después de eliminar una publicación no las podrás recuperar', {
+
+          buttons: ['Eliminar', 'Cancelar']
+        });
+      }
+      
+     
       catch (error) {
         console.log(error);
       }

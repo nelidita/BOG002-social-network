@@ -4,10 +4,20 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
     .createUserWithEmailAndPassword(emailRegistro, passwordRegistro)
     .then((userCredential) => {
       window.location.hash = '#/posts';
-      alert('Bienvenido a Beer Lovers', userCredential.user);
+      swal({
+        title: 'Bienvenido a Beer Lovers.',
+        text: 'Ya puedes disfrutar de nuestro contenido',
+        icon: 'success'
+      });
+      // swal('Bienvenido a Beer Lovers', userCredential.user);
     })
     .catch((error) => {
-      alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
+      swal({
+        title: 'Este usuario ya existe.',
+        text: 'Por favor intente con una cuenta válida',
+        icon: 'error'
+      });
+      // alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
     });
 };
 export const loginUSer = (emailLogin, passwordLogin) => {
@@ -16,10 +26,22 @@ export const loginUSer = (emailLogin, passwordLogin) => {
     .signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then((userCredential) => {
       window.location.hash = '#/posts'; // Con esto si el usuario se loguea correctamente muestra el muro.
-      alert('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
+
+      swal({
+        title: 'Muy bien!!! Eres un  Beer Lovers.',
+        text: 'Bienvenido',
+        icon: 'success'
+      });
+      // swal('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
+ 
     })
     .catch((error) => {
-      console.log('Contraseña no válida. Vuelve a intentarlo', error.message);
+      swal({
+        title: 'Contraseña no válida.',
+        text: 'Por favor vuelve a intentarlo',
+        icon: 'error'
+      });
+      // swal('Contraseña no válida. Vuelve a intentarlo', error.message);
     });
 };
 export const registroGmail = () => {
@@ -28,10 +50,21 @@ export const registroGmail = () => {
     .signInWithPopup(provider)
     .then((result) => {
       window.location.hash = '#/posts';
-      alert('Ingresaste correctamente. Bienvenido a Beer Lovers', result);
+      swal({
+        title: 'Ingresaste correctamente.',
+        text: 'Bienvenido a Beer Lover',
+        icon: 'success'
+      });
+      // window.location.hash = '#/posts';
+      // swal('Ingresaste correctamente. Bienvenido a Beer Lovers', result);
     })
     .catch((error) => {
-      alert('Por favor usa una cuenta válida', error);
+      swal({
+        title: 'Cuenta no válida.',
+        text: 'Por favor use una cuenta válida',
+        icon: 'error'
+      });
+      // swal('Por favor usa una cuenta válida', error);
     });
 };
 

@@ -26,7 +26,11 @@ export const publicaciones = () => {
         <form id="formPublicacion">
           <div class="inputPopup">
             <input id="descripcion" class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
-            <input id="img" class= 'imgPost' type="file" placeholder="Sube tu foto aqui!!!">
+            <div class='fileInput'>
+            <img alt="camara" class="camaraCarga" id="camaraCarga" src = "Imagenes/Camaraadjuntar.png"/>
+            <label for="" class="textoFoto">Sube tu foto aqui!!!</label>
+            <input id="img" class= 'imgPost' type="file">
+            </div>
           </div>
           <div id="mensajeCarga"></div>
           <button class="submitPublicar" id="btnPublicar">Publicar</button>
