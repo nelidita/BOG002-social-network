@@ -218,6 +218,10 @@ const postList = async () => {
   
     // Aquí vamos a colocar el código para los Likes
     
+
+
+
+    
     // let rutaFirebase = data.collection('posts').doc();
     // function createCounter(id, likes) {
     //   var batch = data.batch();
