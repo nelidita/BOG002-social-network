@@ -114,8 +114,6 @@ const publicarPost = (formPublicacion) => {
           let textoMensajeCarga = `<progress  max="100">"${porcentajeDeCarga}"</progress>`;
           mensajeCarga.innerHTML = textoMensajeCarga;
           
-
-
         }, (error) => { console.log(error.message) }, () => {
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
 
