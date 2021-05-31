@@ -91,6 +91,7 @@ const publicarPost = (formPublicacion) => {
     e.preventDefault();
 
     const descripcion = formPublicacion['descripcion'].value;
+    
     let img = formPublicacion['img'].files[0];
     // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
     if (editStatus === false) {
@@ -116,7 +117,7 @@ const publicarPost = (formPublicacion) => {
           
         }, (error) => { console.log(error.message) }, () => {
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-
+            
             data.collection('posts').doc().set({
               descripcion,
               img: downloadURL
@@ -214,14 +215,29 @@ const postList = async () => {
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
-    //   for (let i = 0; i < objetoPosts.length; i++) {
-    //     const shardRef = data.collection('posts').doc(i.toString());
-    //     objetoPosts.set(shardRef, { count: 0 });
-    // }
-
+  
+    // Aquí vamos a colocar el código para los Likes
+    
+    // let rutaFirebase = data.collection('posts').doc();
+    // function createCounter(id, likes) {
+    //   var batch = data.batch();
+    //   console.log(batch);
+      // Initialize the counter document
+      // batch.set(rutaFirebase, { likes: likes });
+      // Initialize each shard with count=0
+  //     for (let i = 0; i < likes; i++) {
+  //         const idLikes = rutaFirebase.collection('likes').doc(i.toString());
+  //         batch.set(idLikes, { count: 0 });
+  //     }
+  //     // Commit the write batch
+  //     return batch.commit();
+  // }
+  // createCounter();
 
 
     });
+
+    const iconoPost = document.querySelectorAll("iconoLikes");
 
     //Esta funcion solo habilita el popUp de editar, NO edita
     const formPublicacion = document.getElementById('formPublicacion');
