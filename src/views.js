@@ -91,7 +91,7 @@ const publicarPost = (formPublicacion) => {
     e.preventDefault();
 
     const descripcion = formPublicacion['descripcion'].value;
-    // const img = formPublicacion['img'].files[0];
+    let img = formPublicacion['img'].files[0];
     // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
     if (editStatus === false) {
       img = formPublicacion['img'].files[0]
@@ -214,6 +214,13 @@ const postList = async () => {
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
+    //   for (let i = 0; i < objetoPosts.length; i++) {
+    //     const shardRef = data.collection('posts').doc(i.toString());
+    //     objetoPosts.set(shardRef, { count: 0 });
+    // }
+
+
+
     });
 
     //Esta funcion solo habilita el popUp de editar, NO edita

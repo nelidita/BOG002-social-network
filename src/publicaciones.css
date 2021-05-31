@@ -14,10 +14,11 @@
     border: 3px solid rgba(77, 45, 7, 0.37);
     border-radius: 10px;
 }
-
-.bodyPost img {
+.imagenPost {
     width: inherit;
 }
+
+
 .menuDesplegable{
     float: right;
     margin-left: -200px;
@@ -255,3 +256,7 @@ width: 40px;
     height: 100%;
     opacity: 0;
 }
+
+.iconoLikes{
+    width: 30px;
+} 

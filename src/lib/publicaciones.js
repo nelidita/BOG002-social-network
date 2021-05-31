@@ -1,7 +1,6 @@
 export const publicaciones = () => {
   const contenedorPublicaciones = document.createElement('div');
   contenedorPublicaciones.className = 'contenedorPublicaciones';
-
   const contenidoEncabezadopublicaciones = `
   <div class="contenedorEncabezadoPublicaciones">
     <div class="contenedorLogoPublicaciones">
@@ -26,12 +25,12 @@ export const publicaciones = () => {
         <form id="formPublicacion">
           <div class="inputPopup">
             <input id="descripcion" class= 'publicacionPopup' type="text" placeholder="¿ya tomaste cerveza hoy?">
-            <div class='fileInput'>
-            <img alt="camara" class="camaraCarga" id="camaraCarga" src = "Imagenes/Camaraadjuntar.png"/>
-            <label for="" class="textoFoto">Sube tu foto aqui!!!</label>
-            <input id="img" class= 'imgPost' type="file">
+            <div class='fileInput' id='fileImg'>
+              <img alt="camara" class="camaraCarga" id="camaraCarga" src = "Imagenes/Camaraadjuntar.png"/>
+              <label for="" class="textoFoto">Sube tu foto aqui!!!</label>
+              <input id="img" class= 'imgPost' type="file">
             </div>
-          </div>
+            </div>
           <div id="mensajeCarga"></div>
           <button class="submitPublicar" id="btnPublicar">Publicar</button>
         </form>
@@ -42,25 +41,23 @@ export const publicaciones = () => {
   contenedorPublicaciones.innerHTML = contenidoEncabezadopublicaciones;
   return contenedorPublicaciones;
 };
-
 export const viewPost = (postData) => {
   const divPost = `
     <div class="bodyPost">
-
       <div class="menuDesplegable">
-
         <input type="checkbox" class= "iconoMenu" id="${postData.id}">
         <label for="toggle" class:"puntos"><i class="fas fa-ellipsis-h"></i></label>
-        
         <nav class="nav" id="nav-${postData.id}">
           <a href="#/posts" class= "btnEditar" data-id="${postData.id}">Editar</a>
           <a href="#/posts" class= "btnEliminar"  data-id="${postData.id}">Eliminar</a>
         </nav>
-
       </div>
-      
-      <img src="${postData.img}"/>
+      <img src="${postData.img}" class="imagenPost"/>
       <p>${postData.descripcion}</p>
+      <div class='seccionLikes' id='idseccionLikes'>
+       <img src="Imagenes/salud.png" alt="likes" class="iconoLikes" />
+       <p class="contadorLikes">${postData.likes}</p>
+      </div>
     </div>
   `;
   return divPost;
