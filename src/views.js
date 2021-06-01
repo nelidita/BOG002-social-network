@@ -52,7 +52,7 @@ export const mostrarRegistro = () => {
 const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
 const deletePost = (id) => data.collection('posts').doc(id).delete();
 const editPost = (id, updatedPost) => data.collection('posts').doc(id).update(updatedPost);
-const getPostEditar = (id) => data.collection('posts').doc(id).get();
+const getPostID = (id) => data.collection('posts').doc(id).get();
 let editStatus = false;
 let id = '';
 
@@ -71,7 +71,7 @@ const cerrarPopUp = (formPublicacion, btnCerrarPopup, overLay, popUp) => {
       formPublicacion['img'].style.display = "flex"
       formPublicacion['btnPublicar'].innerText = 'Publicar';
       formPublicacion.reset();
-      
+
     }
   });
 }
@@ -91,7 +91,7 @@ const publicarPost = (formPublicacion) => {
     e.preventDefault();
 
     const descripcion = formPublicacion['descripcion'].value;
-    
+
     let img = formPublicacion['img'].files[0];
     // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
     if (editStatus === false) {
@@ -114,14 +114,14 @@ const publicarPost = (formPublicacion) => {
           console.log("Estado de carga" + porcentajeDeCarga);
           let textoMensajeCarga = `<progress  max="100">"${porcentajeDeCarga}"</progress>`;
           mensajeCarga.innerHTML = textoMensajeCarga;
-          
+
         }, (error) => { console.log(error.message) }, () => {
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            
+
             data.collection('posts').doc().set({
               descripcion,
               img: downloadURL
-              //contador de likes
+          
             }, (error) => {
               if (error) {
                 alert("Error de carga de imagen");
@@ -149,7 +149,7 @@ const publicarPost = (formPublicacion) => {
         // 
         // overLay.classList.remove('active');
         // popUp.classList.remove('active');
-        }
+      }
 
     } catch (error) {
       console.log(error);
@@ -177,8 +177,9 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
   btnsEdit.forEach((btn) =>
     btn.addEventListener("click", async (event) => {
       try {
-        const doc = await getPostEditar(event.target.dataset.id);
+        const doc = await getPostID(event.target.dataset.id);
         const postsEdit = doc.data();
+        console.log(postsEdit);
         const overLay = document.getElementById('overLay');
         const popUp = document.getElementById('popUp');
         const btnCerrarPopup = document.getElementById('cerrarPopup');
@@ -189,8 +190,8 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
 
         editStatus = true;
         id = doc.id;
-        console.log(id);
-        
+        console.log(doc.likes);
+
         formPublicacion['descripcion'].value = postsEdit.descripcion;
         formPublicacion['img'].style.display = "none"
         formPublicacion['btnPublicar'].innerText = 'Actualizar'
@@ -215,28 +216,52 @@ const postList = async () => {
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
-  
-    // Aquí vamos a colocar el código para los Likes
-    
 
+      // Aquí vamos a colocar el código para los Likes
+      // Investigación Nelida
+      const btnLikes = document.querySelectorAll(".iconoLikes");
+      // console.log(btnLikes);
+      btnLikes.forEach((btn) =>
+        btn.addEventListener("click", async(event) => {
+          const idPost = event.target.dataset.id;
+          console.log(idPost);
+          const likes = await getPostID(idPost).data.likes;
+          console.log(likes);
+         ;
+          const idSpanLike = "spanLike-" + event.target.dataset.id;
+          const numLikes = doc.data().likes;
+          
+          // console.log(doc.data());
+         
+          // console.log(idSpanLike);
+          // const likeFirebase = new Firebase (idLikeIcono)
+          //   likeFirebase.once('value', (snapshot) => {
+          //       if ( snapshot.val() ) {
+          //           document.querySelector('#' +  idSpanLike ).innerHTML = snapshot.val() + ' likes';
+          //       } else {
+          //           return false;
+          //       }
+          //   });
 
+        })
+      );
 
-    
-    // let rutaFirebase = data.collection('posts').doc();
-    // function createCounter(id, likes) {
-    //   var batch = data.batch();
-    //   console.log(batch);
+      // Documentación Firebase
+      // let rutaFirebase = data.collection('posts').doc();
+      // function createCounter(id, likes) {
+      //   var batch = data.batch();
+      //   console.log(batch);
       // Initialize the counter document
       // batch.set(rutaFirebase, { likes: likes });
       // Initialize each shard with count=0
-  //     for (let i = 0; i < likes; i++) {
-  //         const idLikes = rutaFirebase.collection('likes').doc(i.toString());
-  //         batch.set(idLikes, { count: 0 });
-  //     }
-  //     // Commit the write batch
-  //     return batch.commit();
-  // }
-  // createCounter();
+      //     for (let i = 0; i < likes; i++) {
+      //         const idLikes = rutaFirebase.collection('likes').doc(i.toString());
+      //         batch.set(idLikes, { count: 0 });
+      //     }
+      //     // Commit the write batch
+      //     return batch.commit();
+      // }
+      // createCounter();
 
 
     });

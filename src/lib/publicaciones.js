@@ -55,8 +55,8 @@ export const viewPost = (postData) => {
       <img src="${postData.img}" class="imagenPost"/>
       <p>${postData.descripcion}</p>
       <div class='seccionLikes' id='idseccionLikes'>
-       <img src="Imagenes/salud.png" alt="likes" class="iconoLikes" />
-       <p class="contadorLikes">${postData.likes}</p>
+       <img src="Imagenes/salud.png" alt="likes" class="iconoLikes" data-id="${postData.id}"/>
+       <span class="contadorLikes"   data-id="spanLike-${postData.id}">${postData.likes}</span>
       </div>
     </div>
   `;

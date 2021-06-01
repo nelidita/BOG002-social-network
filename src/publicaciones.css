@@ -168,7 +168,7 @@ label{
 }
 
 @media (max-width:500px){
-    .contenedorEncabezadoPublicaciones{
+     .contenedorEncabezadoPublicaciones{
         text-align: -webkit-center;
     }
     .contenedorPublicaciones{
