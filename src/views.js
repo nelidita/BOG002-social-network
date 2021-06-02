@@ -2,7 +2,7 @@ import { pantallaInicio } from './lib/inicio.js';
 import { registroUsuario } from './lib/registroUsuario.js';
 import { inicioSesion } from './lib/inicioSesion.js';
 import { publicaciones, viewPost } from './lib/publicaciones.js';
-import { registerUSer, loginUSer, registroGmail } from './firebaseAuth.js';
+import { registerUSer, loginUSer, registroGmail, cerrarSesion } from './firebaseAuth.js';
 
 const data = firebase.firestore();
 
@@ -293,14 +293,18 @@ export const mostrarMuro = async () => {
   const overLay = document.getElementById('overLay');
   const popUp = document.getElementById('popUp');
   const btnCerrarPopup = document.getElementById('cerrarPopup');
-  var user = firebase.auth().currentUser;
+  const user = firebase.auth().currentUser;
   publicarPost(formPublicacion,user);
   await postList();
   abrirPopup(btnAbrirPopUp, overLay, popUp)
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
-  
-  return appenMuro;
+   // cerrar sesión
+ const salirSesion = document.getElementById('salir');
+ salirSesion.addEventListener ('click', cerrarSesion);
 
+ 
+  return appenMuro;
+  
 };
 
 

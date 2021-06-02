@@ -69,6 +69,15 @@ export const registroGmail = () => {
       // swal('Por favor usa una cuenta válida', error);
     });
 };
+export const cerrarSesion = () => {
+firebase.auth().signOut().then(() => {
+  window.location.hash = '#/Inicio';
+  //Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+}
+
 // const usuarioActual = () => {
 //   firebase.auth().onAuthStateChanged((user)
 //     .then(() => {

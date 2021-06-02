@@ -11,7 +11,7 @@ export const publicaciones = () => {
       <img alt="busqueda" class="iconosNavegacion" id="buscar" src = "Imagenes/lupa.png"/>
       <a href ="#/Inicio"><img alt="home" class="iconosNavegacion" id="home" src = "Imagenes/casa.png"/></a>
       <img alt="brindis" class="iconosNavegacion" id="likes" src = "Imagenes/dislike.png"/>
-      <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir" src = "Imagenes/salida.png"/></a>
+     <img alt="salida" class="iconosNavegacion" id="salir" src = "Imagenes/salida.png"/>
     </div>
   </div>
   <div id = "postsContainer"></div>
