@@ -17,11 +17,11 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
         text: 'Por favor intente con una cuenta válida',
         icon: 'error'
       });
-      let user = firebase.auth().currentUser;
-      console.log(user);
+
       // alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
     });
 };
+
 export const loginUSer = (emailLogin, passwordLogin) => {
   firebase
     .auth()
@@ -69,5 +69,65 @@ export const registroGmail = () => {
       // swal('Por favor usa una cuenta válida', error);
     });
 };
+// const usuarioActual = () => {
+//   firebase.auth().onAuthStateChanged((user)
+//     .then(() => {
+//       user.providerData.forEach((profile) => {
+//         console.log("Sign-in provider: " + profile.providerId);
+//         console.log("  Provider-specific UID: " + profile.uid);
+//         console.log("  Name: " + profile.displayName);
+//         console.log("  Email: " + profile.email);
+//         console.log("  Photo URL: " + profile.photoURL);
+//       });
+//     })
+//     .catch((error) => {
 
+//     })
+//   )
+//   };
+// usuarioActual();
+
+  // export const usuarioActual = () => {
+  //   firebase
+  //   .auth()
+  //   .onAuthStateChanged(user)
+  //   .then(() => {
+
+  //       user.providerData.forEach((profile) => {
+  //         console.log("Sign-in provider: " + profile.providerId);
+  //         console.log("  Provider-specific UID: " + profile.uid);
+  //         console.log("  Name: " + profile.displayName);
+  //         console.log("  Email: " + profile.email);
+  //         console.log("  Photo URL: " + profile.photoURL);
+  //       })
+  //       .catch((error) => {
+  //       console.log('Nadie logueado');
+  //       // No user is signed in.
+  //       })
+  //   })
+
+  // }
+
+  
+
+    
+
+    // const usuarioActual = () => {
+    //   firebase.auth().onAuthStateChanged((user) => {
+    //     console.log(user);
+    //     if (user != null) {
+    //       user.providerData.forEach((profile) => {
+    //         console.log("Sign-in provider: " + profile.providerId);
+    //         console.log("  Provider-specific UID: " + profile.uid);
+    //         console.log("  Name: " + profile.displayName);
+    //         console.log("  Email: " + profile.email);
+    //         console.log("  Photo URL: " + profile.photoURL);
+    //       });
+    //     } else {
+    //       console.log('Nadie logueado');
+    //       // No user is signed in.
+    //     }
+    //   });
+    //   }
+    //   usuarioActual();
 

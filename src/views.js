@@ -37,10 +37,20 @@ export const mostrarRegistro = () => {
 
   formularioRegistro.addEventListener('submit', (event) => {
     const emailRegistro = document.getElementById('emailRegistro').value;
-    // const nombreUsuario = document.getElementById('nombreDeUsuario').value;
+    const nombreUsuarioinput = document.getElementById('nombreDeUsuario').value;
     const passwordRegistro = document.getElementById('passwordRegistro').value;
     event.preventDefault();
     registerUSer(emailRegistro, passwordRegistro);
+
+    data.collection('users').doc().set({
+      email: emailRegistro,
+      nombreUsuario:nombreUsuarioinput
+      
+    }, (error) => {
+      
+        alert("Error en el registro");
+      
+  })
     return appePantallaRegistro;
   });
 
@@ -177,7 +187,7 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
       try {
         const doc = await getPostID(event.target.dataset.id);
         const postsEdit = doc.data();
-        console.log(postsEdit);
+        // console.log(postsEdit);
         const overLay = document.getElementById('overLay');
         const popUp = document.getElementById('popUp');
         const btnCerrarPopup = document.getElementById('cerrarPopup');
@@ -188,7 +198,7 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
 
         editStatus = true;
         id = doc.id;
-        console.log(doc.likes);
+        // console.log(doc.likes);
 
         formPublicacion['descripcion'].value = postsEdit.descripcion;
         formPublicacion['img'].style.display = "none"
@@ -258,8 +268,6 @@ const postList = async () => {
     );
 
 
-
-
     //Esta funcion solo habilita el popUp de editar, NO edita
     const formPublicacion = document.getElementById('formPublicacion');
     const btnsEdit = document.querySelectorAll(".btnEditar");
@@ -292,4 +300,23 @@ export const mostrarMuro = async () => {
   return appenMuro;
 
 };
+
+
+
+// firebase.auth().onAuthStateChanged(function(user) {
+//   console.log(user);
+//   if (user != null) {
+//     user.providerData.forEach(function (profile) {
+//       // console.log("Sign-in provider: " + profile.providerId);
+//       // console.log("  Provider-specific UID: " + profile.uid);
+//       // console.log("  Name: " + profile.displayName);
+//       console.log("  Email: " + profile.email);
+//       // console.log("  Photo URL: " + profile.photoURL);
+//     });
+//   } else {
+//     // No user is signed in.
+//   }
+// });
+
+
 
