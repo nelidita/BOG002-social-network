@@ -40,7 +40,7 @@ export const mostrarRegistro = () => {
     const emailRegistro = document.getElementById('emailRegistro').value;
     // const nombreUsuarioinput = document.getElementById('nombreDeUsuario').value;
     const passwordRegistro = document.getElementById('passwordRegistro').value;
- 
+
     registerUSer(emailRegistro, passwordRegistro);
     return appePantallaRegistro;
   });
@@ -87,7 +87,7 @@ const abrirPopup = (btnAbrirPopUp, overLay, popUp) => {
 
 }
 
-const publicarPost = (formPublicacion,user) => {
+const publicarPost = (formPublicacion, user) => {
   // console.log(user.uid);
 
   formPublicacion.addEventListener('submit', async (e) => {
@@ -106,7 +106,7 @@ const publicarPost = (formPublicacion,user) => {
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
-    
+
     try {
       if (!editStatus) {
 
@@ -118,21 +118,21 @@ const publicarPost = (formPublicacion,user) => {
           mensajeCarga.innerHTML = textoMensajeCarga;
 
         }, (error) => { console.log(error.message) }, () => {
-                   
-          uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-             firebase.auth().onAuthStateChanged(function(user) {
-    
-              data.collection('posts').doc().set({
-              descripcion,
-              img: downloadURL, 
-              likes:[],
-              userUid: user.uid,
-              email:user.email,
-              name: user.displayName,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
-            });
-              }, (error) => {
+          uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            firebase.auth().onAuthStateChanged(function (user) {
+
+              data.collection('posts').doc().set({
+                descripcion,
+                img: downloadURL,
+                likes: [],
+                userUid: user.uid,
+                email: user.email,
+                name: user.displayName,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+              });
+            }, (error) => {
               if (error) {
                 alert("Error de carga de imagen");
               } else {
@@ -235,28 +235,66 @@ const postList = async () => {
         console.log(idPost)
 
         const doc = await getPostID(idPost);
-        const userUid = doc.data().userUid;
-        console.log(userUid)
-        const currentUser = firebase.auth().currentUser;
-        console.log(currentUser.uid)
+        const userUidPost = doc.data().userUid;
+        console.log(userUidPost)
+        // const currentUser = firebase.auth().currentUser;
+        // console.log(currentUser.uid)
+
+
+
 
         
+        firebase.auth().onAuthStateChanged(function (user) {
+          let userUidActual = user.uid
+          console.log(userUidActual);
+
+          data.collection('posts').doc(idPost).update({
+
+            likes: firebase.firestore.FieldValue.arrayUnion(userUidActual),
+            // likes: firebase.firestore.FieldValue.arrayRemove("otro"),
+          });
+
+          const arrayLikes = doc.data().likes;
+          console.log(arrayLikes);
+          // for(let i = 0 ; i <arrayLikes.length; i++){
+
+            if (arrayLikes.includes( userUidActual ) === true ) {
+              console.log("usuario logueado ya dio like")
+              
+  
+            } else {
+              console.log("no a dado like")
+              // data.collection('posts').doc(idPost).update({
+              //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
+              // });
+            }
+          // }
+          
+          //LLevar funcion que permite que salga el menu de eliminar y editar solo al usuario que lo posteo
+          // if (userUidPost === userUidActual) {
+          //   console.log("usuario que postea es el mismo logueado")
+
+
+          // } else {
+          //   console.log("usuario que postea es DIFERENTE al logueado")
+          // }
+
+        });
+
+
+
         // const likes = doc.data().likes;
         // console.log(doc,doc.data());
-        
+
         // const idSpanLike = "spanLike-" + idPost;
         // console.log(data);
         // doc.update({
         //   likes:firebase.firestore.FieldValue.arrayUnion("carlos"),
-          
+
         // })
-        data.collection('posts').doc(idPost).update({
-          
-          likes: firebase.firestore.FieldValue.arrayUnion("nelida"),
-          // likes: firebase.firestore.FieldValue.arrayRemove("otro"),
-        });
-        
-        
+
+
+
 
         // if ((likes%2)==0){
         //   console.log("es par")
@@ -271,7 +309,7 @@ const postList = async () => {
         //   const numlikes = doc.data().likes-1;
         //   console.log(numlikes)
         // }
-    })
+      })
     );
 
 
@@ -299,32 +337,15 @@ export const mostrarMuro = async () => {
   const popUp = document.getElementById('popUp');
   const btnCerrarPopup = document.getElementById('cerrarPopup');
   const user = firebase.auth().currentUser;
-  publicarPost(formPublicacion,user);
+  publicarPost(formPublicacion, user);
   await postList();
   abrirPopup(btnAbrirPopUp, overLay, popUp)
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
-   // cerrar sesión
- const salirSesion = document.getElementById('salir');
- salirSesion.addEventListener ('click', cerrarSesion);
+  // cerrar sesión
+  const salirSesion = document.getElementById('salir');
+  salirSesion.addEventListener('click', cerrarSesion);
 
- 
+
   return appenMuro;
-  
+
 };
-
-
-
-// firebase.auth().onAuthStateChanged(function(user) {
-//   console.log(user);
-//   if (user != null) {
-//     user.providerData.forEach(function (profile) {
-//       console.log("Sign-in provider: " + profile.providerId);
-//       console.log("  Provider-specific UID: " + profile.uid);
-//       console.log("  Name: " + profile.displayName);
-//       console.log("  Email: " + profile.email);
-//       console.log("  Photo URL: " + profile.photoURL);
-//     });
-//   } else {
-//     // No user is signed in.
-//   }
-// });

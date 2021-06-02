@@ -46,6 +46,7 @@ export const loginUSer = (emailLogin, passwordLogin) => {
       // swal('Contraseña no válida. Vuelve a intentarlo', error.message);
     });
 };
+
 export const registroGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth()
