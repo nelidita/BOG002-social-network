@@ -44,6 +44,8 @@ export const publicaciones = () => {
 export const viewPost = (postData) => {
   const divPost = `
     <div class="bodyPost">
+    <p>${postData.email}</p>
+
       <div class="menuDesplegable">
         <input type="checkbox" class= "iconoMenu" id="${postData.id}">
         <label for="toggle" class:"puntos"><i class="fas fa-ellipsis-h"></i></label>
@@ -55,14 +57,13 @@ export const viewPost = (postData) => {
       <img src="${postData.img}" class="imagenPost"/>
       <p>${postData.descripcion}</p>
       <div class='seccionLikes' id='idseccionLikes'>
-        <button id"likeDiv${postData.id}">like </button>
-       
+        <div id="likeDiv${postData.id}">like
           <img src="Imagenes/like.png" alt="likes" class="iconoLikes" data-id="${postData.id}"/>
         </div>
         <div id="dislikeDiv${postData.id}">
           <img src="Imagenes/dislike.png" alt="likes" class="iconoLikes" data-id="dislike-${postData.id}"/>
         </div>
-       <span class="contadorLikes"   data-id="spanLike-${postData.id}">${postData.likes}</span>
+       <span class="contadorLikes"   data-id="spanLike-${postData.id}">${postData.likes.length}</span>
       </div>
     </div>
   `;

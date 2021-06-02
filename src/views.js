@@ -36,22 +36,11 @@ export const mostrarRegistro = () => {
   const formularioRegistro = document.getElementById('formularioRegistroUsuario');
 
   formularioRegistro.addEventListener('submit', (event) => {
-    const emailRegistro = document.getElementById('emailRegistro').value;
-    const nombreUsuarioinput = document.getElementById('nombreDeUsuario').value;
-    const passwordRegistro = document.getElementById('passwordRegistro').value;
     event.preventDefault();
-  
-    //lupe1
-        //  data.collection("users").add({
-        //       email: emailRegistro,
-        //       nombreUsuario:nombreUsuarioinput
-        //   })
-        //   .then((docRef) => {
-        //       console.log("Document written with ID: ", docRef.id);
-        //   })
-        //   .catch((error) => {
-        //       console.error("Error adding document: ", error);
-        //   });
+    const emailRegistro = document.getElementById('emailRegistro').value;
+    // const nombreUsuarioinput = document.getElementById('nombreDeUsuario').value;
+    const passwordRegistro = document.getElementById('passwordRegistro').value;
+ 
     registerUSer(emailRegistro, passwordRegistro);
     return appePantallaRegistro;
   });
@@ -99,7 +88,7 @@ const abrirPopup = (btnAbrirPopUp, overLay, popUp) => {
 }
 
 const publicarPost = (formPublicacion,user) => {
-  console.log(user.uid);
+  // console.log(user.uid);
 
   formPublicacion.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -129,24 +118,26 @@ const publicarPost = (formPublicacion,user) => {
           mensajeCarga.innerHTML = textoMensajeCarga;
 
         }, (error) => { console.log(error.message) }, () => {
+          
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-
-            data.collection('posts').doc().set({
+             firebase.auth().onAuthStateChanged(function(user) {//mientras arreglamos el singout
+              data.collection('posts').doc().set({
               descripcion,
               img: downloadURL, 
               likes:0,
               user: user.uid,
               email:user.email,
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-
-              // email:
-              // fecha:
-            }, (error) => {
+            });
+              }, (error) => {
               if (error) {
                 alert("Error de carga de imagen");
               } else {
                 alert("Carga Exitosa");
-              }
+
+
+              }//cierre funcion flecha
+
             })
           })
 
@@ -241,38 +232,41 @@ const postList = async () => {
     btnLikes.forEach((btn) =>
       btn.addEventListener("click", async (event) => {
         const idPost = event.target.dataset.id;
-        console.log(idPost);
+        // console.log(idPost);
 //lupeLikes
-        const doc = await getPostID(event.target.dataset.id);
-        const likes = doc.data().likes;
-        console.log(likes);
+        const doc = await getPostID(idPost);
+        // deUpbugger;
+        // const likes = doc.data().likes;
+        // console.log(doc,doc.data());
         
-        const idSpanLike = "spanLike-" + event.target.dataset.id;
+        // const idSpanLike = "spanLike-" + idPost;
+        // console.log(data);
+        // doc.update({
+        //   likes:firebase.firestore.FieldValue.arrayUnion("carlos"),
+          
+        // })
+        data.collection('posts').doc(idPost).update({
+          
+          likes: firebase.firestore.FieldValue.arrayUnion("carlos"),
+          // likes: firebase.firestore.FieldValue.arrayRemove("otro"),
+        });
 
         // let numLikes = 0;
 
-        if (likes % 0){
-          console.log("es par")
-          document.querySelector("#likeDiv" + idPost).style.display = "block"
-          document.querySelector("#dislikeDiv" + idPost).style.display = "none"
-        } else {
-          console.log("es impar")
-          document.querySelector("#likeDiv" + idPost).style.display = "none"
-          document.querySelector("#dislikeDiv" + idPost).style.display = "block"
-        }
-      
-
-        // const likeFirebase = new Firebase (idLikeIcono)
-        // likes.on('value', (snapshot) => {
-          
-        //   if (snapshot.val()) {
-        //     document.querySelector('#' + idSpanLike).innerHTML = snapshot.val() + ' likes';
-        //   } else {
-        //     return false;
-        //   }
-        // });
-
-      })
+        // if ((likes%2)==0){
+        //   console.log("es par")
+        //   document.querySelector("#likeDiv" + idPost).style.display = "block"
+        //   document.querySelector("#dislikeDiv" + idPost).style.display = "none"
+        //   const numlikes = doc.data().likes+1;
+        //   console.log(numlikes)
+        // } else {
+        //   console.log("es impar")
+        //   document.querySelector("#likeDiv" + idPost).style.display = "none"
+        //   document.querySelector("#dislikeDiv" + idPost).style.display = "block"
+        //   const numlikes = doc.data().likes-1;
+        //   console.log(numlikes)
+        // }
+    })
     );
 
 
