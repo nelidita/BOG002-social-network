@@ -37,6 +37,7 @@ export const mostrarRegistro = () => {
 
   formularioRegistro.addEventListener('submit', (event) => {
     const emailRegistro = document.getElementById('emailRegistro').value;
+    // const nombreUsuario = document.getElementById('nombreDeUsuario').value;
     const passwordRegistro = document.getElementById('passwordRegistro').value;
     event.preventDefault();
     registerUSer(emailRegistro, passwordRegistro);
@@ -100,7 +101,6 @@ const publicarPost = (formPublicacion) => {
       img = "";
     }
     const mensajeCarga = document.getElementById('mensajeCarga');
-    // console.log(mensajeCarga);
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
@@ -121,7 +121,8 @@ const publicarPost = (formPublicacion) => {
             data.collection('posts').doc().set({
               descripcion,
               img: downloadURL
-          
+              // email:
+              // fecha:
             }, (error) => {
               if (error) {
                 alert("Error de carga de imagen");
@@ -140,9 +141,6 @@ const publicarPost = (formPublicacion) => {
       } else {
 
         //como no esta publicando entonces inciializamos la funcion de editar
-
-        console.log("console de descr" + descripcion);
-
         editPost(id, { descripcion: descripcion })
 
         //esto lo agregue para quitar que se abra el pop up con la edicion
@@ -217,56 +215,50 @@ const postList = async () => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
 
-      // Aquí vamos a colocar el código para los Likes
-      // Investigación Nelida
-      const btnLikes = document.querySelectorAll(".iconoLikes");
-      // console.log(btnLikes);
-      btnLikes.forEach((btn) =>
-        btn.addEventListener("click", async(event) => {
-          const idPost = event.target.dataset.id;
-          console.log(idPost);
-          const likes = await getPostID(idPost).data.likes;
-          console.log(likes);
-         ;
-          const idSpanLike = "spanLike-" + event.target.dataset.id;
-          const numLikes = doc.data().likes;
-          
-          // console.log(doc.data());
-         
-          // console.log(idSpanLike);
-          // const likeFirebase = new Firebase (idLikeIcono)
-          //   likeFirebase.once('value', (snapshot) => {
-          //       if ( snapshot.val() ) {
-          //           document.querySelector('#' +  idSpanLike ).innerHTML = snapshot.val() + ' likes';
-          //       } else {
-          //           return false;
-          //       }
-          //   });
-
-        })
-      );
-
-      // Documentación Firebase
-      // let rutaFirebase = data.collection('posts').doc();
-      // function createCounter(id, likes) {
-      //   var batch = data.batch();
-      //   console.log(batch);
-      // Initialize the counter document
-      // batch.set(rutaFirebase, { likes: likes });
-      // Initialize each shard with count=0
-      //     for (let i = 0; i < likes; i++) {
-      //         const idLikes = rutaFirebase.collection('likes').doc(i.toString());
-      //         batch.set(idLikes, { count: 0 });
-      //     }
-      //     // Commit the write batch
-      //     return batch.commit();
-      // }
-      // createCounter();
-
-
     });
 
-    const iconoPost = document.querySelectorAll("iconoLikes");
+    // Aquí vamos a colocar el código para los Likes
+    // Investigación Nelida
+    const btnLikes = document.querySelectorAll(".iconoLikes");
+    btnLikes.forEach((btn) =>
+      btn.addEventListener("click", async (event) => {
+        const idPost = event.target.dataset.id;
+        console.log(idPost);
+
+        const doc = await getPostID(event.target.dataset.id);
+        const likes = doc.data().likes;
+        console.log(likes);
+        
+        const idSpanLike = "spanLike-" + event.target.dataset.id;
+
+        let numLikes = 0;
+
+        if (likes % 0){
+          console.log("es par")
+          document.querySelector("#likeDiv" + idPost).style.display = "block"
+          document.querySelector("#dislikeDiv" + idPost).style.display = "none"
+        } else {
+          console.log("es impar")
+          document.querySelector("#likeDiv" + idPost).style.display = "none"
+          document.querySelector("#dislikeDiv" + idPost).style.display = "block"
+        }
+      
+
+        // const likeFirebase = new Firebase (idLikeIcono)
+        // likes.on('value', (snapshot) => {
+          
+        //   if (snapshot.val()) {
+        //     document.querySelector('#' + idSpanLike).innerHTML = snapshot.val() + ' likes';
+        //   } else {
+        //     return false;
+        //   }
+        // });
+
+      })
+    );
+
+
+
 
     //Esta funcion solo habilita el popUp de editar, NO edita
     const formPublicacion = document.getElementById('formPublicacion');

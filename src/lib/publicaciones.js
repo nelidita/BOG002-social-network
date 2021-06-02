@@ -10,7 +10,7 @@ export const publicaciones = () => {
       <img alt="perfil" class="iconosNavegacion" id="perfilUsuario" src = "Imagenes/hombre.png"/>
       <img alt="busqueda" class="iconosNavegacion" id="buscar" src = "Imagenes/lupa.png"/>
       <a href ="#/Inicio"><img alt="home" class="iconosNavegacion" id="home" src = "Imagenes/casa.png"/></a>
-      <img alt="brindis" class="iconosNavegacion" id="likes" src = "Imagenes/salud.png"/>
+      <img alt="brindis" class="iconosNavegacion" id="likes" src = "Imagenes/dislike.png"/>
       <a href ="#/Inicio" ><img alt="salida" class="iconosNavegacion" id="salir" src = "Imagenes/salida.png"/></a>
     </div>
   </div>
@@ -55,7 +55,12 @@ export const viewPost = (postData) => {
       <img src="${postData.img}" class="imagenPost"/>
       <p>${postData.descripcion}</p>
       <div class='seccionLikes' id='idseccionLikes'>
-       <img src="Imagenes/salud.png" alt="likes" class="iconoLikes" data-id="${postData.id}"/>
+        <div id="likeDiv${postData.id}">
+          <img src="Imagenes/like.png" alt="likes" class="iconoLikes" data-id="${postData.id}"/>
+        </div>
+        <div id="dislikeDiv${postData.id}">
+          <img src="Imagenes/dislike.png" alt="likes" class="iconoLikes" data-id="dislike-${postData.id}"/>
+        </div>
        <span class="contadorLikes"   data-id="spanLike-${postData.id}">${postData.likes}</span>
       </div>
     </div>

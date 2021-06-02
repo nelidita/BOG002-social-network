@@ -175,30 +175,7 @@ text-align: center;
 #formularioRegistroUsuario{
     margin-top: 5px;
 }
-#formularioRegistroUsuario .terminosBeerlover{
-    font-size: 17px;
-    font-family: inherit;
-    color: #F1e5B9;
-    font-weight: bold;
-    margin: 7px;
-    text-shadow: 0.1em 0.1em 1px #000;
-}
-#formularioRegistroUsuario a{
-    font-size: 16px;
-    color: #3c382a;
-    font-weight: bolder;
-    text-shadow: 0.1em 0.1em 2px #edd376;
-    font-family: sans-serif;
-}
-#formularioRegistroUsuario label {
-    font-size: 14px;
-    font-family: inherit;
-    color: #F1e5B9;
-    font-weight: bold;
-    margin-top: 5px;
-    text-shadow: 0.1em 0.1em 2px #000;
-    margin-left: 4px;
-}
+
 .registrarme{
     width: 210px;
     height: 43px;
@@ -246,9 +223,7 @@ text-align: center;
         justify-content: center;
         margin: 5px;
     }
-    .ladoIzquierdo {
-        display: none;
-    }
+
     .logoRegistro{
         width: 180px;
         margin-top: 8px;
@@ -277,21 +252,6 @@ text-align: center;
         font-size: 18px;
         font-weight: bold;
         text-align: center;
-    }
-    #formularioRegistroUsuario p{
-        font-size: 16px;
-        font-family: inherit;
-        color: #000;
-        font-weight: bold;
-        margin-top: 5px;
-        -webkit-text-stroke: 0.2px #1d1c19ad;
-    }
-    #formularioRegistroUsuario a{
-        font-size: 16px;
-        color: #edd376;
-        font-weight: bolder;
-        text-shadow: 0.1em 0.1em 1px #000;
-        font-family: sans-serif;
     }
     #formularioRegistroUsuario label {
         font-size: 14px;
@@ -417,15 +377,7 @@ text-align: center;
         text-shadow: 0.1em 0.1em 2px #edd376;
         font-family: sans-serif;
     }
-    #formularioRegistroUsuario label {
-        font-size: 14px;
-        font-family: inherit;
-        color: #F1e5B9;
-        font-weight: bold;
-        margin-top: 5px;
-        text-shadow: 0.1em 0.1em 0.5px #000;
-        margin-left: 4px;
-    }
+   
     .registrarme{
         width: 160px;
         height: 50px;
