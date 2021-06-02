@@ -40,17 +40,19 @@ export const mostrarRegistro = () => {
     const nombreUsuarioinput = document.getElementById('nombreDeUsuario').value;
     const passwordRegistro = document.getElementById('passwordRegistro').value;
     event.preventDefault();
+  
+    //lupe1
+        //  data.collection("users").add({
+        //       email: emailRegistro,
+        //       nombreUsuario:nombreUsuarioinput
+        //   })
+        //   .then((docRef) => {
+        //       console.log("Document written with ID: ", docRef.id);
+        //   })
+        //   .catch((error) => {
+        //       console.error("Error adding document: ", error);
+        //   });
     registerUSer(emailRegistro, passwordRegistro);
-
-    data.collection('users').doc().set({
-      email: emailRegistro,
-      nombreUsuario:nombreUsuarioinput
-      
-    }, (error) => {
-      
-        alert("Error en el registro");
-      
-  })
     return appePantallaRegistro;
   });
 
@@ -96,7 +98,8 @@ const abrirPopup = (btnAbrirPopUp, overLay, popUp) => {
 
 }
 
-const publicarPost = (formPublicacion) => {
+const publicarPost = (formPublicacion,user) => {
+  console.log(user.uid);
 
   formPublicacion.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -114,7 +117,7 @@ const publicarPost = (formPublicacion) => {
     const imgName = img.name;
     const storageRef = firebase.storage().ref('imgPosts/' + imgName);
     const uploadImg = storageRef.put(img);
-
+    
     try {
       if (!editStatus) {
 
@@ -130,7 +133,12 @@ const publicarPost = (formPublicacion) => {
 
             data.collection('posts').doc().set({
               descripcion,
-              img: downloadURL
+              img: downloadURL, 
+              likes:0,
+              user: user.uid,
+              email:user.email,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
               // email:
               // fecha:
             }, (error) => {
@@ -234,14 +242,14 @@ const postList = async () => {
       btn.addEventListener("click", async (event) => {
         const idPost = event.target.dataset.id;
         console.log(idPost);
-
+//lupeLikes
         const doc = await getPostID(event.target.dataset.id);
         const likes = doc.data().likes;
         console.log(likes);
         
         const idSpanLike = "spanLike-" + event.target.dataset.id;
 
-        let numLikes = 0;
+        // let numLikes = 0;
 
         if (likes % 0){
           console.log("es par")
@@ -291,12 +299,12 @@ export const mostrarMuro = async () => {
   const overLay = document.getElementById('overLay');
   const popUp = document.getElementById('popUp');
   const btnCerrarPopup = document.getElementById('cerrarPopup');
-
-  publicarPost(formPublicacion);
+  var user = firebase.auth().currentUser;
+  publicarPost(formPublicacion,user);
   await postList();
   abrirPopup(btnAbrirPopUp, overLay, popUp)
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp)
-
+  
   return appenMuro;
 
 };
@@ -304,7 +312,7 @@ export const mostrarMuro = async () => {
 
 
 // firebase.auth().onAuthStateChanged(function(user) {
-//   console.log(user);
+//   // console.log(user);
 //   if (user != null) {
 //     user.providerData.forEach(function (profile) {
 //       // console.log("Sign-in provider: " + profile.providerId);
