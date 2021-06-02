@@ -53,6 +53,10 @@ const onGetPost = (callback) => data.collection('posts').onSnapshot(callback);
 const deletePost = (id) => data.collection('posts').doc(id).delete();
 const editPost = (id, updatedPost) => data.collection('posts').doc(id).update(updatedPost);
 const getPostID = (id) => data.collection('posts').doc(id).get();
+// const updateTimestam =(id) => data.collection('posts').doc(id).update({timestamp: firebase.firestore.FieldValue.serverTimestamp()});
+// var updateTimestamp = docRef.update({
+//   timestamp: firebase.firestore.FieldValue.serverTimestamp()
+// });
 let editStatus = false;
 let id = '';
 
@@ -116,12 +120,16 @@ const publicarPost = (formPublicacion) => {
           mensajeCarga.innerHTML = textoMensajeCarga;
 
         }, (error) => { console.log(error.message) }, () => {
+          // updateTimestam();
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
 
             data.collection('posts').doc().set({
               descripcion,
-              img: downloadURL
-          
+              img: downloadURL,
+              likes: 0,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              // lo saque de https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es
+           
             }, (error) => {
               if (error) {
                 alert("Error de carga de imagen");
