@@ -44,7 +44,7 @@ export const publicaciones = () => {
 export const viewPost = (postData) => {
   const divPost = `
     <div class="bodyPost">
-    <p>${postData.email}</p>
+    <p>${postData.name}</p>
 
       <div class="menuDesplegable">
         <input type="checkbox" class= "iconoMenu" id="${postData.id}">

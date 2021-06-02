@@ -118,16 +118,19 @@ const publicarPost = (formPublicacion,user) => {
           mensajeCarga.innerHTML = textoMensajeCarga;
 
         }, (error) => { console.log(error.message) }, () => {
-          
+                   
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
              firebase.auth().onAuthStateChanged(function(user) {//mientras arreglamos el singout
+              console.log(user);
               data.collection('posts').doc().set({
               descripcion,
               img: downloadURL, 
               likes:0,
               user: user.uid,
               email:user.email,
+              name: user.displayName,
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
             });
               }, (error) => {
               if (error) {
@@ -309,20 +312,20 @@ export const mostrarMuro = async () => {
 
 
 
-// firebase.auth().onAuthStateChanged(function(user) {
-//   // console.log(user);
-//   if (user != null) {
-//     user.providerData.forEach(function (profile) {
-//       // console.log("Sign-in provider: " + profile.providerId);
-//       // console.log("  Provider-specific UID: " + profile.uid);
-//       // console.log("  Name: " + profile.displayName);
-//       console.log("  Email: " + profile.email);
-//       // console.log("  Photo URL: " + profile.photoURL);
-//     });
-//   } else {
-//     // No user is signed in.
-//   }
-// });
+firebase.auth().onAuthStateChanged(function(user) {
+  console.log(user);
+  if (user != null) {
+    user.providerData.forEach(function (profile) {
+      console.log("Sign-in provider: " + profile.providerId);
+      console.log("  Provider-specific UID: " + profile.uid);
+      console.log("  Name: " + profile.displayName);
+      console.log("  Email: " + profile.email);
+      console.log("  Photo URL: " + profile.photoURL);
+    });
+  } else {
+    // No user is signed in.
+  }
+});
 
 
 
