@@ -17,6 +17,8 @@ export const registerUSer = (emailRegistro, passwordRegistro) => {
         text: 'Por favor intente con una cuenta válida',
         icon: 'error'
       });
+      let user = firebase.auth().currentUser;
+      console.log(user);
       // alert('Usuario ya existe. Por favor intente con una cuenta válida', error.message);
     });
 };
@@ -33,7 +35,7 @@ export const loginUSer = (emailLogin, passwordLogin) => {
         icon: 'success'
       });
       // swal('Muy bien!!! Eres un Beer Lovers. Bienvenido', userCredential.user);
- 
+
     })
     .catch((error) => {
       swal({
@@ -67,4 +69,5 @@ export const registroGmail = () => {
       // swal('Por favor usa una cuenta válida', error);
     });
 };
+
 
