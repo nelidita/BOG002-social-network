@@ -1,4 +1,6 @@
-import { mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro } from './views.js';
+import {
+  mostrarHome, mostrarRegistro, mostrarLogin, mostrarMuro,
+} from './views.js';
 
 export const showRoot = (router) => {
   const root = document.getElementById('root');

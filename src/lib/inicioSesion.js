@@ -37,7 +37,7 @@ export const inicioSesion = () => {
       <p class = "mensajeCuentainicio">¿No tienes cuenta?<a href = "#/Inicio"> Regístrate</a></p>
     </div>
     `;
-  
+
   contenedorIniciosesion.innerHTML = contenidoEncabezadoinicio;
   return contenedorIniciosesion;
 };
