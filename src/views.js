@@ -7,15 +7,18 @@ import { registerUSer, loginUSer, registroGmail, cerrarSesion } from './firebase
 const data = firebase.firestore();
 
 export const mostrarHome = () => {
+
   const rootHtml = document.getElementById('root');
   const appPantallaInicio = rootHtml.appendChild(pantallaInicio());
   return appPantallaInicio;
+
 };
 
 export const mostrarLogin = () => {
   const rootHtml = document.getElementById('root');
   const appPantallaLogin = rootHtml.appendChild(inicioSesion());
   const formularioInicioSesion = document.getElementById('formularioInicioSesion');
+
   formularioInicioSesion.addEventListener('submit', (event) => {
     const emailLogin = document.getElementById('emailLogin').value;
     const passwordLogin = document.getElementById('passwordLogin').value;
@@ -27,6 +30,7 @@ export const mostrarLogin = () => {
   const contenedorGmailLogin = document.getElementById('contenedorGmailLogin');
   contenedorGmailLogin.addEventListener('click', registroGmail);
   return appPantallaLogin;
+
 };
 
 export const mostrarRegistro = () => {
@@ -97,19 +101,21 @@ const publicarPost = (formPublicacion, user) => {
 
     let img = formPublicacion['img'].files[0];
     // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
+
     if (editStatus === false) {
       img = formPublicacion['img'].files[0]
     } else {
       img = "";
     }
-    const mensajeCarga = document.getElementById('mensajeCarga');
-    const imgName = img.name;
-    const storageRef = firebase.storage().ref('imgPosts/' + imgName);
-    const uploadImg = storageRef.put(img);
+
+
 
     try {
       if (!editStatus) {
-
+        const mensajeCarga = document.getElementById('mensajeCarga');
+        const imgName = img.name;
+        const storageRef = firebase.storage().ref('imgPosts/' + imgName);
+        const uploadImg = storageRef.put(img);
         uploadImg.on('StatusCargaImg', (snapshot) => {
 
           let porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -120,26 +126,26 @@ const publicarPost = (formPublicacion, user) => {
         }, (error) => { console.log(error.message) }, () => {
 
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            firebase.auth().onAuthStateChanged(function (user) {
+            // firebase.auth().onAuthStateChanged(function (user) {
+            const user = firebase.auth().currentUser
+            data.collection('posts').doc().set({
+              descripcion,
+              img: downloadURL,
+              likes: [],
+              userUid: user.uid,
+              email: user.email,
+              name: user.displayName,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
-              data.collection('posts').doc().set({
-                descripcion,
-                img: downloadURL,
-                likes: [],
-                userUid: user.uid,
-                email: user.email,
-                name: user.displayName,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+            // }, (error) => {
+            //   if (error) {
+            //     alert("Error de carga de imagen");
+            //   } else {
+            //     alert("Carga Exitosa");
+            //   }
 
-              });
-            }, (error) => {
-              if (error) {
-                alert("Error de carga de imagen");
-              } else {
-                alert("Carga Exitosa");
-              }
-
-            })
+            // })
           })
 
           //Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
@@ -243,7 +249,7 @@ const postList = async () => {
 
 
 
-        
+
         firebase.auth().onAuthStateChanged(function (user) {
           let userUidActual = user.uid
           console.log(userUidActual);
@@ -258,18 +264,18 @@ const postList = async () => {
           console.log(arrayLikes);
           // for(let i = 0 ; i <arrayLikes.length; i++){
 
-            if (arrayLikes.includes( userUidActual ) === true ) {
-              console.log("usuario logueado ya dio like")
-              
-  
-            } else {
-              console.log("no a dado like")
-              // data.collection('posts').doc(idPost).update({
-              //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
-              // });
-            }
+          if (arrayLikes.includes(userUidActual) === true) {
+            console.log("usuario logueado ya dio like")
+
+
+          } else {
+            console.log("no a dado like")
+            // data.collection('posts').doc(idPost).update({
+            //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
+            // });
+          }
           // }
-          
+
           //LLevar funcion que permite que salga el menu de eliminar y editar solo al usuario que lo posteo
           // if (userUidPost === userUidActual) {
           //   console.log("usuario que postea es el mismo logueado")
