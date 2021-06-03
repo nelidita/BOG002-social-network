@@ -1,0 +1,359 @@
+/* Estilos incio de sesion   */
+@media (max-width:500px){
+
+ .contenedorIniciosesion{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  flex-direction: row;
+  align-content: center;
+ }
+ .mensajeCervecero2{
+  font-family: inherit;
+  font-size: 20px;
+  color: #f7cb2d;
+  text-align: right;
+  text-shadow: 0.1em 0.1em 3px #000;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-right: 15px;
+  margin-left: 100px;
+ }
+ .contenedorGmailLogin p{
+  font-size: 18px;
+  color: #F7CB2D;
+  text-shadow: 0.1em 0.1em 1px #000;
+  font-weight: bold;
+  }
+  .contenedorGmailLogin {
+  display: inline-flex;
+  width: 275px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+  }
+ .contenidoInputs{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  flex-direction: row;
+  align-content: center; 
+ }
+ #logoIniciosesion{
+  width: 220px;  
+ }
+ .inputSesion{
+  width: 275px;
+  height: 41px;
+  border-radius: 5px;
+  background: #F1e5B9;
+  border: 0.2px solid #000000;
+  margin: 12px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+ }
+ .inputSesion:focus {
+  border: 3px solid #000000;
+  outline: none;
+  box-shadow: 3px 0px 30 px rgba(163, 163, 163, 0.4);
+  }
+  .mensajeError {
+  font-size: 13px;
+  margin-bottom: 0;
+  display: none;
+  font-weight: bolder;
+  color: rgba(10, 10, 10, 0.699);
+  }
+  .mensajeError-activo {
+    display: block;
+  }
+  .inicioSesionmensaje {
+    height: 35px;
+    line-height: 25px;
+    background: #f70a0a;
+    padding: 0 10px;
+    border-radius: 3px;
+    display: none;
+  }
+  .inicioSesionmensaje .advertencia  {
+    margin:0;
+    font-size: 12px;
+  }
+  .inicioSesionmensaje-activo{
+    display: block;
+  }
+  .mensaje-exitoLogin {
+  font-size: 14px;
+  color:#0f0f0f;
+  font-weight: bold;
+  display: none;
+  }
+  .mensaje-exitoLogin-activo{
+  display: block;
+  }
+ .mensajeCervecero1 {
+  display: none;
+ }
+  #emailLogin{
+  margin-top: 20px;
+  }
+ #formularioInicioSesion{
+  text-align: -webkit-center;
+ }
+ #formularioInicioSesion button{
+  margin-top: 40px;
+  width: 160px;
+  height: 52px;
+  border-radius: 79px;
+  background:#523412;
+  border: 0.2px solid #000000;
+  margin: 12px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: #EDD376;
+ }
+ .mensajeCuentainicio{
+   font-size: 14px;
+   font-family: inherit;
+   color: #F1e5B9;
+   font-weight: bold;
+   margin-top: 5px;
+   text-shadow: 0.1em 0.1em 2px #000000;
+ }
+ .contenedorIniciosesion a{
+   font-size: 14px;
+   color: #edd376;
+   font-weight: bolder;
+   text-shadow: 0.1em 0.1em 2px #000000;
+   font-family: sans-serif;
+ }
+}
+
+@media (min-width: 501px){
+ .contenedorIniciosesion {
+   text-align: center;
+   margin: 40px;
+   display: block;
+   cursor: pointer;
+ }
+ .contenidoInputs{
+   width: 337px;
+   height: 522px;
+   background: rgba(237, 211, 118, 0.47);
+   border-radius: 50px;
+   margin: 40px;
+   margin-left: 150px;   
+ }
+ .logoIniciosesion {
+    width: 220px;
+    margin-top: 40px;
+   }
+ .mensajeCervecero1 {
+    font-size: 50px;
+    color: #F7CB2D;
+    text-align: right;
+    text-shadow: 0.1em 0.1em 3px #000;
+    font-weight: bold;
+ }
+ .mensajeCervecero2 {
+  display: none;
+ }
+ .contenedorGmailLogin{
+  display: inline-flex;
+  width: 275px;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 20px
+  }
+  /*Efecto hoover al contenedor Gmail*/
+  .contenedorGmailLogin:hover {
+    transform: scale(1.10); 
+  }
+  .contenedorGmailLogin p {
+    font-size: 18px;
+    color: #F7CB2D;
+    text-shadow: 0.1em 0.1em 3px #000;
+    font-weight: bold;
+  }
+ .inputSesion {
+  width: 275px;
+  height: 41px;
+  border-radius: 5px;
+  background: #F1e5B9;
+  border: 0.2px solid #000000;
+  margin: 12px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+ }   
+ .inputSesion:focus {
+   border: 3px solid #000000;
+   outline: none;
+   box-shadow: 3px 0px 30 px rgba(163, 163, 163, 0.4);
+ }
+ .mensajeError {
+   font-size: 13px;
+   margin-bottom: 0;
+   display: none;
+   font-weight: bolder;
+   color: rgba(10, 10, 10, 0.699);
+ }
+ .mensajeError-activo {
+   display: block;
+ }
+ .inicioSesionmensaje {
+   height: 35px;
+   line-height: 25px;
+   background: #f70a0a;
+   padding: 0 10px;
+   border-radius: 3px;
+   display: none;
+ }
+ .inicioSesionmensaje .advertencia {
+   margin:0;
+   font-size: 12px;
+   font-weight: bolder;
+ }
+ .inicioSesionmensaje-activo{
+   display: block;
+ }
+  .mensaje-exitoLogin {
+    font-size: 14px;
+    color:#0f0f0f;
+    font-weight: bold;
+    display: none;
+  }
+  .mensaje-exitoLogin-activo{
+    display: block;
+  }
+
+ #emailLogin{
+  margin-top: 25px;
+ }
+ #formularioInicioSesion .iniciarSesion {
+  position: relative;
+  width: 160px;
+  height: 52px;
+  border-radius: 79px;
+  background:#523412;
+  border: 0.2px solid #000000;
+  margin: 15px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  color: #EDD376;
+  cursor: pointer;
+ }
+ #formularioInicioSesion .iniciarSesion :hover,
+  #formularioInicioSesion .iniciarSesion:focus {
+    box-shadow: 0 0.9em 0.9em -0.7em #221910;
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+  }
+  #formularioInicioSesion .iniciarSesion {
+    --hover: #8A5C28;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+  }
+  #formularioInicioSesion .iniciarSesion:hover, #formularioInicioSesion button:focus {
+    border-color: var(--hover);
+    color: #fff;
+    background-color: #F7CB2D;
+  }
+  .mensajeCuentainicio {
+  font-size: 17px;
+  }
+  .contenedorGmailLogin:hover {
+    transform: scale(1.10); 
+  }
+  .contenedorGmailLogin p {
+    font-size: 18px;
+    color: #F7CB2D;
+    text-shadow: 0.1em 0.1em 1px #000;
+    font-weight: bold;
+  }
+  .inputSesion {
+    width: 275px;
+    height: 41px;
+    border-radius: 5px;
+    background: #F1e5B9;
+    border: 0.2px solid #000000;
+    margin: 12px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }   
+    #emailLogin{
+    margin-top: 25px;
+  }
+  .iniciarSesion {
+    width: 160px;
+    height: 50px;
+    border-radius: 79px;
+    background:#523412;
+    border: 0.2px solid #000000;
+    margin: 15px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    color: #EDD376;
+    cursor: pointer;
+  }
+  .iniciarSesion {
+    --hover: #8A5C28;
+    transition: 0.25s;
+  }
+  .iniciarSesion:hover, button:focus {
+    border-color: var(--hover);
+    color: #fff;
+    background-color: #F7CB2D;
+    box-shadow: 0 0.9em 0.9em -0.7em #221910;
+    -webkit-transform: translateY(-0.25em);
+    transform: translateY(-0.25em);
+  }
+  .mensajeCuentainicio {
+    font-size: 17px;
+    font-family: inherit;
+    color: #F1e5B9;
+    font-weight: bold;
+    margin: 7px;
+    text-shadow: 0.1em 0.1em 0.5px #000;
+  }
+  .textoSesionGrande {
+    float: right;
+    max-width: 340px;
+    margin-right: 40px;
+ }
+ .contenedorIniciosesion a{
+  font-size: 16px;
+  color: #3c382a;
+  font-weight: bolder;
+  text-shadow: 0.1em 0.1em 2px #edd376;
+  font-family: sans-serif;
+  margin-left: 5px;
+ }
+
+/* ------- Estilos para validación --------*/
+.inputSesion-incorrecto .inputSesion{
+  border: 3px solid #bb2929;
+}
+.inputSesion-correcto .inputSesion{
+  border: 3px solid #1bf008;
+  }
+  .contenedorIniciosesion a{
+    font-size: 16px;
+    color: #252421;
+    font-weight: bolder;
+    text-shadow: 0.1em 0.1em 2px #edd376;
+    font-family: sans-serif;
+    margin-left: 5px;
+  }
+}

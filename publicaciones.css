@@ -1,0 +1,262 @@
+.contenedorLogoPublicaciones{
+    width: 100%;
+}
+#postsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+.bodyPost{
+    height: auto;
+    text-align: center;
+    background: rgb(239 224 172);
+    border: 3px solid rgba(77, 45, 7, 0.37);
+    border-radius: 10px;
+}
+.imagenPost {
+    width: inherit;
+}
+
+
+.menuDesplegable{
+    float: right;
+    margin-left: -200px;
+}
+.iconoMenu{
+    position: absolute;
+    margin-top: 5px;
+    opacity: 0;
+    margin-left: -5px;
+    cursor: pointer;
+} 
+label{
+    margin-left: -8px;
+    position: static;
+    margin-right: 10px;
+}
+.nav{
+    opacity: 0;
+    background: #523412;
+    width: 150px;
+    border-radius: 5px;
+    transform: translateY(40%);
+    margin-right: -200px;
+}
+.nav a{
+    text-align: center;
+    display: block;
+    margin: 10px 0 10px;;
+    color: #F1E5B9;
+    text-decoration: none;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    transition: all 300ms;
+}
+.nav a:hover{
+    color: #030303;
+}
+.iconoMenu:checked ~ .nav{
+    position: absolute;
+    opacity: 1;
+    transform: translateY(-5%);
+    margin-left: -128px;
+}
+
+
+/* Popup Publicaciones */
+.overLay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.overLay.active { visibility: visible }
+.popUp{
+    background: #F1e5B9;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    border-radius: 3px;
+    font-family: arial;
+    padding: 20px;
+    text-align: center;
+    min-width: 260px;
+    min-height: 100px;
+    transition: .3s ease all;
+    transform: scale(0.7);
+    opacity: 0;
+}
+.popUp .cerrarPopup{
+    font-size: 16px;
+    line-height: 16px;
+    display: block;
+    text-align: right;
+    transition: .3s ease all;
+    color: #BBBBBB;
+}
+.popUp .cerrarPopup:hover{
+    color: rgba(0, 0, 0, 0.644);
+}
+
+.popUp form .inputPopup{
+    width: 100%;
+    height: 150px;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: center;
+    border-radius: 58px;
+}
+.popUp form .inputPopup .tituloPopup{
+    width: 100%;
+    margin-bottom: 20px;
+    height: 52px;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: center;
+    border: 1px solid #928933a4;
+    border-radius: 8px;
+}
+.popUp form .inputPopup .publicacionPopup{
+    width: 100%;
+    margin-bottom: 20px;
+    height: 82px;
+    font-size: 18px;
+    line-height: 52px;
+    text-align: center;
+    border: 1px solid #928933a4;
+    border-radius: 8px;
+}
+.popUp form .submitPublicar{
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    color: #fff;
+    background: #523412;
+    border-radius: 15px;
+    font-family: arial;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: .3s ease all; 
+}
+.popUp form .submitPublicar:hover{
+    background:#f08205;
+}
+.fas fa-times{
+    background: #523412;
+}
+/* * ==== ANIMACIONES POPUP === */
+.popUp.active { transform: scale(1); opacity: 1; }
+.contenedorEncabezadoPublicaciones{
+    position: sticky;
+    top: 0px;
+    background: beige;
+    width: 100%;
+}
+.footerPublicaciones{
+    width: 100%;
+    text-align-last: center;
+    background: beige;
+    position: fixed;
+    bottom: 8px;
+}
+
+@media (max-width:500px){
+     .contenedorEncabezadoPublicaciones{
+        text-align: -webkit-center;
+    }
+    .contenedorPublicaciones{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .logoPublicar{
+        width: 100px;
+    }
+    .iconosEnlaces{
+        border-bottom: 3px solid rgba(77, 45, 7, 0.37);
+        width: 100%;
+        text-align-last: justify;
+    }
+    .iconosNavegacion{ width: 22px }
+    #perfilUsuario{ margin-left: 30px }
+    #salir{ margin-right: 30px }
+    #postsContainer{ margin-top: 8px }
+    .bodyPost{
+        width: 80%;
+        margin: 8px;
+    }
+    .iconoPublicar{
+        width: 20px;
+        margin: 2px;
+    }
+    .popUp{
+        margin: 20px;
+    }
+   
+}
+@media (min-width: 501px){
+    .contenedorEncabezadoPublicaciones{ 
+        display: flex;
+        border-bottom: 3px solid rgba(77, 45, 7, 0.37);
+    }
+    .contenedorPublicaciones{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .logoPublicar{
+        width: 160px;
+        margin: 3px;
+    }
+    .iconosEnlaces{
+        min-width: max-content;
+        align-self: center;
+    }
+    .iconosNavegacion{
+        width: 30px;
+        margin: 10px;
+    }
+    #postsContainer{ margin-top: 15px }
+    .bodyPost{
+       width: 60%;
+       margin: 15px;
+    }
+    .iconoPublicar{
+        width: 30px;
+        margin-bottom: 10px;
+        margin-top: 4px;
+    }
+}
+.fileInput {
+    padding: 5px;
+    width: 180px;
+    position: relative;
+}
+#camaraCarga {
+width: 40px;
+}
+.textoFoto{ /*  Puede ser una opción para ser mas explícito */
+    font-size: 15px;
+    color: rgb(78, 59, 5);
+    font-weight: bold;
+
+}
+.imgPost{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.iconoLikes{
+    width: 30px;
+} 
