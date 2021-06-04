@@ -6,13 +6,10 @@ const mockauth = new firebasemock.MockAuthentication();
 // const mockfirestore = new firebasemock.MockFirestore();
 // const mockstorage = new firebasemock.MockStorage();
 const mocksdk = new firebasemock.MockFirebaseSdk(
-  () => {
-    return null;
-  },
-  // use null if your code does not use AUTHENTICATION
-  () => {
-    return mockauth;
-  }
+
+  () => {return null},
+  () => {return mockauth}
+
   // use null if your code does not use FIRESTORE
   // () => {
   //   return mockfirestore;
@@ -45,6 +42,7 @@ describe('loginUSer', () => {
     const promesa = loginUSer('usuario@beerlovers.com', '12345678')
     return promesa
       .then((user) => {
+        console.log(user)
         expect(typeof user).toBe('object');
         expect(user.email).toBe('usuario@beerlovers.com')
       })

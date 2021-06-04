@@ -23,12 +23,51 @@ export const mostrarLogin = () => {
     const emailLogin = document.getElementById('emailLogin').value;
     const passwordLogin = document.getElementById('passwordLogin').value;
     event.preventDefault();
-    loginUSer(emailLogin, passwordLogin);
+    loginUSer(emailLogin, passwordLogin)
+      .then((userCredential) => {
+        window.location.hash = '#/posts'; // Con esto si el usuario se loguea correctamente muestra el muro.
+
+        swal({
+          title: 'Muy bien!!! Eres un  Beer Lovers.',
+          text: 'Bienvenido',
+          icon: 'success'
+        });
+        return userCredential
+
+      }).catch((error) => {
+        const mensajeError = error.message
+        swal({
+          title: mensajeError,
+          text: 'Por favor vuelve a intentarlo',
+          icon: 'error'
+        });
+      });
+
   });
 
   // Inicio de sesion con gmail
   const contenedorGmailLogin = document.getElementById('contenedorGmailLogin');
-  contenedorGmailLogin.addEventListener('click', registroGmail);
+  contenedorGmailLogin.addEventListener('click', registroGmail()
+  .then((result) => {
+    window.location.hash = '#/posts';
+    swal({
+      title: 'Ingresaste correctamente.',
+      text: 'Bienvenido a Beer Lover',
+      icon: 'success'
+    });
+    return result
+
+  }).catch((error) => {
+    const mensajeerrorGmail = error.message;
+    swal({
+      title: mensajeerrorGmail,
+      text: 'Por favor use una cuenta válida',
+      icon: 'error'
+    });
+
+  }))
+
+
   return appPantallaLogin;
 
 };
@@ -42,16 +81,56 @@ export const mostrarRegistro = () => {
   formularioRegistro.addEventListener('submit', (event) => {
     event.preventDefault();
     const emailRegistro = document.getElementById('emailRegistro').value;
-    // const nombreUsuarioinput = document.getElementById('nombreDeUsuario').value;
     const passwordRegistro = document.getElementById('passwordRegistro').value;
 
-    registerUSer(emailRegistro, passwordRegistro);
-    return appePantallaRegistro;
+    registerUSer(emailRegistro, passwordRegistro)
+
+      .then((userCredential) => {
+        window.location.hash = '#/posts';
+
+        swal({
+          title: 'Bienvenido a Beer Lovers.',
+          text: 'Ya puedes disfrutar de nuestro contenido',
+          icon: 'success'
+        });
+
+        return userCredential
+
+      }).catch((error) => {
+        const mensajeErrorRegister = error.message
+        swal({
+          title: mensajeErrorRegister,
+          text: 'Por favor intente con una cuenta válida',
+          icon: 'error'
+        });
+
+      });
+  
   });
 
   // registro Gmail
   const contenedorclickGmail = document.getElementById('contenedorclickGmail');
-  contenedorclickGmail.addEventListener('click', registroGmail);
+  contenedorclickGmail.addEventListener('click', registroGmail()
+    .then((result) => {
+      window.location.hash = '#/posts';
+      swal({
+        title: 'Ingresaste correctamente.',
+        text: 'Bienvenido a Beer Lover',
+        icon: 'success'
+      });
+      return result
+
+    }).catch((error) => {
+      const mensajeerrorGmail = error.message;
+      swal({
+        title: mensajeerrorGmail,
+        text: 'Por favor use una cuenta válida',
+        icon: 'error'
+      });
+
+    }))
+
+    return appePantallaRegistro;
 
 };
 
@@ -73,7 +152,7 @@ const cerrarPopUp = (formPublicacion, btnCerrarPopup, overLay, popUp) => {
 
       editStatus = false;
       id = '';
-      // formPublicacion['img'].remove();
+
       formPublicacion['img'].style.display = "flex"
       formPublicacion['btnPublicar'].innerText = 'Publicar';
       formPublicacion.reset();
