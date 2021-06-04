@@ -9,15 +9,18 @@ import {
 const data = firebase.firestore();
 
 export const mostrarHome = () => {
+
   const rootHtml = document.getElementById('root');
   const appPantallaInicio = rootHtml.appendChild(pantallaInicio());
   return appPantallaInicio;
+
 };
 
 export const mostrarLogin = () => {
   const rootHtml = document.getElementById('root');
   const appPantallaLogin = rootHtml.appendChild(inicioSesion());
   const formularioInicioSesion = document.getElementById('formularioInicioSesion');
+
   formularioInicioSesion.addEventListener('submit', (event) => {
     const emailLogin = document.getElementById('emailLogin').value;
     const passwordLogin = document.getElementById('passwordLogin').value;
@@ -29,6 +32,7 @@ export const mostrarLogin = () => {
   const contenedorGmailLogin = document.getElementById('contenedorGmailLogin');
   contenedorGmailLogin.addEventListener('click', registroGmail);
   return appPantallaLogin;
+
 };
 
 export const mostrarRegistro = () => {
@@ -94,18 +98,18 @@ const publicarPost = (formPublicacion, user) => {
 
     let img = formPublicacion.img.files[0];
     // const img = editStatus === false ? img = formPublicacion['img'].files[0] :  img="";
+
     if (editStatus === false) {
       img = formPublicacion.img.files[0];
     } else {
       img = '';
     }
-    const mensajeCarga = document.getElementById('mensajeCarga');
-    const imgName = img.name;
-    const storageRef = firebase.storage().ref(`imgPosts/${imgName}`);
-    const uploadImg = storageRef.put(img);
-
     try {
       if (!editStatus) {
+        const mensajeCarga = document.getElementById('mensajeCarga');
+        const imgName = img.name;
+        const storageRef = firebase.storage().ref('imgPosts/' + imgName);
+        const uploadImg = storageRef.put(img);
         uploadImg.on('StatusCargaImg', (snapshot) => {
           const porcentajeDeCarga = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log(`Estado de carga${porcentajeDeCarga}`);
@@ -113,28 +117,30 @@ const publicarPost = (formPublicacion, user) => {
           mensajeCarga.innerHTML = textoMensajeCarga;
         }, (error) => { console.log(error.message); }, () => {
           uploadImg.snapshot.ref.getDownloadURL().then((downloadURL) => {
-            firebase.auth().onAuthStateChanged((user) => {
-              data.collection('posts').doc().set({
-                descripcion,
-                img: downloadURL,
-                likes: [],
-                userUid: user.uid,
-                email: user.email,
-                name: user.displayName,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            // firebase.auth().onAuthStateChanged(function (user) {
+            const user = firebase.auth().currentUser
+            data.collection('posts').doc().set({
+              descripcion,
+              img: downloadURL,
+              likes: [],
+              userUid: user.uid,
+              email: user.email,
+              name: user.displayName,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
-              });
-            }, (error) => {
-              if (error) {
-                alert('Error de carga de imagen');
-              } else {
-                alert('Carga Exitosa');
-              }
             });
-          });
+            // }, (error) => {
+            //   if (error) {
+            //     alert("Error de carga de imagen");
+            //   } else {
+            //     alert("Carga Exitosa");
+            //   }
 
-          // Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
-          mensajeCarga.innerHTML = '';
+            // })
+          })
+
+          //Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
+          mensajeCarga.innerHTML = "";
           overLay.classList.remove('active');
           popUp.classList.remove('active');
         });
@@ -159,8 +165,9 @@ const eliminarPost = (btnsDelete) => {
     try { await deletePost(event.target.dataset.id); } catch (error) {
       console.log(error);
     }
-  }));
-};
+  })
+  );
+}
 
 const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
   btnsEdit.forEach((btn) => btn.addEventListener('click', async (event) => {
@@ -187,100 +194,122 @@ const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
     } catch (error) {
       console.log(error);
     }
-  }));
+  })
+  );
 };
+
+
 
 // crear el post list parametro mostrar muro
 const postList = async () => {
   await onGetPost((querySnapshot) => {
+
     const divListPost = document.getElementById('postsContainer');
     divListPost.innerHTML = '';
 
     querySnapshot.forEach((doc) => {
       const objetoPosts = ({ ...doc.data(), id: doc.id });
       divListPost.innerHTML += viewPost(objetoPosts);
+
     });
 
     // Aquí vamos a colocar el código para los Likes
-    const btnLikes = document.querySelectorAll('.iconoLikes');
-    btnLikes.forEach((btn) => btn.addEventListener('click', async (event) => {
-      const idPost = event.target.dataset.id;
-      console.log(idPost);
+    const btnLikes = document.querySelectorAll(".iconoLikes");
+    btnLikes.forEach((btn) =>
+      btn.addEventListener("click", async (event) => {
+        const idPost = event.target.dataset.id;
+        console.log(idPost)
 
-      const doc = await getPostID(idPost);
-      const userUidPost = doc.data().userUid;
-      console.log(userUidPost);
-      // const currentUser = firebase.auth().currentUser;
-      // console.log(currentUser.uid)
+        const doc = await getPostID(idPost);
+        const userUidPost = doc.data().userUid;
+        console.log(userUidPost)
+        // const currentUser = firebase.auth().currentUser;
+        // console.log(currentUser.uid)
 
-      firebase.auth().onAuthStateChanged((user) => {
-        const userUidActual = user.uid;
-        console.log(userUidActual);
 
-        data.collection('posts').doc(idPost).update({
 
-          likes: firebase.firestore.FieldValue.arrayUnion(userUidActual),
-          // likes: firebase.firestore.FieldValue.arrayRemove("otro"),
+
+
+        firebase.auth().onAuthStateChanged(function (user) {
+          let userUidActual = user.uid
+          console.log(userUidActual);
+
+          data.collection('posts').doc(idPost).update({
+
+            likes: firebase.firestore.FieldValue.arrayUnion(userUidActual),
+            // likes: firebase.firestore.FieldValue.arrayRemove("otro"),
+          });
+
+          const arrayLikes = doc.data().likes;
+          console.log(arrayLikes);
+          // for(let i = 0 ; i <arrayLikes.length; i++){
+
+          if (arrayLikes.includes(userUidActual) === true) {
+            console.log("usuario logueado ya dio like")
+
+
+          } else {
+            console.log("no a dado like")
+            // data.collection('posts').doc(idPost).update({
+            //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
+            // });
+          }
+          // }
+
+          //LLevar funcion que permite que salga el menu de eliminar y editar solo al usuario que lo posteo
+          // if (userUidPost === userUidActual) {
+          //   console.log("usuario que postea es el mismo logueado")
+
+
+          // } else {
+          //   console.log("usuario que postea es DIFERENTE al logueado")
+          // }
+
         });
 
-        const arrayLikes = doc.data().likes;
-        console.log(arrayLikes);
-        // for(let i = 0 ; i <arrayLikes.length; i++){
 
-        if (arrayLikes.includes(userUidActual) === true) {
-          console.log('usuario logueado ya dio like');
-        } else {
-          console.log('no a dado like');
-          // data.collection('posts').doc(idPost).update({
-          //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
-          // });
-        }
-        // }
 
-        // LLevar funcion que permite que salga el menu de eliminar y editar solo al usuario que lo posteo
-        // if (userUidPost === userUidActual) {
-        //   console.log("usuario que postea es el mismo logueado")
+        // const likes = doc.data().likes;
+        // console.log(doc,doc.data());
 
+        // const idSpanLike = "spanLike-" + idPost;
+        // console.log(data);
+        // doc.update({
+        //   likes:firebase.firestore.FieldValue.arrayUnion("carlos"),
+
+        // })
+
+
+
+
+        // if ((likes%2)==0){
+        //   console.log("es par")
+        //   document.querySelector("#likeDiv" + idPost).style.display = "block"
+        //   document.querySelector("#dislikeDiv" + idPost).style.display = "none"
+        //   const numlikes = doc.data().likes+1;
+        //   console.log(numlikes)
         // } else {
-        //   console.log("usuario que postea es DIFERENTE al logueado")
+        //   console.log("es impar")
+        //   document.querySelector("#likeDiv" + idPost).style.display = "none"
+        //   document.querySelector("#dislikeDiv" + idPost).style.display = "block"
+        //   const numlikes = doc.data().likes-1;
+        //   console.log(numlikes)
         // }
-      });
+      })
+    );
 
-      // const likes = doc.data().likes;
-      // console.log(doc,doc.data());
 
-      // const idSpanLike = "spanLike-" + idPost;
-      // console.log(data);
-      // doc.update({
-      //   likes:firebase.firestore.FieldValue.arrayUnion("carlos"),
-
-      // })
-
-      // if ((likes%2)==0){
-      //   console.log("es par")
-      //   document.querySelector("#likeDiv" + idPost).style.display = "block"
-      //   document.querySelector("#dislikeDiv" + idPost).style.display = "none"
-      //   const numlikes = doc.data().likes+1;
-      //   console.log(numlikes)
-      // } else {
-      //   console.log("es impar")
-      //   document.querySelector("#likeDiv" + idPost).style.display = "none"
-      //   document.querySelector("#dislikeDiv" + idPost).style.display = "block"
-      //   const numlikes = doc.data().likes-1;
-      //   console.log(numlikes)
-      // }
-    }));
-
-    // Esta funcion solo habilita el popUp de editar, NO edita
+    //Esta funcion solo habilita el popUp de editar, NO edita
     const formPublicacion = document.getElementById('formPublicacion');
-    const btnsEdit = document.querySelectorAll('.btnEditar');
+    const btnsEdit = document.querySelectorAll(".btnEditar");
     AbrirPopUpEditar(btnsEdit, formPublicacion);
 
-    // Inicializar funcion Eliminar
-    const btnsDelete = document.querySelectorAll('.btnEliminar');
+    //Inicializar funcion Eliminar
+    const btnsDelete = document.querySelectorAll(".btnEliminar");
     eliminarPost(btnsDelete);
+
   });
-};
+}
 
 export const mostrarMuro = async () => {
   const rootHtml = document.getElementById('root');
