@@ -277,7 +277,7 @@ export const mostrarMuro = async () => {
   cerrarPopUp(formPublicacion, btnCerrarPopup, overLay, popUp);
   // cerrar sesión
   const salirSesion = document.getElementById('salir');
-  salirSesion.addEventListener('click', cerrarSesion);
+  salirSesion.addEventListener('click', cerrarSesion)
 
   return appenMuro;
 };
