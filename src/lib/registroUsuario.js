@@ -83,25 +83,20 @@ export const registroUsuario = () => {
 
   // registro Gmail
   const contenedorclickGmail = contenedorRegistro.querySelector('#contenedorclickGmail');
-  console.log("fuera del contenedor")
-  contenedorclickGmail.addEventListener('click', registroGmail().then((result) => {
-    console.log("estoy en contenedor")
-    window.location.hash = '#/posts';
-    swal({
-      title: 'Ingresaste correctamente.',
-      text: 'Bienvenido a Beer Lover',
-      icon: 'success',
-    });
-    return result;
-  }).catch((error) => {
-    swal({
-      title: 'Cuenta no válida.',
-      text: 'Por favor use una cuenta válida',
-      icon: 'error',
-    });
-  }));
-
+  contenedorclickGmail.addEventListener('click', registroGmail);
 
   return contenedorRegistro;
 };
 
+// swal({
+  //     title: 'Ingresaste correctamente.',
+  //     text: 'Bienvenido a Beer Lover',
+  //     icon: 'success',
+  //   });
+  //   return result;
+  // }).catch((error) => {
+  //   swal({
+  //     title: 'Cuenta no válida.',
+  //     text: 'Por favor use una cuenta válida',
+  //     icon: 'error',
+  //   });
