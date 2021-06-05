@@ -281,3 +281,10 @@ export const mostrarMuro = async () => {
 
   return appenMuro;
 };
+
+firebase.auth().onAuthStateChanged((user) => {
+//eliminar 
+// const user = firebase.auth().currentUser;
+console.log(user);
+console.log(typeof user);
+});
