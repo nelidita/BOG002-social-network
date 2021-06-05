@@ -1,5 +1,5 @@
 import { showRoot } from './router.js';
-import { loginUSer, registerUSer } from './firebaseAuth.js';
+// import { loginUSer, registerUSer } from './firebaseAuth.js';
 
 const init = () => {
   // esto identifica cada on load si lo comentan nos toca darle recargar para que cambie la pantalla
@@ -11,6 +11,7 @@ const init = () => {
   /* Validaciones para los Inputs Inicio de sesión */
 };
 init();
+
 // const expresiones = {
 //   usuario: /^[a-zA-Z0-9\_\-]{6,16}$/, // Letras, numeros, guion y guion_bajo
 //   password: /^.{8,12}$/,// 8 a 12 digitos.

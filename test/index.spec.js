@@ -27,8 +27,6 @@ const mocksdk = new firebasemock.MockFirebaseSdk(
 mockauth.autoFlush();
 global.firebase = mocksdk;
 
-
-
 // describe('registerUSer', () => {
 //   test('debería ser una función', () => {
 //     expect(typeof registerUSer).toBe('function');
@@ -37,23 +35,19 @@ global.firebase = mocksdk;
 // });
 
 describe('loginUSer', () => {
-  test('debería ser una función', () => {
+  it('debería ser una función', () => {
     expect(typeof loginUSer).toBe('function');
   });
 
-  test('deberia poder loguearme', () => {
-    const promesa = loginUSer('usuario@beerlovers.com', '12345678')
+  it('deberia poder loguearme', () => {
+    const promesa = loginUSer('usuario@gmail.com', '12345678');
     return promesa
       .then((user) => {
         expect(typeof user).toBe('object');
-        expect(user.email).toBe('usuario@beerlovers.com')
+        expect(user.email).toBe('usuario@gmail.com');
       })
-
   })
-
 });
-
-
 
 // describe('registroGmail', () => {
 //   test('debería ser una función', () => {

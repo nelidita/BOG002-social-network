@@ -1,3 +1,5 @@
+import { loginUSer, registroGmail } from '../firebaseAuth.js';
+
 export const inicioSesion = () => {
   const contenedorIniciosesion = document.createElement('div');
   contenedorIniciosesion.className = 'contenedorIniciosesion';
@@ -39,5 +41,36 @@ export const inicioSesion = () => {
     `;
 
   contenedorIniciosesion.innerHTML = contenidoEncabezadoinicio;
+
+  const formularioInicioSesion = contenedorIniciosesion.querySelector('#formularioInicioSesion');
+
+  formularioInicioSesion.addEventListener('submit', (event) => {
+    const emailLogin = document.getElementById('emailLogin').value;
+    const passwordLogin = document.getElementById('passwordLogin').value;
+    event.preventDefault();
+    loginUSer(emailLogin, passwordLogin)
+      .then((userCredential) => {
+        window.location.hash = '#/posts'; // Con esto si el usuario se loguea correctamente muestra el muro.
+
+        swal({
+          title: 'Muy bien!!! Eres un  Beer Lovers.',
+          text: 'Bienvenido',
+          icon: 'success',
+        });
+        return userCredential;
+      }).catch((error) => {
+        const mensajeErrorInicio = error.message;
+        swal({
+          title: mensajeErrorInicio,
+          text: 'Por favor vuelve a intentarlo',
+          icon: 'error',
+        });
+      });
+  });
+
+  // Inicio de sesion con gmail
+  const contenedorGmailLogin = contenedorIniciosesion.querySelector('#contenedorGmailLogin');
+  contenedorGmailLogin.addEventListener('click', registroGmail);
+
   return contenedorIniciosesion;
 };
