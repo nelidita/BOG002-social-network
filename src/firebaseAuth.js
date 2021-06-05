@@ -14,7 +14,7 @@ export const registroGmail = () => {
 };
 
 export const cerrarSesion = () => {
-  firebase.auth().signOut().then(() => {
+  return firebase.auth().signOut().then(() => {
     window.location.hash = '#/Inicio';
   }).catch((error) => {
 
