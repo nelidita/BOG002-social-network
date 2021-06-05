@@ -12,23 +12,23 @@ export const registroGmail = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase
     .auth()
-    .signInWithPopup(provider)
-    .then((result) => {
-  console.log("estoy en contenedor")
-  window.location.hash = '#/posts';
-  swal({
-    title: 'Ingresaste correctamente.',
-    text: 'Bienvenido a Beer Lover',
-    icon: 'success',
-  });
-  return result;
-}).catch((error) => {
-  swal({
-    title: 'Cuenta no válida.',
-    text: 'Por favor use una cuenta válida',
-    icon: 'error',
-  });
-});
+    .signInWithPopup(provider).then((result) => {
+    
+      window.location.hash = '#/posts';
+    //   swal({
+    //     title: 'Ingresaste correctamente.',
+    //     text: 'Bienvenido a Beer Lover',
+    //     icon: 'success',
+    //   });
+    //   return result;
+    // }).catch((error) => {
+    //   swal({
+    //     title: 'Cuenta no válida.',
+    //     text: 'Por favor use una cuenta válida',
+    //     icon: 'error',
+    //   });
+    });
+  
 };
 
 export const cerrarSesion = () => {
