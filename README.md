@@ -233,6 +233,24 @@ Event objeto, delegación de eventos)
 
 ## 7. Producto final
 
+* Patalla de inicio
 
+![Sin título](src/Imagenes/Readmeinicio1.png")
+
+* Patalla de Login
+
+![Sin título](src/Imagenes/ReadmeLogin2.png")
+
+* Patalla de Registro
+
+![Sin título](src/Imagenes/ReadmeRegistro3.png")
+
+* Patalla de Bienvenida
+
+![Sin título](src/Imagenes/ReadmeBienvenida4.png")
+
+* Patalla Muro
+
+![Sin título](src/Imagenes/ReadmeMuro5.png")
 
 
