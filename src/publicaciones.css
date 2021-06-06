@@ -14,14 +14,27 @@
     border: 3px solid rgba(77, 45, 7, 0.37);
     border-radius: 10px;
 }
+.bodyPost p {
+    font-size: 16px;
+    margin: 5px;
+    -webkit-text-stroke: 1px black;
+    text-align: center;
+    
+}
+.bodyPost span {
+    font-size: 16px;
+    margin: 3px;
+    -webkit-text-stroke: 1px #523412;
+}
 .imagenPost {
     width: inherit;
+    border: 3px solid #523412;
+    border-radius: 5px;
 }
-
-
 .menuDesplegable{
     float: right;
     margin-left: -200px;
+    margin-top: -23px;
 }
 .iconoMenu{
     position: absolute;
@@ -34,6 +47,7 @@ label{
     margin-left: -8px;
     position: static;
     margin-right: 10px;
+    color: #523412;
 }
 .nav{
     opacity: 0;
@@ -62,7 +76,16 @@ label{
     transform: translateY(-5%);
     margin-left: -128px;
 }
-
+.seccionLikes {
+    text-align: end;
+    margin-right: 25px;
+    margin-bottom: 3px;
+    -webkit-text-stroke: 1px black;
+    font-size: 16px;
+}
+.divIconoLikes{
+    display: inline-block;
+}
 
 /* Popup Publicaciones */
 .overLay {
@@ -172,6 +195,7 @@ label{
         text-align: -webkit-center;
     }
     .contenedorPublicaciones{
+        width: 100%;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -189,7 +213,7 @@ label{
     #postsContainer{ margin-top: 8px }
     .bodyPost{
         width: 80%;
-        margin: 8px;
+        margin: 5px;
     }
     .iconoPublicar{
         width: 20px;
