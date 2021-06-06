@@ -134,14 +134,14 @@ const publicarPost = (formPublicacion, user) => {
 const eliminarPost = (btnsDelete) => {
   btnsDelete.forEach((btn) => btn.addEventListener('click', async (event) => {
 
-  
+
     await swal({
       title: "Estas seguro que quieres eliminar?",
       text: "Una vez eliminado no podrás recuperarlo",
       icon: "warning",
-      buttons: ['Si, estoy seguro','No, cancelar']
+      buttons: ['Si, estoy seguro', 'No, cancelar']
     })
-   
+
     try { await deletePost(event.target.dataset.id); } catch (error) {
       console.log(error);
       // Si el userIdpost === currentUser salen los 3 puntos
@@ -216,8 +216,12 @@ const postList = async () => {
         // for(let i = 0 ; i <arrayLikes.length; i++){
 
         if (arrayLikes.includes(userUidActual) === true) {
+          document.querySelector("#likeDiv" + idPost).style.display = "block"
+          document.querySelector("#dislikeDiv" + idPost).style.display = "none"
           console.log('usuario logueado ya dio like');
         } else {
+          document.querySelector("#likeDiv" + idPost).style.display = "none"
+          document.querySelector("#dislikeDiv" + idPost).style.display = "block"
           console.log('no a dado like');
           // data.collection('posts').doc(idPost).update({
           //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
@@ -267,7 +271,7 @@ const postList = async () => {
     // Inicializar funcion Eliminar
     const btnsDelete = document.querySelectorAll('.btnEliminar');
     eliminarPost(btnsDelete);
-   
+
     // popupEliminar ojo
   });
 };
@@ -296,8 +300,8 @@ export const mostrarMuro = async () => {
 };
 
 firebase.auth().onAuthStateChanged((user) => {
-//eliminar 
-// const user = firebase.auth().currentUser;
-console.log(user);
-console.log(typeof user);
+  //eliminar 
+  // const user = firebase.auth().currentUser;
+  console.log(user);
+  console.log(typeof user);
 });
