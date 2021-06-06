@@ -50,12 +50,14 @@ export const inicioSesion = () => {
     event.preventDefault();
     loginUSer(emailLogin, passwordLogin)
       .then((userCredential) => {
-        window.location.hash = '#/posts'; // Con esto si el usuario se loguea correctamente muestra el muro.
+        window.location.hash = '#/posts'; 
+// Con esto si el usuario se loguea correctamente muestra el muro.
         swal({
           title: 'Muy bien!!! Eres un  Beer Lovers.',
           text: 'Bienvenido',
           icon: 'success',
         });
+    
         return userCredential;
       }).catch((error) => {
         const mensajeErrorInicio = error.message;

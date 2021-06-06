@@ -130,14 +130,25 @@ const publicarPost = (formPublicacion, user) => {
   });
 };
 
+
 const eliminarPost = (btnsDelete) => {
   btnsDelete.forEach((btn) => btn.addEventListener('click', async (event) => {
+
+  
+    await swal({
+      title: "Estas seguro que quieres eliminar?",
+      text: "Una vez eliminado no podrás recuperarlo",
+      icon: "warning",
+      buttons: ['Si, estoy seguro','No, cancelar']
+    })
+   
     try { await deletePost(event.target.dataset.id); } catch (error) {
       console.log(error);
       // Si el userIdpost === currentUser salen los 3 puntos
     }
   }));
 };
+
 
 const AbrirPopUpEditar = (btnsEdit, formPublicacion) => {
   btnsEdit.forEach((btn) => btn.addEventListener('click', async (event) => {
@@ -256,6 +267,8 @@ const postList = async () => {
     // Inicializar funcion Eliminar
     const btnsDelete = document.querySelectorAll('.btnEliminar');
     eliminarPost(btnsDelete);
+   
+    // popupEliminar ojo
   });
 };
 
