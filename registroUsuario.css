@@ -43,18 +43,26 @@ height: 41px;
 border-radius: 5px;
 background: #F1E5B9;
 border: 0.2px solid #000000;
-margin: 10px;
+margin: 5px;
 font-family: inherit;
 font-size: 18px;
 font-weight: bold;
 text-align: center;
+}
+.registro {
+    font-size: 18px;
+    font-family: inherit;
+    color: #000;
+    font-weight: bold;
+    margin: 9px;
+    -webkit-text-stroke: 0.2px #1d1c19ad;
 }
 #formularioRegistroUsuario .terminosBeerlover{
     font-size: 16px;
     font-family: inherit;
     color: #000;
     font-weight: bold;
-    margin-top: 5px;
+    margin: 8px;
     -webkit-text-stroke: 0.2px #1d1c19ad;
 }
 #formularioRegistroUsuario a{
@@ -78,7 +86,7 @@ text-align: center;
     border-radius: 79px;
     background: #523412;
     border: 0.2px solid #000000;
-    margin-top: 12px;
+    margin-top: 15px;
     font-family: inherit;
     font-size: 22px;
     font-weight: bold;
@@ -258,7 +266,7 @@ text-align: center;
         font-family: inherit;
         color: #000;
         font-weight: bold;
-        -webkit-text-stroke: 0.5px #1d1c19ad;
+        -webkit-text-stroke: 0.9px black;
         margin-left: 8px;
     }
     .registrarme{
@@ -365,10 +373,10 @@ text-align: center;
     #formularioRegistroUsuario p{
         font-size: 17px;
         font-family: inherit;
-        color: #F1e5B9;
+        color: black;
         font-weight: bold;
         margin: 15px;
-        text-shadow: 0.1em 0.1em 0.5px #000;
+        text-shadow: 0.05em 0.05em 2px black
     }
     #formularioRegistroUsuario a{
         font-size: 16px;

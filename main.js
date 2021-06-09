@@ -1,6 +1,5 @@
 import { showRoot } from './router.js';
-import { loginUSer,registerUSer} from './firebaseAuth.js';
-
+// import { loginUSer, registerUSer } from './firebaseAuth.js';
 
 const init = () => {
   // esto identifica cada on load si lo comentan nos toca darle recargar para que cambie la pantalla
@@ -9,9 +8,10 @@ const init = () => {
   });
   // si no le pasamos estos parametros no nos carga la pagina incial tan pronto ejecutamos
   showRoot(window.location.hash);
-  /* Validaciones para los Inputs Inicio de sesión*/
-}
+  /* Validaciones para los Inputs Inicio de sesión */
+};
 init();
+
 // const expresiones = {
 //   usuario: /^[a-zA-Z0-9\_\-]{6,16}$/, // Letras, numeros, guion y guion_bajo
 //   password: /^.{8,12}$/,// 8 a 12 digitos.
@@ -74,7 +74,7 @@ init();
 
 //     } else {
 //     document.getElementById('formulario__mensaje').classList.add('inicioSesionmensaje-activo');
- 
+
 //     document.querySelector('#validacionIniciopass .mensajeError').classList.add('mensajeError-activo');
 //     document.querySelector('#validacionInicio .mensajeError').classList.add('mensajeError-activo');
 //     document.getElementById('validacionIniciopass').classList.add('inputSesion-incorrecto');
@@ -82,13 +82,10 @@ init();
 //     formulario.reset();
 //     loginUSer();
 //        setTimeout(() => {
-      
+
 //     }, 3000);
 //   }
 // });
-
-
-
 
 // /* Validaciones para los Inputs Registro de Usuario*/
 
@@ -151,7 +148,7 @@ init();
 //   // }
 // // });
 // };
-// 
+//
 
 // /* Validaciones para los Inputs Inicio de sesión*/
 
@@ -217,7 +214,7 @@ init();
 
 //     } else {
 //     document.getElementById('formulario__mensaje').classList.add('inicioSesionmensaje-activo');
- 
+
 //     document.querySelector('#validacionIniciopass .mensajeError').classList.add('mensajeError-activo');
 //     document.querySelector('#validacionInicio .mensajeError').classList.add('mensajeError-activo');
 //     document.getElementById('validacionIniciopass').classList.add('inputSesion-incorrecto');
@@ -225,13 +222,10 @@ init();
 //     formulario.reset();
 //     loginUSer();
 //        setTimeout(() => {
-      
+
 //     }, 3000);
 //   }
 // });
-
-
-
 
 // /* Validaciones para los Inputs Registro de Usuario*/
 

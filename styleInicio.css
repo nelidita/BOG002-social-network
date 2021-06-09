@@ -4,28 +4,26 @@
   text-decoration: none;
   font-family: 'Ubuntu', sans-serif;
 }
-
+body { width: 100% }
+#root { width: 100% }
 footer{   
   position: fixed;
   bottom: 0px;
-  text-align: center;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   background: #523412;
-  align-items: center;
 }
 footer a{
   color: white;
   font-size: 12px;
-  margin-left: 8px;
+  margin-left: -40px;
   cursor: pointer;
 }
 footer img {
-  width: 20px;
-  height: 20px;
-  margin-left: 30px;
+  width: 12px;
+  height: 12px;
 }
 
 @media (min-width: 501px){
@@ -148,8 +146,5 @@ footer img {
   #btnIniciarSesion{
     margin-top: 60px;
   }
-  footer img {
-    width: 12px;
-    height: 12px;
-  }  
+  
 }
