@@ -99,14 +99,7 @@ const publicarPost = (formPublicacion, user) => {
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
             });
-            // }, (error) => {
-            //   if (error) {
-            //     alert("Error de carga de imagen");
-            //   } else {
-            //     alert("Carga Exitosa");
-            //   }
 
-            // })
           });
 
           // Cuando damos click al boton publicar con el evento submiit, se cierra inmediatamente el popUp
@@ -134,14 +127,14 @@ const publicarPost = (formPublicacion, user) => {
 const eliminarPost = (btnsDelete) => {
   btnsDelete.forEach((btn) => btn.addEventListener('click', async (event) => {
 
-  
+
     await swal({
       title: "Estas seguro que quieres eliminar?",
       text: "Una vez eliminado no podrás recuperarlo",
       icon: "warning",
-      buttons: ['Si, estoy seguro','No, cancelar']
+      buttons: ['Si, estoy seguro', 'No, cancelar']
     })
-   
+
     try { await deletePost(event.target.dataset.id); } catch (error) {
       console.log(error);
       // Si el userIdpost === currentUser salen los 3 puntos
@@ -198,32 +191,10 @@ const postList = async () => {
       const doc = await getPostID(idPost);
       const userUidPost = doc.data().userUid;
       console.log(userUidPost);
-      // const currentUser = firebase.auth().currentUser;
-      // console.log(currentUser.uid)
-
-      firebase.auth().onAuthStateChanged((user) => {
-        const userUidActual = user.uid;
-        console.log(userUidActual);
-
-        data.collection('posts').doc(idPost).update({
-
-          likes: firebase.firestore.FieldValue.arrayUnion(userUidActual),
-          // likes: firebase.firestore.FieldValue.arrayRemove("otro"),
-        });
-
-        const arrayLikes = doc.data().likes;
-        console.log(arrayLikes);
-        // for(let i = 0 ; i <arrayLikes.length; i++){
-
-        if (arrayLikes.includes(userUidActual) === true) {
-          console.log('usuario logueado ya dio like');
-        } else {
-          console.log('no a dado like');
-          // data.collection('posts').doc(idPost).update({
-          //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
-          // });
-        }
-        // }
+      const currentUser = firebase.auth().currentUser;
+      const userUidActual = currentUser.uid;
+      console.log(userUidActual);
+ 
 
         // LLevar funcion que permite que salga el menu de eliminar y editar solo al usuario que lo posteo
         // if (userUidPost === userUidActual) {
@@ -232,31 +203,29 @@ const postList = async () => {
         // } else {
         //   console.log("usuario que postea es DIFERENTE al logueado")
         // }
+      // });
+      
+      data.collection('posts').doc(idPost).update({
+
+        likes: firebase.firestore.FieldValue.arrayUnion(userUidActual),
+
       });
+      const arrayLikes = doc.data().likes;
+      console.log(arrayLikes);
 
-      // const likes = doc.data().likes;
-      // console.log(doc,doc.data());
+      if (arrayLikes.includes(userUidActual) === true) {
+        document.querySelector("#likeDiv" + idPost).style.display = "block"
+        document.querySelector("#dislikeDiv" + idPost).style.display = "none"
+        console.log('usuario logueado ya dio like');
+      } else {
+        document.querySelector("#likeDiv" + idPost).style.display = "none"
+        document.querySelector("#dislikeDiv" + idPost).style.display = "block"
+        console.log('no a dado like');
+        // data.collection('posts').doc(idPost).update({
+        //   likes: firebase.firestore.FieldValue.arrayRemove(userUidActual)
+        // });
+      }
 
-      // const idSpanLike = "spanLike-" + idPost;
-      // console.log(data);
-      // doc.update({
-      //   likes:firebase.firestore.FieldValue.arrayUnion("carlos"),
-
-      // })
-
-      // if ((likes%2)==0){
-      //   console.log("es par")
-      //   document.querySelector("#likeDiv" + idPost).style.display = "block"
-      //   document.querySelector("#dislikeDiv" + idPost).style.display = "none"
-      //   const numlikes = doc.data().likes+1;
-      //   console.log(numlikes)
-      // } else {
-      //   console.log("es impar")
-      //   document.querySelector("#likeDiv" + idPost).style.display = "none"
-      //   document.querySelector("#dislikeDiv" + idPost).style.display = "block"
-      //   const numlikes = doc.data().likes-1;
-      //   console.log(numlikes)
-      // }
     }));
 
     // Esta funcion solo habilita el popUp de editar, NO edita
@@ -267,7 +236,7 @@ const postList = async () => {
     // Inicializar funcion Eliminar
     const btnsDelete = document.querySelectorAll('.btnEliminar');
     eliminarPost(btnsDelete);
-   
+
     // popupEliminar ojo
   });
 };
@@ -296,8 +265,7 @@ export const mostrarMuro = async () => {
 };
 
 firebase.auth().onAuthStateChanged((user) => {
-//eliminar 
-// const user = firebase.auth().currentUser;
-console.log(user);
-console.log(typeof user);
+  //eliminar 
+  // const user = firebase.auth().currentUser;
+
 });
